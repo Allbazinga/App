@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:paddingTop="10dp">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_chat_date"
+        android:layout_gravity="center_horizontal"
+        android:text="09-03 12:50"
+        android:textColor="@color/chat_date"/>
+    <RelativeLayout 
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+        <com.app.view.baseview.RoundImageView 
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/pic_msg_head1"
+            android:id="@+id/iv_chat_avatar"/>
+        <ImageView 
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/iv_chat_picture"
+            android:background="@drawable/pic_chat_qp_right"
+            android:layout_toLeftOf="@+id/iv_chat_avatar"
+            android:layout_marginRight="7dp"
+            android:contentDescription="@string/add_avatar"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="7dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" 
+            android:src="@drawable/pic_test1"/>
+        <ProgressBar 
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/progress_load"
+            android:layout_toLeftOf="@+id/iv_chat_picture"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:visibility="visible"/>
+    </RelativeLayout>
+    
+</LinearLayout>

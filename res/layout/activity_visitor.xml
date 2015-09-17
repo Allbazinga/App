@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ui_color_gray" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header"
+        android:background="@color/ui_color" >
+
+        <ImageView
+            android:id="@+id/iv_visitor_back"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pic_back_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/recent_visitor"
+            android:textColor="@color/white"
+            android:textSize="20.0dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <ListView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ltv_visitor"
+        android:background="@color/ui_color_gray"
+        android:divider="@null"></ListView>
+</LinearLayout>

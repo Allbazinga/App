@@ -1,0 +1,33 @@
+
+
+    <LinearLayout
+         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ui_color_gray"
+        android:orientation="vertical" >
+        
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header"
+        android:background="@color/ui_color" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/msg"
+            android:textColor="@color/white"
+            android:textSize="20.0dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/ltv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ui_color_gray"
+        android:divider="@null" >
+    </ListView> 
+    </LinearLayout>
+

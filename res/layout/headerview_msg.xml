@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:id="@+id/layout_msg_good"
+        android:background="@color/white">
+        
+        <ImageView 
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/img_msg_good"
+            android:src="@drawable/pic_msg_good"/>
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_msg_good"
+            android:layout_alignTop="@+id/img_msg_good"
+            android:layout_marginLeft="10dp"
+            android:text="@string/msg_good"
+            android:textSize="16.0dp"
+            android:layout_marginTop="0dp"
+            android:textStyle="bold"
+            android:id="@+id/tv_msg_good"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#515151"
+            android:id="@+id/tv_msg_good_hint"
+            android:layout_alignLeft="@+id/tv_msg_good"
+            android:layout_alignBottom="@+id/img_msg_good"
+            android:text="又有四个人为你的消息点赞了哦！"
+            android:textSize="13.0dp"/>
+        <ImageView 
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/pic_forward"/>
+    </RelativeLayout>
+    <View android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/line_msg_ltv"
+        />
+     <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:id="@+id/layout_msg_reply"
+        android:background="@color/white">
+        
+        <ImageView 
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/img_msg_reply"
+            android:src="@drawable/pic_msg_reply"/>
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_msg_reply"
+            android:layout_alignTop="@+id/img_msg_reply"
+            android:layout_marginLeft="10dp"
+            android:text="@string/msg_reply"
+            android:textSize="16.0dp"
+            android:layout_marginTop="0dp"
+            android:textStyle="bold"
+            android:id="@+id/tv_msg_reply"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#515151"
+            android:id="@+id/tv_msg_reply_hint"
+            android:layout_alignLeft="@+id/tv_msg_reply"
+            android:layout_alignBottom="@+id/img_msg_reply"
+            android:text="迷路的安娜 评论了你的帖子"
+            android:textSize="13.0dp"/>
+        <ImageView 
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/pic_forward"/>
+    </RelativeLayout>
+    <View android:layout_height="10dp"
+        android:layout_width="match_parent" />
+</LinearLayout>

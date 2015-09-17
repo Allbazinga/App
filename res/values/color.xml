@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ui_color">#FFCC00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="line_bottom_upon">#D7D7D7</color>
+    <color name="line_msg_ltv">#E4E4E4</color>
+    <color name="tv_main_bottom_nor">#949494</color>
+    <color name="tv_main_bottom_sel">#FFCC00</color>
+    <color name="tv_msg_time">#666666</color>
+    <color name="ui_color_gray">#E4E4E4</color>
+    <!-- 校园页 -->
+    <color name="home_bg">#E4E4E4</color>
+    <color name="home_item_up">#F9F9F9</color>
+    <color name="home_item_name">#333333</color>
+    <color name="home_item_time">#666666</color>
+    <color name="home_item_content">#333333</color>
+    <color name="home_item_mark">#3399FF</color>
+    <color name="home_item_divider">#D7D7D7</color>
+    <color name="home_item_comment">#333333</color>
+    <color name="home_item_good">#333333</color>
+    <color name="home_item_tag">#6B6B6B</color>
+    
+    <!-- 帖子详情 -->
+    <color name="home_detail_reply">#333333</color>
+    <color name="home_detail_last">#A1A1A1</color>
+    <color name="home_detail_gray">#666666</color>
+    <color name="home_detail_red">#666666</color>
+    <color name="home_detail_bg_edit">#F9F9F9</color>
+    
+    <!-- 点赞和回复 -->
+    <color name="msg_gar_blue">#3399FF</color>
+    <color name="msg_gar_name">#333333</color>
+    <color name="msg_gar_gray">#666666</color>
+    
+    <!-- 聊天 -->
+    
+    <color name="chat_date">#BCBCBC</color>
+    <color name="chat_bg">#F2F2F2</color>
+    
+    <!-- 发现 -->
+    <color name="find_menu_bg">#F2F2F2</color>
+    <color name="find_card_name_bg">#F9F9F9</color>
+    <color name="find_card_title">#333333</color>
+    <color name="find_card_tile_content_line">#D7D7D7</color>
+    <color name="find_card_content">#949494</color>
+       
+        <!--    下拉刷新和上拉加载color -->
+    <color name="gray">#aaaaaa</color>
+    <color name="light_blue">#6593cb</color>
+    <color name="header1">#00a9f5</color>
+    
+    
+    <!--我的界面  -->
+     <color name="color_gray_eaeaea">#eaeaea</color>
+    <color name="color_black_333333">#333333</color>
+    <color name="color_grey_999999">#999999</color>
+    <color name="color_black_d9d9d9">#d9d9d9</color>
+    <!-- <color name="color_purple_bd6aff">#bd6aff</color> -->
+    <color name="GreyWhite_has_alpha">#66FAFAFA</color>
+    <color name="transparent">#00000000</color>
+    <color name="action_bar_tittle_color_555555">#555555</color>
+    
+    <!-- add -->
+    <color name="transparent_add">#70000000</color>
+    <color name="new_card">#6AFE78</color>
+    <color name="new_note">#66CCFF</color>
+    <color name="new_tucao">#FFCC00</color>
+    
+</resources>

@@ -1,0 +1,134 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+   <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ui_color_gray" >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header"
+        android:background="@color/ui_color" >
+
+        <ImageView
+            android:id="@+id/iv_new_note_back"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pic_back_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/add_new_note"
+            android:textColor="@color/white"
+            android:textSize="20.0dp"
+            android:textStyle="bold" />
+        <ImageView android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:contentDescription="@string/img"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:id="@+id/iv_new_note_finish"
+            android:background="@drawable/pic_duihao_white"/>
+    </RelativeLayout>
+    <EditText 
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/white"
+        android:gravity="top|left"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColorHint="#949494"
+        android:textColor="@color/home_item_content"
+        android:textSize="15.5dp"
+        android:id="@+id/edt_new_note_cnt"
+        android:hint="@string/new_note_hint"/>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <ImageView 
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="18dp"
+            android:id="@+id/iv_new_note_img"
+            android:background="@drawable/pic_add_picture"/>
+        <ImageView 
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/iv_new_note_emotion"
+            android:background="@drawable/pic_emotion"/>
+        <ImageView 
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/iv_new_note_tag"
+            android:background="@drawable/pic_jing"/>
+        <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <ToggleButton 
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="18dp"
+                android:id="@+id/tb_new_note_niming"
+                android:textOn=""
+                android:textOff=""
+                android:background="@drawable/pic_niming_false"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="18dp"
+        android:background="@color/white">
+        <ImageView 
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"
+            android:id="@+id/iv_cntImg"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
+        <ImageView 
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"
+            android:id="@+id/iv_isShot"
+            android:background="@drawable/pic_shot_img"/>
+    </FrameLayout>
+   </LinearLayout>
+   <LinearLayout 
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:gravity="center"
+       android:id="@+id/llt_picture"
+       android:visibility="gone"
+       android:background="@color/black">
+       <ImageView 
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/iv_new_note_picture_all"
+           android:scaleType="fitXY"
+           android:adjustViewBounds="true"/>
+   </LinearLayout>
+</FrameLayout>

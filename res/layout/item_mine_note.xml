@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ui_color_gray"
+    android:orientation="vertical" >
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/frame_mine_note_item">
+        <ImageView 
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/pic_test1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:id="@+id/iv_mine_note"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
+            android:layout_alignTop="@+id/iv_mine_note"
+            android:layout_toRightOf="@+id/iv_mine_note"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/home_item_content"
+            android:textSize="14.0dp"
+            android:id="@+id/tv_mine_note_cnt"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="15dp"
+            android:text="大连的海上落日真的很美"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_mine_note"
+            android:layout_alignParentRight="true"
+            android:singleLine="true"
+            android:textColor="@color/home_item_time"
+            android:textSize="14.0dp"
+            android:text="2015-09-13 14:13"
+            android:id="@+id/tv_mine_note_time"
+            android:layout_marginRight="15dp"/>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/iv_mine_note"/>
+    </RelativeLayout>
+
+</LinearLayout>

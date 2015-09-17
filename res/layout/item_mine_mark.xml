@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/ui_color_gray" >
+
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/frame_mine_note_item">
+        <com.app.view.baseview.RoundImageView 
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_mine_mark_avatar"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/pic_head2"/>
+        <TextView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_mine_mark_avatar"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/home_item_name"
+            android:textSize="15.0dp"
+            android:text="路人丁"
+            android:id="@+id/tv_mine_mark_name"/>
+        <ImageView 
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:layout_toRightOf="@+id/tv_mine_mark_name"
+            android:layout_marginLeft="4dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/pic_male"
+            android:id="@+id/iv_mine_mark_sex"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/pic_add_nocircle"
+             />
+    </RelativeLayout>
+    
+</LinearLayout>

@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+     <dimen name="view_small_padding">1dp</dimen>
+    <dimen name="view_padding">6dp</dimen>
+    
+    
+    <!-- 我的界面 -->
+     <dimen name="split_one_pixels">1px</dimen>
+    <dimen name="split_one_dip">1dp</dimen>
+    <dimen name="max_header_height">250dp</dimen>
+    <dimen name="header_offset_dis">200dp</dimen>
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    
+    <!--修改  -->
+    <dimen name="header">46dp</dimen>  <!-- 上边黄色框 -->
+    <dimen name="item_home_shade">61dp</dimen> 
+</resources>

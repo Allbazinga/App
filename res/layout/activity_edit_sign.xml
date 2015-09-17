@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ui_color_gray" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header"
+        android:background="@color/ui_color" >
+
+        <ImageView
+            android:id="@+id/iv_set_sign_back"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pic_back_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/set_name"
+            android:textColor="@color/white"
+            android:textSize="20.0dp"
+            android:textStyle="bold" />
+        <ImageView 
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/pic_duihao_white"
+            android:id="@+id/iv_set_sign_finish"/>
+    </RelativeLayout>
+    <EditText 
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        android:gravity="top|left"
+        android:textColor="@color/home_item_content"
+        android:textColorHint="#949494"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="13dp"
+        android:paddingTop="13dp"
+        android:textSize="15.0dp"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:id="@+id/edt_sign_set"
+        android:hint="@string/set_sign_hint"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#949494"
+        android:textSize="14.0dp"
+        android:text="@string/set_sign_tip"/>
+</LinearLayout>

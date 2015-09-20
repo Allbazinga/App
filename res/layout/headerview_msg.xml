@@ -79,7 +79,8 @@
             android:textColor="#515151"
             android:id="@+id/tv_msg_reply_hint"
             android:layout_alignLeft="@+id/tv_msg_reply"
-            android:layout_alignBottom="@+id/img_msg_reply"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
             android:text="迷路的安娜 评论了你的帖子"
             android:textSize="13.0dp"/>
         <ImageView 

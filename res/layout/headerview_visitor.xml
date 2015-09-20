@@ -18,8 +18,7 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/tv_visitor_time"
             android:textColor="#6B6B6B"
-            android:textSize="16.0dp"
-            android:textStyle="bold"
+            android:textSize="14.0dp"
             android:text="null"/>
         <View 
             android:layout_width="match_parent"

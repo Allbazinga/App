@@ -48,7 +48,7 @@ public class FindInterestFragment extends Fragment {
 		vpCard.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(), fragments));
 		vpCard.setOnPageChangeListener(new MyOnPageChangeListener());
 		vpCard.setOffscreenPageLimit(3);
-		vpCard.setPageMargin(DensityUtil.dip2px(getActivity(), 21));
+		vpCard.setPageMargin(DensityUtil.dip2px(getActivity(), 10));
 		if(fragments.size() > 1){
 			vpCard.setCurrentItem(1);
 		}

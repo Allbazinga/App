@@ -12,8 +12,8 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/frame_mine_note_item">
         <com.app.view.baseview.RoundImageView 
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="12dp"
             android:src="@drawable/pic_msg_head1"
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/iv_mine_collect_avatar"
-            android:layout_alignTop="@+id/iv_mine_collect_avatar"
+            android:layout_marginTop="8dp"
             android:id="@+id/layout_mine_collect_name"
             android:layout_marginLeft="10dp">
             <TextView 

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="迷失的安娜"
-                android:textSize="14.0dp" />
+                android:textSize="15.0dp" />
 
             <ImageView
                 android:id="@+id/img_msg_sex"
@@ -62,7 +62,8 @@
             android:id="@+id/tv_msg_short"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/img_msg_head"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
             android:layout_alignLeft="@+id/layout_msg_name_sex"
             android:text="在吗？"
             android:textColor="#515151"

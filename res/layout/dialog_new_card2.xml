@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="#F2F2F2"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="24dp"
             android:gravity="center"
             android:singleLine="true"
             android:textColor="#949494"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="22dp"
             android:id="@+id/rg_poi"
             android:layout_height="wrap_content" >
             <RadioButton 
@@ -44,44 +44,47 @@
                 android:layout_height="29dp"
                 android:background="#F2F2F2"
                 android:textColor="#949494"
-                android:layout_marginTop="27dp"
+                android:layout_marginTop="23dp"
                 android:textSize="15.0dp"
                 android:id="@+id/rb_poi_select"
                 android:text="@string/a_card_poi_select"/>
+            <RadioButton 
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:background="#F2F2F2"
+                android:textColor="#949494"
+                android:layout_marginTop="23dp"
+                android:textSize="15.0dp"
+                android:id="@+id/rb_private"
+                android:text="@string/a_card_private"/>
         </RadioGroup>
-        <RadioGroup 
+    <!--     <RadioGroup 
             android:layout_width="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="38dp"
             android:id="@+id/rg_rigion"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content" > -->
             <RadioButton 
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:background="#F2F2F2"
                 android:textColor="#949494"
+                android:layout_marginLeft="25dp"
+               android:layout_marginRight="25dp"
+               android:layout_marginTop="42dp"
                 android:textSize="15.0dp"
                 android:checked="true"
                 android:id="@+id/rb_send2Marker"
                 android:text="@string/a_card_send2marker"/>
-            <RadioButton 
-                android:layout_width="match_parent"
-                android:layout_height="29dp"
-                android:background="#F2F2F2"
-                android:textColor="#949494"
-                android:layout_marginTop="27dp"
-                android:textSize="15.0dp"
-                android:id="@+id/rb_private"
-                android:text="@string/a_card_private"/>
-        </RadioGroup>
+      <!--   </RadioGroup> -->
         <ImageView 
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/pic_new_card_finish"
             android:id="@+id/iv_new_card_checked"
-            android:layout_marginTop="36dp"/>
+            android:layout_marginTop="30dp"/>
         <View android:layout_width="wrap_content"
             android:layout_height="15dp"/>
     </LinearLayout>

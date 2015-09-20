@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/cmv_card_img"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="165dp"
             android:scaleType="fitXY"
             android:src="@drawable/pic_test1" />
 
@@ -28,19 +28,19 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:text="在大黑山归来的路上"
             android:textColor="@color/find_card_title"
-            android:textSize="17.0dp" />
+            android:textSize="18.0dp" />
 
         <View
             android:id="@+id/line_card"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/tv_card_title"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
             android:background="@color/find_card_tile_content_line" />
 
         <TextView
@@ -49,39 +49,40 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/line_card"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="7dp"
-            android:lineSpacingExtra="2dp"
-            android:text="我发誓，我真的活过"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="5dp"
+            android:minHeight="120dp"
+            android:gravity="top"
+            android:text="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
             android:textColor="@color/find_card_content"
             android:textSize="16.0dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="48dp"
             android:layout_below="@+id/tv_card_cnt"
-            android:layout_marginTop="80dp"
             android:background="@color/find_card_name_bg" >
 
             <com.app.view.baseview.RoundImageView
                 android:id="@+id/iv_card_avatar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="12dp"
                 android:src="@drawable/pic_msg_head1" />
 
             <TextView
                 android:id="@+id/tv_card_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/iv_card_avatar"
                 android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/iv_card_avatar"
                 android:text="迷路的安娜"
                 android:textColor="@color/find_card_title"
-                android:textSize="15.0dp" />
+                android:textSize="14.0dp" />
 
             <TextView
                 android:id="@+id/tv_card_good"
@@ -89,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="12dp"
                 android:text="15"
                 android:textColor="@color/home_item_good"
                 android:textSize="13.0dp" />
@@ -137,8 +138,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="45dp"
+            android:singleLine="true"
             android:text="2015-09-11 07:23 放置"
-            android:textSize="15.0dp" />
+            android:textColor="#949494"
+            android:textSize="13.0dp" />
 
         <ImageView
             android:layout_width="45dp"

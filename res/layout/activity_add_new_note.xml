@@ -98,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="18dp"
-        android:background="@color/white">
+        android:background="@color/ui_color_gray">
         <ImageView 
             android:layout_width="100dp"
             android:layout_height="wrap_content"

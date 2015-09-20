@@ -221,8 +221,8 @@ public class HomeFragment extends Fragment implements OnClickListener,
 
 		rg_poi = (RadioGroup) dialog_newCard2.getWindow().findViewById(
 				R.id.rg_poi);
-		rg_rigion = (RadioGroup) dialog_newCard2.getWindow().findViewById(
-				R.id.rg_rigion);
+	/*	rg_rigion = (RadioGroup) dialog_newCard2.getWindow().findViewById(
+				R.id.rg_rigion);*/
 		rb_poi_here = (RadioButton) dialog_newCard2.getWindow().findViewById(
 				R.id.rb_poi_here);
 		rb_poi_select = (RadioButton) dialog_newCard2.getWindow().findViewById(
@@ -232,7 +232,7 @@ public class HomeFragment extends Fragment implements OnClickListener,
 		rb_send2Marker = (RadioButton) dialog_newCard2.getWindow()
 				.findViewById(R.id.rb_send2Marker);
 		rg_poi.setOnCheckedChangeListener(new RadioGroupChangeListener());
-		rg_rigion.setOnCheckedChangeListener(new RadioGroupChangeListener());
+		/*rg_rigion.setOnCheckedChangeListener(new RadioGroupChangeListener());*/
 	}
 
 	@SuppressWarnings("deprecation")
@@ -285,31 +285,31 @@ public class HomeFragment extends Fragment implements OnClickListener,
 				case R.id.rb_poi_here:
 					rb_poi_here.setChecked(true);
 					rb_poi_select.setChecked(false);
+					rb_private.setChecked(false);
 					break;
 				case R.id.rb_poi_select:
 					rb_poi_here.setChecked(false);
 					rb_poi_select.setChecked(true);
-					break;
-
-				default:
-					break;
-				}
-				break;
-			case R.id.rg_rigion:
-				switch (checkedId) {
-				case R.id.rb_send2Marker:
-					rb_send2Marker.setChecked(true);
 					rb_private.setChecked(false);
 					break;
 				case R.id.rb_private:
-					rb_send2Marker.setChecked(false);
 					rb_private.setChecked(true);
+					rb_poi_here.setChecked(false);
+					rb_poi_select.setChecked(false);
 					break;
 
 				default:
 					break;
 				}
 				break;
+			/*case R.id.rg_rigion:
+				switch (checkedId) {
+				case R.id.rb_send2Marker:
+					break;
+
+				default:
+					break;
+				}*/
 
 			default:
 				break;

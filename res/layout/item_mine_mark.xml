@@ -12,8 +12,8 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/frame_mine_note_item">
         <com.app.view.baseview.RoundImageView 
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:layout_centerVertical="true"
             android:id="@+id/iv_mine_mark_avatar"
             android:layout_marginLeft="12dp"
@@ -38,8 +38,8 @@
             android:src="@drawable/pic_male"
             android:id="@+id/iv_mine_mark_sex"/>
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"

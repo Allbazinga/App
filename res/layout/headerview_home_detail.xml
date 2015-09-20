@@ -22,7 +22,7 @@
             <com.app.view.baseview.RoundImageView 
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="14dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"
                 android:src="@drawable/pic_msg_head1"
@@ -33,7 +33,6 @@
                 android:layout_alignTop="@+id/img_home_detail_head"
                 android:layout_toRightOf="@+id/img_home_detail_head"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="2dp"
                 android:id="@+id/layout_home_detail_name">
                 <TextView 
                     android:layout_width="wrap_content"
@@ -41,7 +40,7 @@
                     android:layout_centerVertical="true"
                     android:id="@+id/tv_home_detail_name"
                     android:textColor="@color/home_item_name"
-                    android:textSize="15.0dp"
+                    android:textSize="16.0dp"
                     android:text="一瓶可乐"/>
                 <ImageView 
                     android:layout_width="11dp"
@@ -58,14 +57,14 @@
                 android:layout_alignLeft="@+id/layout_home_detail_name"
                 android:layout_alignBottom="@+id/img_home_detail_head"
                 android:id="@+id/tv_home_detail_time"
-                android:textSize="13.0dp"
+                android:textSize="12.0dp"
                 android:textColor="@color/home_item_time"
                 android:text="今天12:34"/>
            <Button 
                android:layout_width="45dp"
                android:layout_height="24dp"
-               android:layout_centerVertical="true"
                android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
                android:layout_marginRight="18dp"
                android:id="@+id/btn_home_detail_mark"
                android:textColor="@color/home_item_mark"

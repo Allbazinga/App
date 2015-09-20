@@ -6,13 +6,13 @@
     android:background="@color/ui_color_gray" >
     <RelativeLayout 
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="57dp"
         android:background="@color/white">
         <com.app.view.baseview.RoundImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="11dp"
             android:id="@+id/img_msg_reply_head"
             android:src="@drawable/pic_msg_head1"/>
         <RelativeLayout 
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/img_msg_reply_head"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="0dp"
             android:id="@+id/layout_msg_reply_name"
             android:layout_alignTop="@+id/img_msg_reply_head">
             <TextView 
@@ -65,15 +65,22 @@
             android:textSize="16.0dp"
             android:id="@+id/tv_msg_reply_content"
             android:text="凑你妹啊，这又不是贴吧，到了十五字也没经验拿的。。。"/>
-        <View android:layout_width="wrap_content"
+        <ImageView android:layout_width="16dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/pic_triangle"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:contentDescription="@string/img"
             android:layout_height="10dp"/>
+        
         <LinearLayout 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="13dp"
             android:orientation="horizontal"
-            android:background="@color/ui_color_gray">
+            android:background="@drawable/pic_bg_msg_good_reply" >
 
             <TextView
                 android:id="@+id/tv_msg_reply_what"
@@ -86,7 +93,7 @@
                 android:text="评论了我的动态 : 我们被教导要记住思想，而不是人，因为人"
                 android:layout_marginLeft="8dp"
                 android:textColor="@color/msg_gar_gray"
-                android:textSize="13dp" />
+                android:textSize="14dp" />
 
         </LinearLayout>
         <View android:layout_width="match_parent"

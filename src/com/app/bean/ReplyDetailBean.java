@@ -4,14 +4,14 @@ import android.graphics.drawable.Drawable;
 
 public class ReplyDetailBean {
 
-	private Drawable cmtHead;
+	private String cmtHead;
 	private String cmtName;
-	private Drawable cmtSex;
+	private String cmtSex;
 	private String cmtTime;
 	private String cmtFloor;
 	private String cmtContent;
 	public ReplyDetailBean(){}
-	public ReplyDetailBean(Drawable cmtHead, String cmtName, Drawable cmtSex,
+	public ReplyDetailBean(String cmtHead, String cmtName, String cmtSex,
 			String cmtTime, String cmtFloor, String cmtContent){
 		this.cmtHead = cmtHead;
 		this.cmtName = cmtName;
@@ -20,13 +20,13 @@ public class ReplyDetailBean {
 		this.cmtFloor = cmtFloor;
 		this.cmtContent = cmtContent;
 	}
-	public void setHead(Drawable cmtHead){
+	public void setHead(String cmtHead){
 		this.cmtHead = cmtHead;
 	}
 	public void setName(String cmtName){
 		this.cmtName = cmtName;
 	}
-	public void setSex(Drawable cmtSex){
+	public void setSex(String cmtSex){
 		this.cmtSex = cmtSex;
 	}
 	public void setTime(String cmtTime){
@@ -38,13 +38,13 @@ public class ReplyDetailBean {
 	public void setContent(String cmtContent){
 		this.cmtContent = cmtContent;
 	}
-	public Drawable getHead(){
+	public String getHead(){
 		return this.cmtHead;
 	}
 	public String getName(){
 		return this.cmtName;
 	}
-	public Drawable getSex(){
+	public String getSex(){
 		return this.cmtSex;
 	}
 	public String getTime(){

@@ -60,24 +60,29 @@ public class HomeNearFragment extends Fragment {
 	public void initListView(){
 		mListView = (PullableListView) v.findViewById(R.id.ltv_home_near);
 		mDataList = new ArrayList<HomeBean>();
-		HomeBean item1 = new HomeBean(getResources().getDrawable(R.drawable.pic_msg_head1),
+		HomeBean item1 = new HomeBean("",
+				"",
+				"",
+				
 				"一瓶可乐",
-				getResources().getDrawable(R.drawable.pic_male),
+				"",
 				"昨天10:34",
 				"我们被教导要记住思想，而不是人，因为人可能被杀死或是被遗忘，而思想不会。",
 		        null,
 				"一些思考",
 				"9", 
 				"18");
-		HomeBean item = new HomeBean(getResources().getDrawable(R.drawable.pic_head2),
-					"迷路的安娜",
-					getResources().getDrawable(R.drawable.pic_female),
-					"今天13:23",
-					"我承认，我真的活过。",
-			        getResources().getDrawable(R.drawable.pic_test1),
-					"一些思考",
-					"9", 
-					"18");
+		HomeBean item = new HomeBean("",
+				"",
+				"",
+			    "迷路的安娜",
+				"",
+				"今天13:23",
+				"我承认，我真的活过。",
+			    "",
+				"一些思考",
+				"9", 
+				"18");
 		mDataList.add(item1);
 		mDataList.add(item);
 		mDataList.add(item1);

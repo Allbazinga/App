@@ -1,15 +1,23 @@
 package com.app.bean;
 
-import android.graphics.drawable.Drawable;
+import java.io.Serializable;
 
-public class HomeBean {
 
-	private Drawable head;
+public class HomeBean implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -987347821305856874L;
+	
+	private String head;
+	private String userId;
+	private String noteId;
 	private String name;
-	private Drawable sex;
+	private String sex;
 	private String time;
 	private String contentStr;
-	private Drawable contentImg;
+	private String contentImg;
 	private String tag;
 	private String comment;
 	private String good;
@@ -17,10 +25,12 @@ public class HomeBean {
 	public HomeBean() {
 	}
 
-	public HomeBean(Drawable head, String name, Drawable sex, String time,
-			String contentStr, Drawable contentImg, String tag, String comment,
+	public HomeBean(String head, String userId, String noteId, String name, String sex, String time,
+			String contentStr, String contentImg, String tag, String comment,
 			String good) {
 		this.head = head;
+		this.userId = userId;
+		this.noteId = noteId;
 		this.name = name;
 		this.sex = sex;
 		this.time = time;
@@ -31,15 +41,23 @@ public class HomeBean {
 		this.good = good;
 	}
 
-	public void setHead(Drawable head) {
+	public void setHead(String head) {
 		this.head = head;
 	}
 
+	public void setUserId(String userId){
+		this.userId = userId;
+	}
+	
+	public void setNoteId(String noteId){
+		this.noteId = noteId;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setSex(Drawable sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
@@ -51,7 +69,7 @@ public class HomeBean {
 		this.contentStr = contentStr;
 	}
 
-	public void setContentImg(Drawable contentImg) {
+	public void setContentImg(String contentImg) {
 		this.contentImg = contentImg;
 	}
 
@@ -67,15 +85,23 @@ public class HomeBean {
 		this.good = good;
 	}
 
-	public Drawable getHead() {
+	public String getHead() {
 		return this.head;
 	}
 
+	public String getUserId(){
+		return this.userId;
+	}
+	
+	public String getNoteId(){
+		return this.noteId;
+	}
+	
 	public String getName() {
 		return this.name;
 	}
 
-	public Drawable getSex() {
+	public String getSex() {
 		return this.sex;
 	}
 
@@ -87,7 +113,7 @@ public class HomeBean {
 		return this.contentStr;
 	}
 
-	public Drawable getContentImg() {
+	public String getContentImg() {
 		return this.contentImg;
 	}
 

@@ -51,15 +51,15 @@ public class FindCardDetailsActivity extends Activity {
 		headerView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         mListView.addHeaderView(headerView);
         
-		ReplyDetailBean mBeam1 = new ReplyDetailBean(getResources().getDrawable(R.drawable.pic_msg_head1),
+		ReplyDetailBean mBeam1 = new ReplyDetailBean("",
 				"暗龙袭击", 
-				getResources().getDrawable(R.drawable.pic_male), 
+				"", 
 				"4小时前",
 				"1楼", 
 				"连三角架都带真是作死，不过看有护栏，应该是景区，估计也不是很难爬");
-		ReplyDetailBean mBeam2 = new ReplyDetailBean(getResources().getDrawable(R.drawable.pic_head2),
+		ReplyDetailBean mBeam2 = new ReplyDetailBean("",
 				"迷路的安娜", 
-				getResources().getDrawable(R.drawable.pic_female), 
+			 	"", 
 				"昨天12:23",
 				"2楼", 
 				"只为15字！");

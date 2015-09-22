@@ -80,7 +80,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_home_near_content"
+                android:id="@+id/tv_home_detail_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -99,7 +99,7 @@
                 android:contentDescription="@string/img"
                 android:id="@+id/img_home_detail_content"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/pic_test1"/>
+                android:maxHeight="320dp"/>
             <RelativeLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15.0dp"
                     android:layout_toLeftOf="@+id/tv_home_detail_good_right"
-                    android:id="@+id/tvv_home_detail_good_num"
+                    android:id="@+id/tv_home_detail_good_num"
                     android:text="0"
                     android:textColor="@color/home_detail_red"
                     android:layout_centerVertical="true"/>

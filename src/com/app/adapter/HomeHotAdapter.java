@@ -1,16 +1,18 @@
 package com.app.adapter;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.app.bean.HomeBean;
 import com.app.ui.R;
+import com.app.utils.ImageCache;
 import com.app.utils.ListItemOnClickListener;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -21,14 +23,20 @@ import android.widget.TextView;
 public class HomeHotAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
-	private List<HomeBean> mItems;
+	private ArrayList<HomeBean> mItems;
 	private Context context;
+	private LruCache<String, Bitmap> lruCache;
 	
-	public HomeHotAdapter(Context context, List<HomeBean> item){
+	public HomeHotAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
-		this.mItems = item;
 		this.context = context;
+		this.lruCache = ImageCache.GetLruCache(context);
 	}
+	
+	public void bindData(ArrayList<HomeBean> datas){
+		this.mItems = datas;
+	}
+	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
@@ -72,14 +80,25 @@ public class HomeHotAdapter extends BaseAdapter {
 		}
 		HomeBean item = getItem(position);
 		if(null != item){
-			viewHolder.head.setImageDrawable(item.getHead());
+			/*viewHolder.head.setImageDrawable(item.getHead());*/
 			viewHolder.name.setText(item.getName());
-			viewHolder.sex.setImageDrawable(item.getSex());
+			if(item.getSex().equals("男")){
+				viewHolder.sex.setImageResource(R.drawable.pic_male);
+			}else{
+				viewHolder.sex.setImageResource(R.drawable.pic_female);
+			}
+			/*viewHolder.sex.setImageDrawable(item.getSex());*/
 			viewHolder.time.setText(item.getTime());
 			viewHolder.contentStr.setText(item.getContentStr());
-			if(item.getContentImg() != null){
+			if(!item.getContentImg().equals("")){
 				viewHolder.contentImg.setVisibility(View.VISIBLE);
-				viewHolder.contentImg.setImageDrawable(item.getContentImg());
+				viewHolder.contentImg.setTag(com.app.utils.Constants.IMAGEHOME + item.getContentImg());
+				//viewHolder.contentImg.setImageResource(R.drawable.defaultcovers);
+				new ImageCache(context, 
+						lruCache,
+						viewHolder.contentImg,
+						com.app.utils.Constants.IMAGEHOME + item.getContentImg(),
+						"App", 800, 320);
 			}else{
 				viewHolder.contentImg.setVisibility(View.GONE);
 			}

@@ -64,9 +64,9 @@ public class ReplyDetailAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		if(null != item){
-			viewHolder.cmtHead.setImageDrawable(item.getHead());
+			//viewHolder.cmtHead.setImageDrawable(item.getHead());
 			viewHolder.cmtName.setText(item.getName());
-			viewHolder.cmtSex.setImageDrawable(item.getSex());
+			//viewHolder.cmtSex.setImageDrawable(item.getSex());
 			viewHolder.cmtTime.setText(item.getTime());
 			viewHolder.cmtContent.setText(item.getContent());
 			viewHolder.cmtFloor.setText(item.getFloor());	

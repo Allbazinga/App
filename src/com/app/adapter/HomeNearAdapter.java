@@ -71,17 +71,17 @@ public class HomeNearAdapter extends BaseAdapter {
 		}
 		HomeBean item = getItem(position);
 		if(null != item){
-			viewHolder.head.setImageDrawable(item.getHead());
+			/*viewHolder.head.setImageDrawable(item.getHead());*/
 			viewHolder.name.setText(item.getName());
-			viewHolder.sex.setImageDrawable(item.getSex());
+			/*viewHolder.sex.setImageDrawable(item.getSex());*/
 			viewHolder.time.setText(item.getTime());
 			viewHolder.contentStr.setText(item.getContentStr());
-			if(item.getContentImg() != null){
+			/*if(item.getContentImg() != null){
 				viewHolder.contentImg.setVisibility(View.VISIBLE);
 				viewHolder.contentImg.setImageDrawable(item.getContentImg());
 			}else{
 				viewHolder.contentImg.setVisibility(View.GONE);
-			}
+			}*/
 			viewHolder.tag.setText(item.getTag());
 			if(item.getComment().length() == 1){
 				viewHolder.comment.setText(" " + item.getComment());

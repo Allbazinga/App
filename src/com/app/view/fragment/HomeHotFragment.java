@@ -14,6 +14,7 @@ import com.app.view.baseview.ImageCycleView.ImageCycleViewListener;
 import com.app.view.baseview.PullToRefreshLayout;
 import com.app.view.baseview.PullToRefreshLayout.OnRefreshListener;
 import com.app.view.baseview.PullableListView;
+import com.app.view.baseview.PullableListView.OnLoadListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
@@ -35,7 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class HomeHotFragment extends Fragment implements OnRefreshListener{
+public class HomeHotFragment extends Fragment implements OnRefreshListener, OnLoadListener{
 
 	private View v;
 	private PullableListView mListView;
@@ -103,8 +104,7 @@ public class HomeHotFragment extends Fragment implements OnRefreshListener{
 					mHomeHotAdapter.bindData(dataList);
 					mListView.setAdapter(mHomeHotAdapter);
 					mListView.setSelection(offset);
-					pullToLoadManager
-					.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+					mListView.finishLoading();
 					mHomeHotAdapter.notifyDataSetChanged();
 				}
 			}
@@ -142,6 +142,7 @@ public class HomeHotFragment extends Fragment implements OnRefreshListener{
 				startActivity(intent);
 			}
 		});
+		mListView.setOnLoadListener(this);
 		return v;
 	}
 
@@ -273,6 +274,38 @@ public class HomeHotFragment extends Fragment implements OnRefreshListener{
 	public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
 		// TODO Auto-generated method stub
 		pullToRefreshManager = pullToRefreshLayout;
+         new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Message msg = Message.obtain();
+				msg.obj = ClientApi.getHomeData(REFRESH_URL, null);
+				msg.what = REFRESH;
+				getDataHandler.sendMessage(msg);
+			}
+		}).start();
+	}
+
+	@Override
+	public void onLoad(PullableListView pullableListView) {
+		// TODO Auto-generated method stub
+          new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Message msg = Message.obtain();
+				msg.obj = ClientApi.getHomeData(REFRESH_URL, null);
+				msg.what = LOAD;
+				getDataHandler.sendMessage(msg);
+			}
+		}).start();
+	}
+
+	/*@Override
+	public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+		// TODO Auto-generated method stub
+		pullToRefreshManager = pullToRefreshLayout;
 		new Thread(new Runnable() {
 			
 			@Override
@@ -302,4 +335,6 @@ public class HomeHotFragment extends Fragment implements OnRefreshListener{
 			}
 		}).start();
 	}
+	 */
+	
 }

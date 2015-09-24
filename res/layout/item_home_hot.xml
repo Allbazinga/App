@@ -9,8 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:orientation="vertical">
         <RelativeLayout 
             android:layout_width="match_parent"
@@ -96,10 +94,15 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:id="@+id/img_home_hot_content"
                 android:maxHeight="320dp"
                />
             <RelativeLayout 
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+               <RelativeLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -123,15 +126,6 @@
                     android:text="一些思考"/>
                 
             </RelativeLayout>
-            <View android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/home_item_divider"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"/>
-            <RelativeLayout 
-                android:layout_width="match_parent"
-                android:layout_height="30dp">
                 <TextView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -1,0 +1,16 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/rlt_loading"
+    android:background="@color/ui_color_gray" >
+
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_loading"
+        android:textColor="@color/home_item_name"
+        android:textSize="15.0dp"
+        android:layout_centerInParent="true"
+        android:text="@string/loading4"/>
+</RelativeLayout>

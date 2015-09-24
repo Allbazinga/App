@@ -63,11 +63,11 @@ public class CardPagerAdapter extends BaseAdapter {
 		}
 		FindCardBean item = getItem(position);
 		if(null != item){
-			viewHolder.cdImg.setImageDrawable(item.getImg());
+			//viewHolder.cdImg.setImageDrawable(item.getImg());
 			
 			viewHolder.cdTitle.setText(item.getTitle());
 			viewHolder.cdCnt.setText(item.getCnt());
-			viewHolder.cdAvatar.setImageDrawable(item.getHead());
+			//viewHolder.cdAvatar.setImageDrawable(item.getHead());
 			viewHolder.cdName.setText(item.getName());
 			viewHolder.cdCmt.setText(item.getCmt());
 			viewHolder.cdGood.setText(item.getGood());

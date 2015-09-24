@@ -64,9 +64,9 @@ public class VisitorAdapter extends BaseAdapter {
 			ImageView avatar = (ImageView) convertView.findViewById(R.id.iv_visitor_avatar);
 			TextView name = (TextView) convertView.findViewById(R.id.tv_visitor_name);
 			ImageView sex = (ImageView) convertView.findViewById(R.id.iv_visitor_sex);
-			avatar.setImageDrawable(item.getAvatar());
+			//avatar.setImageDrawable(item.getAvatar());
 			name.setText(item.getName());
-			sex.setImageDrawable(item.getSex());
+			//sex.setImageDrawable(item.getSex());
 		}
 		return convertView;
 	}

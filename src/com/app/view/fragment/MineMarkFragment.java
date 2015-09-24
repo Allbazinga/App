@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.app.adapter.MineMarkAdapter;
 import com.app.bean.MineMarkBean;
+import com.app.listener.MyListener;
 import com.app.ui.R;
-import com.app.utils.MyListener;
 import com.app.view.baseview.PullToRefreshLayout;
 import com.app.view.baseview.PullableListView;
 

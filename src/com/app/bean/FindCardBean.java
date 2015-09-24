@@ -4,10 +4,10 @@ import android.graphics.drawable.Drawable;
 
 public class FindCardBean {
 
-	private Drawable cdImg;
+	private String cdImg;
 	private String cdTitle;
 	private String cdCnt;
-	private Drawable cdHead;
+	private String cdHead;
 	private String cdName;
 	private String cdCmt;
 	private String cdGood;
@@ -16,8 +16,8 @@ public class FindCardBean {
 
 	}
 
-	public FindCardBean(Drawable cdImg, String cdTitle, String cdCnt,
-			Drawable cdHead, String cdName, String cdCmt, String cdGood) {
+	public FindCardBean(String cdImg, String cdTitle, String cdCnt,
+			String cdHead, String cdName, String cdCmt, String cdGood) {
 		this.cdImg = cdImg;
 		this.cdCnt = cdCnt;
 		this.cdTitle = cdTitle;
@@ -27,7 +27,7 @@ public class FindCardBean {
 		this.cdGood = cdGood;
 	}
 
-	public void setImg(Drawable cdImg) {
+	public void setImg(String cdImg) {
 		this.cdImg = cdImg;
 	}
 
@@ -40,7 +40,7 @@ public class FindCardBean {
 
 	}
 
-	public void setHead(Drawable cdHead) {
+	public void setHead(String cdHead) {
 		this.cdHead = cdHead;
 	}
 
@@ -56,7 +56,7 @@ public class FindCardBean {
 		this.cdGood = cdGood;
 	}
 
-	public Drawable getImg() {
+	public String getImg() {
 		return this.cdImg;
 	}
 
@@ -68,7 +68,7 @@ public class FindCardBean {
 		return this.cdCnt;
 	}
 
-	public Drawable getHead() {
+	public String getHead() {
 		return this.cdHead;
 	}
 

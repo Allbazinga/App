@@ -4,20 +4,20 @@ import android.graphics.drawable.Drawable;
 
 public class VisitorBean {
 
-	private Drawable avatar;
+	private String avatar;
 	private String name;
-	private Drawable sex;
+	private String sex;
 
 	public VisitorBean() {
 	}
 
-	public VisitorBean(Drawable avatar, String name, Drawable sex) {
+	public VisitorBean(String avatar, String name, String sex) {
 		this.avatar = avatar;
 		this.name = name;
 		this.sex = sex;
 	}
 
-	public void setAvatar(Drawable avatar) {
+	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
 
@@ -25,11 +25,11 @@ public class VisitorBean {
 		this.name = name;
 	}
 
-	public void setSex(Drawable sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
-	public Drawable getAvatar() {
+	public String getAvatar() {
 		return this.avatar;
 	}
 
@@ -37,7 +37,7 @@ public class VisitorBean {
 		return this.name;
 	}
 
-	public Drawable getSex() {
+	public String getSex() {
 		return this.sex;
 	}
 

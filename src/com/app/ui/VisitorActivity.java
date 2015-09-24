@@ -34,9 +34,9 @@ public class VisitorActivity extends Activity {
 		datalist.clear();
 		VisitorBean today = new VisitorBean(null, Constants.VISITOR_TODAY, null);
 		datalist.add(today);
-		VisitorBean visitor = new VisitorBean(getResources().getDrawable(R.drawable.pic_head3),
+		VisitorBean visitor = new VisitorBean("",
 				"UI做到我要吐了",
-				getResources().getDrawable(R.drawable.pic_male));
+				"");
 		for(int i = 0; i < 4; i++){
 			datalist.add(visitor);
 		}

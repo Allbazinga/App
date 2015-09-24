@@ -7,8 +7,8 @@ import com.app.adapter.MineCardAdapter;
 import com.app.adapter.MineCollectAdapter;
 import com.app.bean.MineCardBean;
 import com.app.bean.MineCollectBean;
+import com.app.listener.MyListener;
 import com.app.ui.R;
-import com.app.utils.MyListener;
 import com.app.view.baseview.PullToRefreshLayout;
 import com.app.view.baseview.PullableListView;
 

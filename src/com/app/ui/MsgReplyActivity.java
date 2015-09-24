@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.app.adapter.MsgReplyAdapter;
 import com.app.bean.MsgReplyBean;
-import com.app.utils.MyListener;
+import com.app.listener.MyListener;
 import com.app.view.baseview.PullToRefreshLayout;
 import com.app.view.baseview.PullableListView;
 

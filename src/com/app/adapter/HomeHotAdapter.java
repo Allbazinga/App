@@ -4,9 +4,9 @@ package com.app.adapter;
 import java.util.ArrayList;
 
 import com.app.bean.HomeBean;
+import com.app.listener.ListItemOnClickListener;
 import com.app.ui.R;
 import com.app.utils.ImageCache;
-import com.app.utils.ListItemOnClickListener;
 
 import android.content.Context;
 import android.graphics.Bitmap;

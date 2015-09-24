@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.app.adapter.HomeNearAdapter;
 import com.app.bean.HomeBean;
+import com.app.listener.MyListener;
 import com.app.ui.HomeLtvDetailsActivity;
 import com.app.ui.R;
-import com.app.utils.MyListener;
 import com.app.view.baseview.PullToRefreshLayout;
 import com.app.view.baseview.PullableListView;
 

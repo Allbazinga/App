@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.app.adapter.HomeHotAdapter;
 import com.app.bean.ADInfo;
 import com.app.bean.HomeBean;
-import com.app.clients.ClientApi;
+import com.app.client.ClientApi;
 import com.app.ui.GameDetailActivity;
 import com.app.ui.HomeLtvDetailsActivity;
 import com.app.ui.R;

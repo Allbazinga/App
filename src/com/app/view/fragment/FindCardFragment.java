@@ -80,10 +80,10 @@ public class FindCardFragment extends Fragment implements OnClickListener{
 	public void initData(){
 		
 		if(mCardBean != null){
-			iv_card_img.setImageDrawable(mCardBean.getImg());
+			//iv_card_img.setImageDrawable(mCardBean.getImg());
 			tv_card_title.setText(mCardBean.getTitle());
 			tv_card_cnt.setText(mCardBean.getCnt());
-			iv_card_avatar.setImageDrawable(mCardBean.getHead());
+			//iv_card_avatar.setImageDrawable(mCardBean.getHead());
 			tv_card_name.setText(mCardBean.getName());
 			tv_card_cmt.setText(mCardBean.getCmt());
 			tv_card_good.setText(mCardBean.getGood());

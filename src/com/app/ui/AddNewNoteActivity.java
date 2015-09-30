@@ -287,7 +287,7 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 							file = new File(imagePath);
 							in = new FileInputStream(file);
 						}
-						result = ClientApi.uploadSubmit(Constants.POST_NOTE_URL, noteStrMap, in);
+						result = ClientApi.uploadSubmit(Constants.POST_NOTE_URL, noteStrMap, file);
 						Message msg = new Message();
 						if(result != null && result.equals("true")){
 							Log.i(TAG, result);

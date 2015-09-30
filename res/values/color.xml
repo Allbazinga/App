@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ui_color">#FFCC00</color>
+    <color name="ui_color">#F2DB5A</color>
     <color name="white">#FFFFFF</color>
+    <color name="transparent_bottom_menu">#80000000</color>
+    <color name="top_menu_txt">#282828</color>
     <color name="black">#000000</color>
     <color name="line_bottom_upon">#D7D7D7</color>
     <color name="line_msg_ltv">#E4E4E4</color>
-    <color name="tv_main_bottom_nor">#949494</color>
-    <color name="tv_main_bottom_sel">#FFCC00</color>
+    <color name="tv_main_bottom_nor">#B8B3B7</color>
+    <color name="tv_main_bottom_sel">#F2DB5A</color>
     <color name="tv_msg_time">#666666</color>
     <color name="ui_color_gray">#E4E4E4</color>
     <!-- 校园页 -->

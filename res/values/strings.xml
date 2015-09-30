@@ -47,6 +47,7 @@
     
     
     
+    
     <!--下拉刷新和上拉加载string  -->
 	<string name="head">这里是HeadView</string>
     <string name="pull_to_refresh">下拉刷新</string>
@@ -112,5 +113,5 @@
     <string name="pick_img">选择图片</string>
     <string name="camera">相机</string>
     <string name="album">相册</string>
-    
+    <string name="yoyo">Yo~</string>
 </resources>

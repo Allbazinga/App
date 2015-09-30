@@ -1,29 +1,44 @@
 package com.app.view.fragment;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.app.adapter.MyFragmentPagerAdapter;
+import org.apache.http.client.ClientProtocolException;
+import org.json.JSONObject;
+
+import com.app.adapter.HomeHotAdapter;
+import com.app.bean.ADInfo;
+import com.app.bean.HomeBean;
+import com.app.client.ClientApi;
 import com.app.ui.AddNewNoteActivity;
+import com.app.ui.GameDetailActivity;
+import com.app.ui.HomeLtvDetailsActivity;
 import com.app.ui.R;
 import com.app.utils.Constants;
-import com.app.view.baseview.NoScrollViewPager;
+import com.app.view.baseview.ImageCycleView;
+import com.app.view.baseview.ImageCycleView.ImageCycleViewListener;
+import com.app.view.baseview.PullToRefreshLayout;
+import com.app.view.baseview.PullToRefreshLayout.OnRefreshListener;
+import com.app.view.baseview.PullableListView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,9 +46,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,33 +58,29 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ToggleButton;
 
-public class HomeFragment extends Fragment implements OnClickListener,
-		OnCheckedChangeListener {
+public class HomeFragment extends Fragment implements OnRefreshListener,
+		OnClickListener, OnCheckedChangeListener {
 
 	private View v;
-	private RelativeLayout layout_home_shift_hot, layout_home_shift_near;
-	private LinearLayout layout_home_shift;
-
-	private TextView tv_home_shift_hot, tv_home_shift_near;
+	private PullableListView mListView;
+	private PullToRefreshLayout pullToRefreshManager;
+	private PullToRefreshLayout pullToLoadManager;
+	private ArrayList<HomeBean> dataList;
+	private HomeHotAdapter mHomeHotAdapter;
+	private boolean isHidden = false;
+	private RelativeLayout rlt_loading;
+	private LinearLayout llt_data;
+	private TextView tv_loading = null;
+  
+	private RelativeLayout rlt_home_add;
 	private ToggleButton tb_add;
 
 	private Button btn_new_card;
 	private Button btn_new_note;
 	private Button btn_new_tucao;
-
-	private int currIndex = 0;
-	private HomeHotFragment mHomeHotFragment;
-	private HomeNearFragment mHomeNearFragment;
-	private boolean isHidden = false;
-	private List<TextView> tvList;
-	private ArrayList<Fragment> fragments;
-	private NoScrollViewPager vp_home;
-	private int[] shiftBgs = { R.drawable.pic_home_shift_left,
-			R.drawable.pic_home_shift_right, };
-	private RelativeLayout rlt_home_add;
-
 	/* dialog部分 */
 	private AlertDialog dialog_newCard1 = null, dialog_newCard2 = null;
 	private LinearLayout llt_bg_dialog = null;
@@ -88,45 +100,142 @@ public class HomeFragment extends Fragment implements OnClickListener,
 
 	private String pathImage = null;
 
+	private ImageCycleView mAdView = null;
+	private ArrayList<ADInfo> infos = new ArrayList<ADInfo>();
+	private String[] imageUrls = {
+			"http://img.taodiantong.cn/v55183/infoimg/2013-07/130720115322ky.jpg",
+			"http://pic30.nipic.com/20130626/8174275_085522448172_2.jpg",
+			"http://pic18.nipic.com/20111215/577405_080531548148_2.jpg",
+			"http://pic15.nipic.com/20110722/2912365_092519919000_2.jpg",
+			"http://pic.58pic.com/58pic/12/64/27/55U58PICrdX.jpg" };
+	private static final int INIT = 0;
+	private static final int REFRESH = 1;
+	private static final int LOAD = 2;
+	private int offset = 5;
+	private static final String REFRESH_URL = "http://202.118.76.72/App/action/PostListAction.php";
+	private String lastTime = null;
+	private Handler getDataHandler = new Handler() {
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			if (msg.obj == null) {
+				Toast.makeText(getActivity(), "网络异常，请检查设置！", Toast.LENGTH_SHORT)
+						.show();
+				if (msg.what == INIT) {
+					tv_loading.setText("重新加载!");
+					tv_loading.setClickable(true);
+				}
+				if (msg.what == REFRESH) {
+					pullToRefreshManager
+							.refreshFinish(PullToRefreshLayout.FAIL);
+				}
+				if (msg.what == LOAD) {
+					pullToLoadManager.refreshFinish(PullToRefreshLayout.FAIL);
+				}
+			} else {
+				if (msg.what == INIT) {
+					rlt_loading.setVisibility(View.GONE);
+					llt_data.setVisibility(View.VISIBLE);
+					dataList.clear();
+					dataList = (ArrayList<HomeBean>) msg.obj;
+					if (dataList != null) {
+						lastTime = dataList.get(4).getTime();
+					}
+					mHomeHotAdapter.bindData(dataList);
+					mListView.setAdapter(mHomeHotAdapter);
+					mHomeHotAdapter.notifyDataSetChanged();
+				}
+				if (msg.what == REFRESH) {
+					dataList.clear();
+					dataList = (ArrayList<HomeBean>) msg.obj;
+					if (dataList != null) {
+						lastTime = dataList.get(4).getTime();
+					}
+					mHomeHotAdapter.bindData(dataList);
+					mListView.setAdapter(mHomeHotAdapter);
+					pullToRefreshManager
+							.refreshFinish(PullToRefreshLayout.SUCCEED);
+					mHomeHotAdapter.notifyDataSetChanged();
+				}
+				if (msg.what == LOAD) {
+					dataList.addAll((ArrayList<HomeBean>) msg.obj);
+					mHomeHotAdapter.bindData(dataList);
+					mListView.setAdapter(mHomeHotAdapter);
+					mListView.setSelection(offset);
+					offset = dataList.size();
+					lastTime = dataList.get(offset - 1).getTime();
+					pullToLoadManager
+							.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+					mHomeHotAdapter.notifyDataSetChanged();
+				}
+			}
+		}
+	};
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState != null) {
-			if (savedInstanceState.getBoolean("isHomeHidden")) {
+			if (savedInstanceState.getBoolean("isHotHidden")) {
 				getFragmentManager().beginTransaction().hide(this).commit();
 			}
 		}
 	}
 
-	@SuppressLint("InlinedApi")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		v = inflater.inflate(R.layout.fragment_home, null);
 		initView();
+		initData();
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getActivity(),
+						HomeLtvDetailsActivity.class);
+				intent.putExtra("note", dataList.get(position - 1));
+				intent.putExtra("postUser", dataList.get(position - 1)
+						.getUserId());
+				startActivity(intent);
+			}
+		});
 		return v;
 	}
 
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		outState.putBoolean("isHomeHidden", isHidden);
-	}
-
 	public void initView() {
+		dataList = new ArrayList<HomeBean>();
+		mListView = (PullableListView) v.findViewById(R.id.ltv_home_hot);
+		addHeader();
+		mHomeHotAdapter = new HomeHotAdapter(getActivity());
+		((PullToRefreshLayout) v.findViewById(R.id.refresh_home_hot))
+				.setOnRefreshListener(this);
+		;
+		;
+		rlt_loading = (RelativeLayout) v.findViewById(R.id.rlt_loading);
+		llt_data = (LinearLayout) v.findViewById(R.id.llt_data);
+		tv_loading = (TextView) v.findViewById(R.id.tv_loading);
+		tv_loading.setText(R.string.loading4);
+		tv_loading.setOnClickListener(new OnClickListener() {
 
-		initFragment();
-		vp_home = (NoScrollViewPager) v.findViewById(R.id.vp_home_content);
-		vp_home.setAdapter(new MyFragmentPagerAdapter(
-				getChildFragmentManager(), fragments));
-		vp_home.setOnPageChangeListener(new MyOnPageChangeListener());
-		vp_home.setOffscreenPageLimit(1);
-		layout_home_shift_hot = (RelativeLayout) v
-				.findViewById(R.id.layout_home_shift_hot);
-		layout_home_shift_near = (RelativeLayout) v
-				.findViewById(R.id.layout_home_shift_near);
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				tv_loading.setText(R.string.loading4);
+				initData();
+
+			}
+		});
+		tv_loading.setClickable(false);
+
+		rlt_home_add = (RelativeLayout) v.findViewById(R.id.rlt_home_add);
+		rlt_home_add.setOnClickListener(this);
 		tb_add = (ToggleButton) v.findViewById(R.id.tb_add);
 		tb_add.setOnCheckedChangeListener(this);
 
@@ -136,38 +245,56 @@ public class HomeFragment extends Fragment implements OnClickListener,
 		btn_new_card.setOnClickListener(this);
 		btn_new_note.setOnClickListener(this);
 		btn_new_tucao.setOnClickListener(this);
-
-		layout_home_shift_hot.setOnClickListener(this);
-		layout_home_shift_near.setOnClickListener(this);
-		layout_home_shift = (LinearLayout) v
-				.findViewById(R.id.layout_home_shift);
-		rlt_home_add = (RelativeLayout) v.findViewById(R.id.rlt_home_add);
-		rlt_home_add.setOnClickListener(this);
-		tv_home_shift_hot = (TextView) v.findViewById(R.id.tv_home_shift_hot);
-		tv_home_shift_near = (TextView) v.findViewById(R.id.tv_home_shift_near);
-		tvList = new ArrayList<TextView>();
-		tvList.add(tv_home_shift_hot);
-		tvList.add(tv_home_shift_near);
-
 	}
 
-	@SuppressLint("Recycle")
-	public void initFragment() {
+	public void initData() {
+		new Thread(new Runnable() {
 
-		fragments = new ArrayList<Fragment>();
-		mHomeHotFragment = new HomeHotFragment();
-		mHomeNearFragment = new HomeNearFragment();
-		fragments.add(mHomeHotFragment);
-		fragments.add(mHomeNearFragment);
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Message msg = Message.obtain();
+				msg.obj = ClientApi.getHomeData(REFRESH_URL, null);
+				msg.what = INIT;
+				getDataHandler.sendMessage(msg);
+			}
+		}).start();
 	}
 
-	/*
-	 * public void switchContent(Fragment from, Fragment to) { if (mContent !=
-	 * to) { mContent = to; FragmentTransaction transaction =
-	 * getChildFragmentManager() .beginTransaction(); if (!to.isAdded()) {
-	 * transaction.hide(from).add(R.id.layout_home_content, to) .commit(); }
-	 * else { transaction.hide(from).show(to).commit(); } } }
-	 */
+	public void addHeader() {
+		LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(
+				Context.LAYOUT_INFLATER_SERVICE);
+
+		View headerView = lif.inflate(R.layout.headerview_home_hot, null);
+
+		for (int i = 0; i < imageUrls.length; i++) {
+			ADInfo info = new ADInfo();
+			info.setUrl(imageUrls[i]);
+			info.setContent("top-->" + i);
+			infos.add(info);
+		}
+		mAdView = (ImageCycleView) headerView.findViewById(R.id.ad_view);
+		mAdView.setImageResources(infos, mAdCycleViewListener);
+
+		mListView.addHeaderView(headerView, null, true);
+	}
+
+	private ImageCycleViewListener mAdCycleViewListener = new ImageCycleViewListener() {
+
+		@Override
+		public void onImageClick(ADInfo info, int position, View imageView) {
+			Toast.makeText(getActivity(), "content->" + info.getContent(),
+					Toast.LENGTH_SHORT).show();
+			Intent it = new Intent();
+			it.setClass(getActivity(), GameDetailActivity.class);
+			startActivity(it);
+		}
+
+		@Override
+		public void displayImage(String imageURL, ImageView imageView) {
+			ImageLoader.getInstance().displayImage(imageURL, imageView);// 使用ImageLoader对图片进行加装！
+		}
+	};
 
 	public void showNewCardDialog() {
 
@@ -221,8 +348,10 @@ public class HomeFragment extends Fragment implements OnClickListener,
 
 		rg_poi = (RadioGroup) dialog_newCard2.getWindow().findViewById(
 				R.id.rg_poi);
-	/*	rg_rigion = (RadioGroup) dialog_newCard2.getWindow().findViewById(
-				R.id.rg_rigion);*/
+		/*
+		 * rg_rigion = (RadioGroup) dialog_newCard2.getWindow().findViewById(
+		 * R.id.rg_rigion);
+		 */
 		rb_poi_here = (RadioButton) dialog_newCard2.getWindow().findViewById(
 				R.id.rb_poi_here);
 		rb_poi_select = (RadioButton) dialog_newCard2.getWindow().findViewById(
@@ -231,46 +360,115 @@ public class HomeFragment extends Fragment implements OnClickListener,
 				R.id.rb_private);
 		rb_send2Marker = (RadioButton) dialog_newCard2.getWindow()
 				.findViewById(R.id.rb_send2Marker);
-		rg_poi.setOnCheckedChangeListener(new RadioGroupChangeListener());
-		/*rg_rigion.setOnCheckedChangeListener(new RadioGroupChangeListener());*/
+		/* rg_poi.setOnCheckedChangeListener(new RadioGroupChangeListener()); */
+		/* rg_rigion.setOnCheckedChangeListener(new RadioGroupChangeListener()); */
 	}
 
-	@SuppressWarnings("deprecation")
-	public void changeTabView(int from, int to) {
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		outState.putBoolean("isMsgHidden", isHidden);
+	}
 
-		if (currIndex != to) {
-			currIndex = to;
-			tvList.get(from).setTextColor(
-					getResources().getColor(R.color.white));
-			tvList.get(to).setTextColor(
-					getResources().getColor(R.color.ui_color));
-			layout_home_shift.setBackgroundDrawable(getResources().getDrawable(
-					shiftBgs[to]));
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		isHidden = false;
+	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (mAdView != null) {
+			mAdView.startImageCycle();
+		}
+		if (!TextUtils.isEmpty(pathImage)) {
+			Bitmap bmp = BitmapFactory.decodeFile(pathImage);
+			if (iv_new_card_picture != null) {
+				iv_new_card_picture.setImageBitmap(bmp);
+			}
+		}
+	};
+
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		// scheduledExecutorService.shutdown();
+		super.onStop();
+		isHidden = true;
+		if (mAdView != null) {
+			mAdView.pushImageCycle();
 		}
 	}
 
-	private class MyOnPageChangeListener implements OnPageChangeListener {
-
-		@Override
-		public void onPageScrollStateChanged(int arg0) {
-			// TODO Auto-generated method stub
-
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		isHidden = true;
+		if (mAdView != null) {
+			mAdView.pushImageCycle();
 		}
+	}
 
-		@Override
-		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			// TODO Auto-generated method stub
-
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		isHidden = true;
+		if (mAdView != null) {
+			mAdView.pushImageCycle();
 		}
+	}
 
-		@Override
-		public void onPageSelected(int arg0) {
-			// TODO Auto-generated method stub
-			vp_home.setCurrentItem(arg0);
-			changeTabView(currIndex, arg0);
-		}
+	@Override
+	public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+		// TODO Auto-generated method stub
+		pullToRefreshManager = pullToRefreshLayout;
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Message msg = Message.obtain();
+				msg.obj = ClientApi.getHomeData(REFRESH_URL, null);
+				msg.what = REFRESH;
+				getDataHandler.sendMessage(msg);
+			}
+		}).start();
+	}
 
+	@Override
+	public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+		// TODO Auto-generated method stub
+		pullToLoadManager = pullToRefreshLayout;
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Message msg = Message.obtain();
+				Map<String, String> m = new HashMap<String, String>();
+				JSONObject postData = null;
+				if (lastTime != null) {
+					m.put("postTime", lastTime);
+					postData = new JSONObject(m);
+
+				}
+				Log.i("HomeHotFragment", lastTime);
+				try {
+					ClientApi.loadHomeData(REFRESH_URL+"?postTime="+"9jkjkj");
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				postData = null;
+				msg.what = LOAD;
+				getDataHandler.sendMessage(msg);
+			}
+		}).start();
 	}
 
 	private class RadioGroupChangeListener implements
@@ -302,14 +500,12 @@ public class HomeFragment extends Fragment implements OnClickListener,
 					break;
 				}
 				break;
-			/*case R.id.rg_rigion:
-				switch (checkedId) {
-				case R.id.rb_send2Marker:
-					break;
-
-				default:
-					break;
-				}*/
+			/*
+			 * case R.id.rg_rigion: switch (checkedId) { case
+			 * R.id.rb_send2Marker: break;
+			 * 
+			 * default: break; }
+			 */
 
 			default:
 				break;
@@ -323,14 +519,6 @@ public class HomeFragment extends Fragment implements OnClickListener,
 
 		Intent intent = new Intent();
 		switch (v.getId()) {
-		case R.id.layout_home_shift_hot:
-			vp_home.setCurrentItem(0);
-			changeTabView(currIndex, 0);
-			break;
-		case R.id.layout_home_shift_near:
-			vp_home.setCurrentItem(1);
-			changeTabView(currIndex, 1);
-			break;
 		case R.id.rlt_home_add:
 			tb_add.setChecked(false);
 			break;
@@ -383,81 +571,45 @@ public class HomeFragment extends Fragment implements OnClickListener,
 	}
 
 	// 获取图片路径 响应startActivityForResult
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		// 打开图片
-		if (resultCode == getActivity().RESULT_OK
-				&& requestCode == Constants.IMG_OPEN) {
-			Uri uri = data.getData();
-			if (!TextUtils.isEmpty(uri.getAuthority())) {
-				// 查询选择图片
-				Cursor cursor = getActivity().getContentResolver().query(uri,
-						new String[] { MediaStore.Images.Media.DATA }, null,
-						null, null);
-				// 返回 没找到选择图片
-				if (null == cursor) {
-					return;
+		public void onActivityResult(int requestCode, int resultCode, Intent data) {
+			super.onActivityResult(requestCode, resultCode, data);
+			// 打开图片
+			if (resultCode == getActivity().RESULT_OK
+					&& requestCode == Constants.IMG_OPEN) {
+				Uri uri = data.getData();
+				if (!TextUtils.isEmpty(uri.getAuthority())) {
+					// 查询选择图片
+					Cursor cursor = getActivity().getContentResolver().query(uri,
+							new String[] { MediaStore.Images.Media.DATA }, null,
+							null, null);
+					// 返回 没找到选择图片
+					if (null == cursor) {
+						return;
+					}
+					// 光标移动至开头 获取图片路径
+					cursor.moveToFirst();
+					pathImage = cursor.getString(cursor
+							.getColumnIndex(MediaStore.Images.Media.DATA));
 				}
-				// 光标移动至开头 获取图片路径
-				cursor.moveToFirst();
-				pathImage = cursor.getString(cursor
-						.getColumnIndex(MediaStore.Images.Media.DATA));
-			}
-		} // end if 打开图片
-	}
-
-	public void showAddAnimation() {
-		btn_new_card.startAnimation(AnimationUtils.loadAnimation(getActivity(),
-				R.anim.activity_translate_in));
-		btn_new_note.startAnimation(AnimationUtils.loadAnimation(getActivity(),
-				R.anim.activity_translate_in));
-		btn_new_tucao.startAnimation(AnimationUtils.loadAnimation(
-				getActivity(), R.anim.activity_translate_in));
-	}
-
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		if (!TextUtils.isEmpty(pathImage)) {
-			Bitmap bmp = BitmapFactory.decodeFile(pathImage);
-			if (iv_new_card_picture != null) {
-				iv_new_card_picture.setImageBitmap(bmp);
-			}
+			} // end if 打开图片
 		}
-	}
 
-	@Override
-	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
-		super.onAttach(activity);
-		isHidden = false;
-	}
+		public void showAddAnimation() {
+			btn_new_card.startAnimation(AnimationUtils.loadAnimation(getActivity(),
+					R.anim.activity_translate_in));
+			btn_new_note.startAnimation(AnimationUtils.loadAnimation(getActivity(),
+					R.anim.activity_translate_in));
+			btn_new_tucao.startAnimation(AnimationUtils.loadAnimation(
+					getActivity(), R.anim.activity_translate_in));
+		}
 
-	@Override
-	public void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		isHidden = true;
-	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		isHidden = true;
-	}
-
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		isHidden = true;
-	}
-
+	
+	
+	
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		// TODO Auto-generated method stub
+
 		Animation am = AnimationUtils.loadAnimation(getActivity(),
 				R.anim.anim_btn_add_rotate);
 		switch (buttonView.getId()) {
@@ -483,4 +635,12 @@ public class HomeFragment extends Fragment implements OnClickListener,
 		}
 	}
 
+	/*
+	 * @Override public void onLoad(PullableListView pullableListView) { // TODO
+	 * Auto-generated method stub new Thread(new Runnable() {
+	 * 
+	 * @Override public void run() { // TODO Auto-generated method stub Message
+	 * msg = Message.obtain(); msg.obj = ClientApi.getHomeData(REFRESH_URL,
+	 * null); msg.what = LOAD; getDataHandler.sendMessage(msg); } }).start(); }
+	 */
 }

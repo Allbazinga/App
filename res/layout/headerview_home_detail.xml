@@ -20,11 +20,11 @@
             android:layout_height="@dimen/item_home_shade"
             android:background="@color/home_item_up">
             <com.app.view.baseview.RoundImageView 
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
                 android:layout_marginTop="14dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="17dp"
                 android:src="@drawable/pic_msg_head1"
                 android:id="@+id/img_home_detail_head"/>
             <RelativeLayout 
@@ -84,8 +84,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="17dp"
                 android:gravity="left"
                 android:lineSpacingExtra="2dp"
                 android:text="我发誓，我真的活过。"
@@ -98,8 +98,7 @@
                 android:scaleType="fitXY"
                 android:contentDescription="@string/img"
                 android:id="@+id/img_home_detail_content"
-                android:layout_marginTop="5dp"
-                android:maxHeight="320dp"/>
+                android:layout_marginTop="5dp" />
             <RelativeLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

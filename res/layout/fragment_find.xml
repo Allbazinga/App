@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/find"
-            android:textColor="@color/white"
+            android:textColor="@color/top_menu_txt"
             android:textSize="20.0dp"
             android:textStyle="bold" />
     </RelativeLayout>

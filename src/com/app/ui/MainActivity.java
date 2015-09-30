@@ -126,8 +126,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 					getResources().getColor(R.color.tv_main_bottom_nor));
 			tvList.get(to).setTextColor(
 					getResources().getColor(R.color.tv_main_bottom_sel));
-			imgList.get(from).setImageResource(picNors[from]);
-			imgList.get(to).setImageResource(picSels[to]);
+			imgList.get(from).setBackgroundResource(picNors[from]);
+			imgList.get(to).setBackgroundResource(picSels[to]);
 			
 		}
 	}

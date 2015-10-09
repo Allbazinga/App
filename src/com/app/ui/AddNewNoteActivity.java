@@ -1,6 +1,5 @@
 package com.app.ui;
 
-
 /**
  * @author allbazinga
  * tips:提取照片发送新帖子
@@ -10,6 +9,7 @@ package com.app.ui;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,15 +18,22 @@ import com.app.client.ClientApi;
 import com.app.utils.BitmapTools;
 import com.app.utils.Constants;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -51,7 +58,8 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		OnCheckedChangeListener {
 
 	private static final String TAG = "AddNewNoteActivity";
-	private ImageView iv_new_note_back, iv_new_note_finish, iv_new_note_img, iv_new_note_tag;
+	private ImageView iv_new_note_back, iv_new_note_finish, iv_new_note_img,
+			iv_new_note_tag;
 	private EditText edt_new_note_cnt;
 	private ToggleButton tb_new_note_niming;
 	private ImageView iv_cntImg;
@@ -63,22 +71,26 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 	private Button pick_camera, pick_album, pick_cancel;
 	private LinearLayout llt_picture;
 	private ImageView iv_new_note_picture_all;
-    private String imagePath = "";	
-    private static final String POST_NOTE_ERROR = "帖子发送失败";
-    private static final String POST_NOTE_SUCCEEED = "发送成功！";
-    private static final int MSG_POST_NOTE_ERROR = 1;
-    private static final int MSG_POST_NOTE_SUCCEED = 2;
-    private Handler postNoteHandler = new Handler(){
+	private String imagePath = "";
+	private static final String POST_NOTE_ERROR = "帖子发送失败";
+	private static final String POST_NOTE_SUCCEEED = "发送成功！";
+	private static final int MSG_POST_NOTE_ERROR = 1;
+	private static final int MSG_POST_NOTE_SUCCEED = 2;
+	private Handler postNoteHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
-			
+
 			switch (msg.what) {
 			case MSG_POST_NOTE_ERROR:
-				Toast.makeText(AddNewNoteActivity.this, POST_NOTE_ERROR, Toast.LENGTH_SHORT).show();;
+				Toast.makeText(AddNewNoteActivity.this, POST_NOTE_ERROR,
+						Toast.LENGTH_SHORT).show();
+				;
 				break;
 			case MSG_POST_NOTE_SUCCEED:
-				Toast.makeText(AddNewNoteActivity.this, POST_NOTE_SUCCEEED, Toast.LENGTH_SHORT).show();;
+				Toast.makeText(AddNewNoteActivity.this, POST_NOTE_SUCCEEED,
+						Toast.LENGTH_SHORT).show();
+				;
 				AddNewNoteActivity.this.finish();
 				break;
 
@@ -86,9 +98,9 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 				break;
 			}
 		}
-    	
-    };
-    
+
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -98,6 +110,8 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 				R.layout.activity_add_new_note, null);
 		setContentView(parentView);
 		initView();
+
+
 	}
 
 	public void initView() {
@@ -111,7 +125,7 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		iv_new_note_tag.setOnClickListener(this);
 		edt_new_note_cnt = (EditText) findViewById(R.id.edt_new_note_cnt);
 		iv_cntImg = (ImageView) findViewById(R.id.iv_cntImg);
-		/*iv_cntImg.setOnClickListener(this);*/
+		/* iv_cntImg.setOnClickListener(this); */
 		iv_isShot = (ImageView) findViewById(R.id.iv_isShot);
 		iv_isShot.setVisibility(View.GONE);
 		tb_new_note_niming = (ToggleButton) findViewById(R.id.tb_new_note_niming);
@@ -139,19 +153,19 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		parent.setOnClickListener(this);
 
 		iv_cntImg.setOnLongClickListener(new OnLongClickListener() {
-			
+
 			@Override
 			public boolean onLongClick(View v) {
 				// TODO Auto-generated method stub
 				iv_cntImg.setImageBitmap(null);
 				iv_isShot.setVisibility(View.GONE);
-				if(!imagePath.equals("")){
+				if (!imagePath.equals("")) {
 					File file = new File(imagePath);
-					if(file != null){
+					if (file != null) {
 						file.delete();
 					}
 					imagePath = "";
-					}
+				}
 				return false;
 			}
 		});
@@ -169,7 +183,7 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.iv_new_note_img:
 			ll_popup.startAnimation(AnimationUtils.loadAnimation(
-			AddNewNoteActivity.this, R.anim.activity_translate_in));
+					AddNewNoteActivity.this, R.anim.activity_translate_in));
 			pop.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
 			break;
 		case R.id.iv_new_note_tag:
@@ -200,10 +214,10 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 			ll_popup.clearAnimation();
 			break;
 		case R.id.item_popupwindows_Photo:
-			 Intent pickIntent = new Intent(Intent.ACTION_PICK, null);
-			 pickIntent.setDataAndType(
-			 MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-			 startActivityForResult(pickIntent, Constants.IMG_OPEN);
+			Intent pickIntent = new Intent(Intent.ACTION_PICK);
+			pickIntent.setDataAndType(
+					MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+			startActivityForResult(pickIntent, Constants.IMG_OPEN);
 			pop.dismiss();
 			ll_popup.clearAnimation();
 			break;
@@ -217,23 +231,26 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case Constants.IMG_OPEN:
+
 			if (resultCode == RESULT_OK) {
-				Bitmap bitmap = BitmapTools.getSmallBitmap(getAbsoluteImagePath(data.getData()));
+				Bitmap bitmap = BitmapTools
+						.getSmallBitmap(getAbsoluteImagePath(data.getData()));
 				iv_cntImg.setImageBitmap(bitmap);
 				imagePath = BitmapTools.compressImgeToDisk(bitmap);
-				if(bitmap != null){
+				if (bitmap != null) {
 					isShot = false;
 				}
 			}
+
 			break;
 		case Constants.IMG_TAKE:
 			if (resultCode == RESULT_OK) {
 				Bundle bundle = data.getExtras();
-				Bitmap bitmap = (Bitmap) bundle.get("data");
-				imagePath = BitmapTools.compressImgeToDisk(bitmap);
+				Bitmap bm = (Bitmap) bundle.get("data");
+				imagePath = BitmapTools.compressImgeToDisk(bm);
 				System.out.println("--imagePath-->" + imagePath);
-				if (bitmap != null) {
-					iv_cntImg.setImageBitmap(bitmap);
+				if (bm != null) {
+					iv_cntImg.setImageBitmap(bm);
 					isShot = true;
 				} else {
 					isShot = false;
@@ -248,34 +265,33 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 
 	protected String getAbsoluteImagePath(Uri uri) {
 		String[] proj = { MediaStore.Images.Media.DATA };
+		Log.i(TAG, uri.toString());
 		@SuppressWarnings("deprecation")
-		Cursor cursor = managedQuery(uri, proj,
-				null, 
-				null, 
-				null); 
+		Cursor cursor = managedQuery(uri, proj, null, null, null);
 		int column_index = cursor
 				.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-	    cursor.moveToFirst();
+		cursor.moveToFirst();
 		return cursor.getString(column_index);
+	}
+
+	public void postNewNote() {
+		String noteCnt = edt_new_note_cnt.getText().toString().trim();
+		String noteTag = "我是你爸爸";
+		String userId = "";
+		String userName = "勤奋的千寻";
+		if (tb_new_note_niming.isChecked()) {
+			userName = "猜不到我";
 		}
-	
-    public void postNewNote(){
-    	String noteCnt = edt_new_note_cnt.getText().toString().trim();
-        String noteTag = "我是你爸爸";
-        String userId = "";
-    	String userName = "勤奋的千寻";
-    	if(tb_new_note_niming.isChecked()){
-    		userName = "猜不到我";
-    	}
-    	Log.i(TAG, imagePath);
-    	if(noteCnt.equals("")){
-    		Toast.makeText(this, Constants.ERROR_EDT_NULL, Toast.LENGTH_SHORT).show();
-    	}else{
-    		final Map<String, String> noteStrMap = new HashMap<String, String>();
+		Log.i(TAG, imagePath);
+		if (noteCnt.equals("")) {
+			Toast.makeText(this, Constants.ERROR_EDT_NULL, Toast.LENGTH_SHORT)
+					.show();
+		} else {
+			final Map<String, String> noteStrMap = new HashMap<String, String>();
 			noteStrMap.put("postContent", noteCnt);
 			noteStrMap.put("postTag", noteTag);
 			noteStrMap.put("userName", userId);
-    		new Thread(new Runnable() {
+			new Thread(new Runnable() {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
@@ -283,61 +299,37 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 					InputStream in = null;
 					String result = null;
 					try {
-						if(!imagePath.equals("")){
+						if (!imagePath.equals("")) {
 							file = new File(imagePath);
 							in = new FileInputStream(file);
 						}
-						result = ClientApi.uploadSubmit(Constants.POST_NOTE_URL, noteStrMap, file);
+						result = ClientApi.uploadSubmit(
+								Constants.POST_NOTE_URL, noteStrMap,
+								file);
 						Message msg = new Message();
-						if(result != null && result.equals("true")){
+						if (result != null && result.equals("true")) {
 							Log.i(TAG, result);
 							msg.what = MSG_POST_NOTE_SUCCEED;
 							postNoteHandler.sendMessage(msg);
-						}else{
+						} else {
 							msg.what = MSG_POST_NOTE_ERROR;
 							postNoteHandler.sendMessage(msg);
 						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					} finally{
-						/*if(file != null && result.equals("true")){
-						    file.delete();
-						    imagePath = "";
-						}*/
+					} finally {
+						/*
+						 * if(file != null && result.equals("true")){
+						 * file.delete(); imagePath = ""; }
+						 */
 					}
 				}
 			}).start();
-    	}
-    	
-    	/*new Thread(new Runnable() {
-			@SuppressLint("ShowToast")
-			@Override
-			public void run() {
-				if(imagePath == null){
-					Toast.makeText(AddNewNoteActivity.this, "未选择图片", Toast.LENGTH_SHORT);
-				}else{
-					final Map<String, String> map = new HashMap<String, String>();
-					map.put("postContent", "123");
-					map.put("postTag", "1234");
-					File file = new File(imagePath);
-					try {
-						String result;
-						InputStream in = new FileInputStream(file);
-						result = ClientApi.uploadSubmit(POST_NOTE_URL, map, in);
-						if(result != null){
-							Log.i("testout", result);
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}finally{
-						
-					}
-				}
-			}
-		}).start();*/
-    }
-		
+		}
+
+	}
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -372,11 +364,11 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-		if(!imagePath.equals("")){
+		if (!imagePath.equals("")) {
 			File file = new File(imagePath);
-		    if(file != null){
-		    	file.delete();
-		    }
+			if (file != null) {
+				file.delete();
+			}
 			imagePath = "";
 		}
 	}
@@ -385,13 +377,13 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		if(!imagePath.equals("")){
+		if (!imagePath.equals("")) {
 			File file = new File(imagePath);
-		    if(file != null){
-		    	file.delete();
-		    }
+			if (file != null) {
+				file.delete();
+			}
 			imagePath = "";
 		}
 	}
-	
+
 }

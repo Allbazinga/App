@@ -199,7 +199,7 @@ public class ImageCache {
 
 	/**
 	 * 往缓存中存放图片
-	 * 
+	 * allbazinga 修改过20150930
 	 * @param key
 	 * @param bitmap
 	 */
@@ -216,7 +216,7 @@ public class ImageCache {
 		}
 		synchronized (mDiskCacheLock) {
 			if (mDiskLruCache != null && mDiskLruCache.get(key) == null) {
-				mDiskLruCache.put(key, bitmap);
+				//mDiskLruCache.put(key, bitmap);
 				Log.i("", "-------------------*********存入SDKA************");
 			}
 		}

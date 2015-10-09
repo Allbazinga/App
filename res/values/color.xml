@@ -2,7 +2,7 @@
 <resources>
     <color name="ui_color">#F2DB5A</color>
     <color name="white">#FFFFFF</color>
-    <color name="transparent_bottom_menu">#80000000</color>
+    <color name="transparent_bottom_menu">#cc000000</color>
     <color name="top_menu_txt">#282828</color>
     <color name="black">#000000</color>
     <color name="line_bottom_upon">#D7D7D7</color>
@@ -69,4 +69,10 @@
     <color name="new_note">#66CCFF</color>
     <color name="new_tucao">#FFCC00</color>
     
+    
+    <!-- swiperefresh color -->
+    <color name="umeng_comm_lv_header_color1">#33b5e5</color>
+    <color name="umeng_comm_lv_header_color2">#ff4444</color>
+    <color name="umeng_comm_lv_header_color3">#99cc00</color>
+    <color name="umeng_comm_lv_header_color4">#ffbb33</color>
 </resources>

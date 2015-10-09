@@ -1,115 +1,113 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:clipToPadding="true"
     android:background="@color/ui_color"
+    android:clipToPadding="true"
     android:fitsSystemWindows="true" >
-    
-    <LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/ui_color_gray"
-    android:orientation="vertical" >
-    
-    <RelativeLayout 
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/header"
-        android:background="@color/ui_color">
-        <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/top_menu_txt"
-            android:textSize="20.0dp"
-            android:textStyle="bold"
-            android:text="@string/home"/>
-        <ToggleButton 
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:background="@drawable/pic_home_add"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/tb_add"
-            android:checked="false"
-            android:textOn=""
-            android:textOff=""
-            android:layout_marginRight="13dp"/>
-    </RelativeLayout>
-    <!-- <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layout_home_content"
-        android:orientation="vertical"></LinearLayout> -->
-     <include 
-        layout="@layout/loading"/>
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/llt_data"
-        android:visibility="gone">
-        <com.app.view.baseview.PullToRefreshLayout
-            android:id="@+id/refresh_home_hot"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-    
-            <include layout="@layout/refresh_head" />
-            <!-- 支持所有实现Pullable接口的View -->
 
-            <com.app.view.baseview.PullableListView 
-                 android:id="@+id/ltv_home_hot"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:background="@color/white" 
-                 android:scrollbars="none"/>
-           <include layout="@layout/load_more" />"
-          </com.app.view.baseview.PullToRefreshLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ui_color_gray"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/header"
+            android:background="@color/ui_color" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/home"
+                android:textColor="@color/top_menu_txt"
+                android:textSize="20.0dp"
+                android:textStyle="bold" />
+
+            <ToggleButton
+                android:id="@+id/tb_add"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="13dp"
+                android:background="@drawable/pic_home_add"
+                android:checked="false"
+                android:textOff=""
+                android:textOn="" />
+        </RelativeLayout>
+
+        <include layout="@layout/loading" />
+
+        <LinearLayout
+            android:id="@+id/llt_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <com.app.swipeloadrefresher.RefreshLayout
+                android:id="@+id/swipe_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <ListView
+                    android:id="@+id/ltv_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+                </ListView>
+            </com.app.swipeloadrefresher.RefreshLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
-    <RelativeLayout 
+
+    <RelativeLayout
+        android:id="@+id/rlt_home_add"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparent_add"
-        android:id="@+id/rlt_home_add"
         android:visibility="gone" >
-        <Button 
+
+        <Button
+            android:id="@+id/btn_new_card"
             android:layout_width="wrap_content"
             android:layout_height="33dp"
-            android:background="@drawable/bg_new_card"
-            android:textSize="16dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:id="@+id/btn_new_card"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:layout_marginTop="75dp"
-            android:text="@string/new_card"/>
-         <Button 
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:background="@drawable/bg_new_note"
-            android:textSize="16dp"
+            android:background="@drawable/bg_new_card"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
+            android:text="@string/new_card"
+            android:textSize="16dp" />
+
+        <Button
             android:id="@+id/btn_new_note"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_below="@+id/btn_new_card"
-            android:layout_marginTop="20dp"
-            android:text="@string/new_note"/>
-         <Button 
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:background="@drawable/bg_new_tucao"
-            android:textSize="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/btn_new_card"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_new_note"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
+            android:text="@string/new_note"
+            android:textSize="16dp" />
+
+        <Button
             android:id="@+id/btn_new_tucao"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
             android:layout_below="@+id/btn_new_note"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/new_tucao"/>
+            android:background="@drawable/bg_new_tucao"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/new_tucao"
+            android:textSize="16dp" />
     </RelativeLayout>
-    
+
 </FrameLayout>

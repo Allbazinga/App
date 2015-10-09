@@ -1,17 +1,13 @@
 package com.app.view.fragment;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.http.client.ClientProtocolException;
-import org.json.JSONObject;
 
 import com.app.adapter.HomeHotAdapter;
 import com.app.bean.ADInfo;
 import com.app.bean.HomeBean;
 import com.app.client.ClientApi;
+import com.app.swipeloadrefresher.RefreshLayout;
+import com.app.swipeloadrefresher.RefreshLayout.OnLoadListener;
 import com.app.ui.AddNewNoteActivity;
 import com.app.ui.GameDetailActivity;
 import com.app.ui.HomeLtvDetailsActivity;
@@ -19,9 +15,6 @@ import com.app.ui.R;
 import com.app.utils.Constants;
 import com.app.view.baseview.ImageCycleView;
 import com.app.view.baseview.ImageCycleView.ImageCycleViewListener;
-import com.app.view.baseview.PullToRefreshLayout;
-import com.app.view.baseview.PullToRefreshLayout.OnRefreshListener;
-import com.app.view.baseview.PullableListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
@@ -37,6 +30,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +47,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -61,13 +56,10 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ToggleButton;
 
-public class HomeFragment extends Fragment implements OnRefreshListener,
-		OnClickListener, OnCheckedChangeListener {
+public class HomeFragment extends Fragment implements OnClickListener, OnCheckedChangeListener {
 
 	private View v;
-	private PullableListView mListView;
-	private PullToRefreshLayout pullToRefreshManager;
-	private PullToRefreshLayout pullToLoadManager;
+	private ListView mListView;
 	private ArrayList<HomeBean> dataList;
 	private HomeHotAdapter mHomeHotAdapter;
 	private boolean isHidden = false;
@@ -114,8 +106,10 @@ public class HomeFragment extends Fragment implements OnRefreshListener,
 	private int offset = 5;
 	private static final String REFRESH_URL = "http://202.118.76.72/App/action/PostListAction.php";
 	private String lastTime = null;
+	private RefreshLayout mSwipeRefresh = null;
 	private Handler getDataHandler = new Handler() {
-
+		
+		
 		@SuppressWarnings("unchecked")
 		@Override
 		public void handleMessage(Message msg) {
@@ -128,14 +122,14 @@ public class HomeFragment extends Fragment implements OnRefreshListener,
 					tv_loading.setClickable(true);
 				}
 				if (msg.what == REFRESH) {
-					pullToRefreshManager
-							.refreshFinish(PullToRefreshLayout.FAIL);
+					mSwipeRefresh.setRefreshing(false);
 				}
 				if (msg.what == LOAD) {
-					pullToLoadManager.refreshFinish(PullToRefreshLayout.FAIL);
+					mSwipeRefresh.setLoading(false);
 				}
 			} else {
 				if (msg.what == INIT) {
+					Toast.makeText(getActivity(), "加载成功！", Toast.LENGTH_SHORT).show();;
 					rlt_loading.setVisibility(View.GONE);
 					llt_data.setVisibility(View.VISIBLE);
 					dataList.clear();
@@ -148,6 +142,7 @@ public class HomeFragment extends Fragment implements OnRefreshListener,
 					mHomeHotAdapter.notifyDataSetChanged();
 				}
 				if (msg.what == REFRESH) {
+					Toast.makeText(getActivity(), "刷新成功！", Toast.LENGTH_SHORT).show();;
 					dataList.clear();
 					dataList = (ArrayList<HomeBean>) msg.obj;
 					if (dataList != null) {
@@ -155,19 +150,18 @@ public class HomeFragment extends Fragment implements OnRefreshListener,
 					}
 					mHomeHotAdapter.bindData(dataList);
 					mListView.setAdapter(mHomeHotAdapter);
-					pullToRefreshManager
-							.refreshFinish(PullToRefreshLayout.SUCCEED);
+					mSwipeRefresh.setRefreshing(false);
 					mHomeHotAdapter.notifyDataSetChanged();
 				}
 				if (msg.what == LOAD) {
+					Toast.makeText(getActivity(), "加载成功！", Toast.LENGTH_SHORT).show();;
 					dataList.addAll((ArrayList<HomeBean>) msg.obj);
 					mHomeHotAdapter.bindData(dataList);
 					mListView.setAdapter(mHomeHotAdapter);
 					mListView.setSelection(offset);
 					offset = dataList.size();
 					lastTime = dataList.get(offset - 1).getTime();
-					pullToLoadManager
-							.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+					mSwipeRefresh.setLoading(false);
 					mHomeHotAdapter.notifyDataSetChanged();
 				}
 			}
@@ -209,15 +203,21 @@ public class HomeFragment extends Fragment implements OnRefreshListener,
 		return v;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void initView() {
 		dataList = new ArrayList<HomeBean>();
-		mListView = (PullableListView) v.findViewById(R.id.ltv_home_hot);
+		mListView = (ListView) v.findViewById(R.id.ltv_home);
 		addHeader();
 		mHomeHotAdapter = new HomeHotAdapter(getActivity());
-		((PullToRefreshLayout) v.findViewById(R.id.refresh_home_hot))
-				.setOnRefreshListener(this);
-		;
-		;
+		mSwipeRefresh = (RefreshLayout)  
+                v.findViewById(R.id.swipe_layout);  
+		  // 设置下拉刷新时的颜色值,颜色值需要定义在xml中  
+        mSwipeRefresh  
+                .setColorScheme(R.color.umeng_comm_lv_header_color1,  
+                        R.color.umeng_comm_lv_header_color2, R.color.umeng_comm_lv_header_color3,  
+                        R.color.umeng_comm_lv_header_color4);  
+        mSwipeRefresh.setOnRefreshListener(mSwipeRefreshListener);
+        mSwipeRefresh.setOnLoadListener(mSwipeLoadListener);
 		rlt_loading = (RelativeLayout) v.findViewById(R.id.rlt_loading);
 		llt_data = (LinearLayout) v.findViewById(R.id.llt_data);
 		tv_loading = (TextView) v.findViewById(R.id.tv_loading);
@@ -296,6 +296,48 @@ public class HomeFragment extends Fragment implements OnRefreshListener,
 		}
 	};
 
+	private OnRefreshListener mSwipeRefreshListener = new OnRefreshListener() {
+		
+		@Override
+		public void onRefresh() {
+			// TODO Auto-generated method stub
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Message msg = Message.obtain();
+					msg.obj = ClientApi.getHomeData(REFRESH_URL, null);
+					msg.what = REFRESH;
+					getDataHandler.sendMessage(msg);
+				}
+			}).start();
+		}
+	};
+	
+	private OnLoadListener mSwipeLoadListener = new OnLoadListener() {
+		
+		@Override
+		public void onLoad() {
+			// TODO Auto-generated method stub
+			
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Message msg = Message.obtain();
+					String t = "";
+					if(lastTime != null){
+						String[] times = lastTime.split("\\ ");
+						t = times[0] + "%20" + times[1];
+					}
+					Log.i("HomeHotFragment", t);
+				    msg.obj = ClientApi.loadHomeData(REFRESH_URL+"?postTime="+t);
+					msg.what = LOAD;
+					getDataHandler.sendMessage(msg);
+				}
+			}).start();
+			}
+	};
 	public void showNewCardDialog() {
 
 		dialog_newCard1 = new AlertDialog.Builder(getActivity()).create();
@@ -422,54 +464,6 @@ public class HomeFragment extends Fragment implements OnRefreshListener,
 		}
 	}
 
-	@Override
-	public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
-		// TODO Auto-generated method stub
-		pullToRefreshManager = pullToRefreshLayout;
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				Message msg = Message.obtain();
-				msg.obj = ClientApi.getHomeData(REFRESH_URL, null);
-				msg.what = REFRESH;
-				getDataHandler.sendMessage(msg);
-			}
-		}).start();
-	}
-
-	@Override
-	public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
-		// TODO Auto-generated method stub
-		pullToLoadManager = pullToRefreshLayout;
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				Message msg = Message.obtain();
-				Map<String, String> m = new HashMap<String, String>();
-				JSONObject postData = null;
-				if (lastTime != null) {
-					m.put("postTime", lastTime);
-					postData = new JSONObject(m);
-
-				}
-				Log.i("HomeHotFragment", lastTime);
-				try {
-					ClientApi.loadHomeData(REFRESH_URL+"?postTime="+"9jkjkj");
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				postData = null;
-				msg.what = LOAD;
-				getDataHandler.sendMessage(msg);
-			}
-		}).start();
-	}
 
 	private class RadioGroupChangeListener implements
 			android.widget.RadioGroup.OnCheckedChangeListener {
@@ -635,12 +629,4 @@ public class HomeFragment extends Fragment implements OnRefreshListener,
 		}
 	}
 
-	/*
-	 * @Override public void onLoad(PullableListView pullableListView) { // TODO
-	 * Auto-generated method stub new Thread(new Runnable() {
-	 * 
-	 * @Override public void run() { // TODO Auto-generated method stub Message
-	 * msg = Message.obtain(); msg.obj = ClientApi.getHomeData(REFRESH_URL,
-	 * null); msg.what = LOAD; getDataHandler.sendMessage(msg); } }).start(); }
-	 */
 }

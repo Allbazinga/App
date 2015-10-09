@@ -89,6 +89,43 @@ public class BitmapTools {
     }  
 
 	
+	
+public static Bitmap getSmallBitmap(Bitmap bm) {  
+        
+        /*final BitmapFactory.Options options = new BitmapFactory.Options();  
+        options.inJustDecodeBounds = true;  
+        BitmapFactory.decodeFile(filePath, options);  
+  
+        // Calculate inSampleSize  
+        options.inSampleSize = calculateInSampleSize(options, 480, 800);  
+  
+        // Decode bitmap with inSampleSize set  
+        options.inJustDecodeBounds = false;  
+          
+        Bitmap bm = BitmapFactory.decodeFile(filePath, options);  */
+        if(bm == null){  
+            return  null;  
+        }  
+       /* int degree = readPictureDegree(filePath);  
+        bm = rotateBitmap(bm,degree) ;  */
+        ByteArrayOutputStream baos = null ;  
+        try{  
+            baos = new ByteArrayOutputStream();  
+            bm.compress(Bitmap.CompressFormat.JPEG, 30, baos);  
+              
+        }finally{  
+            try {  
+                if(baos != null)  
+                    baos.close() ;  
+            } catch (IOException e) {  
+                e.printStackTrace();  
+            }  
+        }  
+        return bm ;  
+  
+    }  
+	
+	
 	private static int readPictureDegree(String path) {    
         int degree  = 0;    
         try {    

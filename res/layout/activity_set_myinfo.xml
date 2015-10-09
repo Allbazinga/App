@@ -3,41 +3,42 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="#F7F7F7" >
-
-    <RelativeLayout
+    <RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="@dimen/header"
-        android:background="@color/ui_color" >
+        android:background="@color/ui_color">
+        <ImageView 
+            android:layout_width="20dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15.0dp"
+            android:contentDescription="@string/back"
+            android:id="@+id/iv_setInfo_back"
+            android:src="@drawable/pic_back2"/>
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textColor="@color/top_menu_txt"
             android:textSize="20.0dp"
-            android:text="@string/self_info"
-            android:textStyle="bold"/>
+            android:textColor="@color/top_menu_txt"
+            android:textStyle="bold"
+            android:text="@string/myinfo"/>
     </RelativeLayout>
-
-    <ScrollView
-        android:id="@+id/sv_mine"
+    <ScrollView 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="@null"
-        android:background="#F7F7F7" >
-
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:scrollbars="@null">
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F7F7F7"
-            android:orientation="vertical" >
+            android:orientation="vertical">
             <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:id="@+id/rlt_mine_selfinfo"
-                android:background="@drawable/bg_mine_rlt_click"
-                >
+                android:background="@drawable/bg_mine_rlt_click" >
                 <com.app.view.baseview.RoundImageView 
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -58,32 +59,23 @@
                 <TextView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_mine_scl"
+                    android:id="@+id/tv_info_id"
                     android:layout_alignLeft="@+id/tv_mine_name"
                     android:textSize="15.0dp"
                     android:textColor="#A2A2A2"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="13dp"
-                    android:text="大连理工大学    2013级"/>
-                <ImageView 
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:contentDescription="@string/forward"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="26dp"
-                    android:src="@drawable/pic_forward"/>
+                    android:text="ID: 201362"/>
             </RelativeLayout>
             <LinearLayout 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/white">
                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
-                    android:id="@+id/rlt_mine_auther"
                      >
                     <TextView 
                         android:layout_width="wrap_content"
@@ -92,25 +84,37 @@
                         android:layout_marginLeft="20dp"
                         android:textSize="17.0dp"
                         android:textColor="#333333"
-                        android:text="@string/auther"/>
+                        android:text="@string/set_name"/>
+                    <TextView 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/iv_set_name"
+                        android:layout_marginRight="2dp"
+                        android:singleLine="true"
+                        android:textSize="17.0dp"
+                        android:id="@+id/tv_name"
+                        android:textColor="#AEAEAE"
+                        android:text="Allbazinga"/>
                     <ImageView 
                         android:layout_width="18dp"
                         android:layout_height="18dp"
+                        android:id="@+id/iv_set_name"
                         android:contentDescription="@string/forward"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="26dp"
+                        android:layout_marginRight="20dp"
                         android:src="@drawable/pic_forward"/>
                 </RelativeLayout>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
                     android:background="#efefef"/>
-                <RelativeLayout 
+                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
-                    android:id="@+id/rlt_mine_note">
+                     >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -118,25 +122,37 @@
                         android:layout_marginLeft="20dp"
                         android:textSize="17.0dp"
                         android:textColor="#333333"
-                        android:text="@string/note"/>
+                        android:text="@string/set_sign"/>
+                     <TextView 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/iv_set_sign"
+                        android:layout_marginRight="2dp"
+                        android:textSize="17.0dp"
+                        android:id="@+id/tv_sign"
+                        android:textColor="#AEAEAE"
+                        android:maxLength="8"
+                        android:text="阿布阿布阿布阿布阿布"/>
                     <ImageView 
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:contentDescription="@string/forward"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="26dp"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/iv_set_sign"
                         android:src="@drawable/pic_forward"/>
                 </RelativeLayout>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
                     android:background="#efefef"/>
-                <RelativeLayout 
+                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/rlt_mine_gain"
-                    android:background="@drawable/bg_mine_rlt_click">
+                    android:background="@drawable/bg_mine_rlt_click"
+                     >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -144,25 +160,37 @@
                         android:layout_marginLeft="20dp"
                         android:textSize="17.0dp"
                         android:textColor="#333333"
-                        android:text="@string/gain"/>
+                        android:text="@string/set_sex"/>
+                     <TextView 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/iv_set_sex"
+                        android:layout_marginRight="2dp"
+                        android:singleLine="true"
+                        android:textSize="17.0dp"
+                        android:id="@+id/tv_sex"
+                        android:textColor="#AEAEAE"
+                        android:text="男"/>
                     <ImageView 
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:contentDescription="@string/forward"
                         android:layout_centerVertical="true"
+                        android:id="@+id/iv_set_sex"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="26dp"
+                         android:layout_marginRight="20dp"
                         android:src="@drawable/pic_forward"/>
                 </RelativeLayout>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
                     android:background="#efefef"/>
-                <RelativeLayout 
+                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/rlt_mine_collect"
-                    android:background="@drawable/bg_mine_rlt_click">
+                    android:background="@drawable/bg_mine_rlt_click"
+                     >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -170,25 +198,37 @@
                         android:layout_marginLeft="20dp"
                         android:textSize="17.0dp"
                         android:textColor="#333333"
-                        android:text="@string/collect"/>
+                        android:text="@string/set_home"/>
+                     <TextView 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/iv_set_home"
+                        android:layout_marginRight="2dp"
+                        android:singleLine="true"
+                        android:textSize="17.0dp"
+                        android:id="@+id/tv_home"
+                        android:textColor="#AEAEAE"
+                        android:text="辽宁-大连"/>
                     <ImageView 
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:contentDescription="@string/forward"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="26dp"
+                        android:id="@+id/iv_set_home"
+                         android:layout_marginRight="20dp"
                         android:src="@drawable/pic_forward"/>
                 </RelativeLayout>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
                     android:background="#efefef"/>
-                <RelativeLayout 
+                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/rlt_mine_mark"
-                    android:background="@drawable/bg_mine_rlt_click">
+                    android:background="@drawable/bg_mine_rlt_click"
+                     >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -196,51 +236,37 @@
                         android:layout_marginLeft="20dp"
                         android:textSize="17.0dp"
                         android:textColor="#333333"
-                        android:text="@string/mark"/>
-                    <ImageView 
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:contentDescription="@string/forward"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="26dp"
-                        android:src="@drawable/pic_forward"/>
-                </RelativeLayout>
-                <View 
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:background="#F7F7F7"/>
-                <RelativeLayout 
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/rlt_mine_settings"
-                    android:background="@drawable/bg_mine_rlt_click" >
-                    <TextView 
+                        android:text="@string/set_start_school"/>
+                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="20dp"
+                        android:layout_toLeftOf="@+id/iv_set_start_scl"
+                        android:layout_marginRight="2dp"
+                        android:singleLine="true"
                         android:textSize="17.0dp"
-                        android:textColor="#333333"
-                        android:text="@string/settings"/>
+                        android:id="@+id/tv_start_scl"
+                        android:textColor="#AEAEAE"
+                        android:text="2013年"/>
                     <ImageView 
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:contentDescription="@string/forward"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="26dp"
+                        android:id="@+id/iv_set_start_scl"
+                         android:layout_marginRight="20dp"
                         android:src="@drawable/pic_forward"/>
                 </RelativeLayout>
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
                     android:background="#efefef"/>
-                <RelativeLayout 
+                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/rlt_mine_feedback"
-                    android:background="@drawable/bg_mine_rlt_click">
+                    android:background="@drawable/bg_mine_rlt_click"
+                     >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -248,45 +274,30 @@
                         android:layout_marginLeft="20dp"
                         android:textSize="17.0dp"
                         android:textColor="#333333"
-                        android:text="@string/feedback"/>
-                    <ImageView 
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:contentDescription="@string/forward"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="26dp"
-                        android:src="@drawable/pic_forward"/>
-                </RelativeLayout>
-                <View android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
-                <RelativeLayout 
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/rlt_mine_recmd2tothers">
-                    <TextView 
+                        android:text="@string/set_major"/>
+                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="20dp"
+                        android:layout_toLeftOf="@+id/iv_set_major"
+                        android:layout_marginRight="2dp"
+                        android:singleLine="true"
                         android:textSize="17.0dp"
-                        android:textColor="#333333"
-                        android:text="@string/recmd2other"/>
+                        android:id="@+id/tv_major"
+                        android:maxLength="8"
+                        android:textColor="#AEAEAE"
+                        android:text="机械设计制造及其自动化"/>
                     <ImageView 
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:contentDescription="@string/forward"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="26dp"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/iv_set_major"
                         android:src="@drawable/pic_forward"/>
                 </RelativeLayout>
             </LinearLayout>
-            <View android:layout_width="match_parent"
-                android:layout_height="70dp"/>
         </LinearLayout>
     </ScrollView>
-    
 </LinearLayout>

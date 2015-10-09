@@ -17,7 +17,6 @@
     <string name="msg_reply">回复</string>
     <string name="hot">热门</string>
     <string name="near">附近</string>
-    <string name="mark">关 注</string>
     <string name="home_detail">帖子详情</string>  
     <string name="reply">回复</string>
     <string name="mygood">我的点赞</string>
@@ -63,10 +62,16 @@
     
     
     <!--我的界面  -->
-     <string name="note">帖子</string>
-    <string name="card">卡片</string>
-    <string name="collect">收藏</string>
-    <string name="mark_no_space">关注</string>
+     <string name="auther">身份认证</string>
+    <string name="gold">我的金币</string>
+    <string name="note">我的帖子</string>
+    <string name="gain">我的成就</string>
+    <string name="collect">我的收藏</string>
+    <string name="mark">我的关注</string>
+    <string name="feedback">意见反馈</string>
+    <string name="recmd2other">推荐给同学！</string>
+    <string name="myinfo">我的资料</string>
+    <string name="other_info">TA的资料</string>
     <string name="head_title_desc">该demo包含上滑悬浮头部，同时上下拉可刷新数据，可以左右滑动切换tab</string>
     <string name="empty"></string>
 
@@ -98,8 +103,12 @@
     <string name="add_new_note">新动态</string>
     <string name="new_note_hint">说点什么吧~~</string>
     
-    <string name="set_name">修改昵称</string>
+    <string name="set_name">昵称设置</string>
     <string name="set_sign">编辑签名</string>
+    <string name="set_sex">性别</string>
+    <string name="set_home">家乡</string>
+    <string name="set_start_school">入学年份</string>
+    <string name="set_major">专业</string>
     <string name="set_name_hint">编辑你的昵称</string>
     <string name="set_sign_hint">这个人很懒，什么也没留下</string>
     <string name="set_name_tip">昵称不超过10字</string>
@@ -114,4 +123,10 @@
     <string name="camera">相机</string>
     <string name="album">相册</string>
     <string name="yoyo">Yo~</string>
+    
+    <!-- contentdescription -->
+    <string name="forward">forward</string>
+    <string name="back">back</string>
+    
+    
 </resources>

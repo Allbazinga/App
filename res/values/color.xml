@@ -58,6 +58,7 @@
     <color name="color_black_333333">#333333</color>
     <color name="color_grey_999999">#999999</color>
     <color name="color_black_d9d9d9">#d9d9d9</color>
+    <color name="mine_bg">#F7F7F7</color>
     <!-- <color name="color_purple_bd6aff">#bd6aff</color> -->
     <color name="GreyWhite_has_alpha">#66FAFAFA</color>
     <color name="transparent">#00000000</color>

@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,6 +17,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -31,23 +33,45 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeLtvDetailsActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
-        <activity android:name=".MsgGoodActivity"></activity>
-        <activity android:name=".MsgReplyActivity"></activity>
-        <activity android:name=".MsgContactActivity"></activity>
-        <activity android:name=".FindCardDetailsActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
-        <activity android:name=".AppSettingsActivity"></activity>
-        <activity android:name=".OthersInfoActivity"></activity>
-        <activity android:name=".GameDetailActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
-        <activity android:name=".AddActivity"></activity>
-        <activity android:name=".AddNewNoteActivity"></activity>
-        <activity android:name=".NameSetActivity"></activity>
-        <activity android:name=".SignSetActivity"></activity>
-        <activity android:name=".VisitorActivity">
+        <activity
+            android:name=".HomeLtvDetailsActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
+        <activity android:name=".MsgGoodActivity" >
+        </activity>
+        <activity android:name=".MsgReplyActivity" >
+        </activity>
+        <activity android:name=".MsgContactActivity" >
+        </activity>
+        <activity
+            android:name=".FindCardDetailsActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <activity android:name=".AppSettingsActivity" >
+        </activity>
+        <activity android:name=".OthersInfoActivity" >
+        </activity>
+        <activity
+            android:name=".GameDetailActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <activity android:name=".AddActivity" >
+        </activity>
+        <activity android:name=".AddNewNoteActivity" >
+        </activity>
+        <activity android:name=".NameSetActivity" >
+        </activity>
+        <activity android:name=".SignSetActivity" >
+        </activity>
+        <activity android:name=".VisitorActivity" >
+        </activity>
+        <activity android:name=".SetMyInfoActivity"></activity>
+        <activity android:name=".AutherActivity"></activity>
+        <activity android:name=".MyNoteActivity"></activity>
+        <activity android:name=".MyMarkActivity"></activity>
+        <activity android:name=".MyGainActivity"></activity>
+        <activity android:name=".MyCollectActivity"></activity>
+        <activity android:name=".FeedbackActivity"></activity>
     </application>
 
 </manifest>

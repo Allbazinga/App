@@ -54,14 +54,21 @@ public class MineNoteAdapter extends BaseAdapter {
 			viewHolder.img = (ImageView) convertView.findViewById(R.id.iv_mine_note);
 			viewHolder.cnt = (TextView) convertView.findViewById(R.id.tv_mine_note_cnt);
 			viewHolder.time = (TextView) convertView.findViewById(R.id.tv_mine_note_time);
+			viewHolder.label = (TextView) convertView.findViewById(R.id.tv_note_label);
 			convertView.setTag(viewHolder);
 		}else{
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		if(item  != null){
-			viewHolder.img.setImageDrawable(item.getImg());
+			if(item.getImg() == null){
+				viewHolder.img.setVisibility(View.GONE);
+			}else{
+				viewHolder.img.setVisibility(View.VISIBLE);
+				viewHolder.img.setImageDrawable(item.getImg());
+			}
 			viewHolder.cnt.setText(item.getCnt());
 			viewHolder.time.setText(item.getTime());
+			viewHolder.label.setText(item.getLabel());
 		}
 		return convertView;
 	}
@@ -70,6 +77,7 @@ public class MineNoteAdapter extends BaseAdapter {
 		ImageView img;
 		TextView cnt;
 		TextView time;
+		TextView label;
 	}
 }
 

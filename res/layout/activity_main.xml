@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/line_msg_ltv"
+        android:background="#F7F7F7"
         android:id="@+id/layout_main_content"></LinearLayout>
    <!--  <View 
         android:layout_above="@+id/layout_main_bottom"

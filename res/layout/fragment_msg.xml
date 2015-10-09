@@ -1,12 +1,9 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ui_color_gray"
+    android:orientation="vertical" >
 
-
-    <LinearLayout
-         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/ui_color_gray"
-        android:orientation="vertical" >
-        
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/header"
@@ -28,6 +25,6 @@
         android:layout_height="match_parent"
         android:background="@color/ui_color_gray"
         android:divider="@null" >
-    </ListView> 
-    </LinearLayout>
+    </ListView>
 
+</LinearLayout>

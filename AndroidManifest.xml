@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.ui"
     android:versionCode="1"
-    android:versionName="1.0.1" >
+    android:versionName="1.1.0" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -65,13 +65,24 @@
         </activity>
         <activity android:name=".VisitorActivity" >
         </activity>
-        <activity android:name=".SetMyInfoActivity"></activity>
-        <activity android:name=".AutherActivity"></activity>
-        <activity android:name=".MyNoteActivity"></activity>
-        <activity android:name=".MyMarkActivity"></activity>
-        <activity android:name=".MyGainActivity"></activity>
-        <activity android:name=".MyCollectActivity"></activity>
-        <activity android:name=".FeedbackActivity"></activity>
+        <activity android:name=".SetMyInfoActivity" >
+        </activity>
+        <activity android:name=".AutherActivity" >
+        </activity>
+        <activity android:name=".MyNoteActivity" >
+        </activity>
+        <activity android:name=".MyMarkActivity" >
+        </activity>
+        <activity android:name=".MyGainActivity" >
+        </activity>
+        <activity android:name=".MyCollectActivity" >
+        </activity>
+        <activity android:name=".FeedbackActivity" >
+        </activity>
+        <activity android:name=".OthersGainActivity" >
+        </activity>
+        <activity android:name=".OthersInfoDetailActivity" >
+        </activity>
     </application>
 
 </manifest>

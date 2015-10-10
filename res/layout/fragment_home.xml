@@ -32,7 +32,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="13dp"
-                android:background="@drawable/pic_home_add"
+                android:background="@drawable/pic_add_black"
                 android:checked="false"
                 android:textOff=""
                 android:textOn="" />

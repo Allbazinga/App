@@ -2,5 +2,17 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+    <TextView android:layout_width="match_parent"
+        android:layout_height="@dimen/header"
+        android:background="@color/ui_color"
+        android:textSize="20.0dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="@string/find"
+        android:textColor="@color/top_menu_txt"/>
+    <ListView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:scrollbars="@null"
+        android:id="@+id/ltv_find"/>
 </LinearLayout>

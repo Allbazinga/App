@@ -146,7 +146,6 @@ public class MineFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.rlt_mine_feedback:
 			Toast.makeText(getActivity(), "暂未开放", Toast.LENGTH_SHORT).show();
-			startActivity(intent);
 			break;
 		case R.id.rlt_mine_recmd2tothers:
 			Toast.makeText(getActivity(), "暂未开放", Toast.LENGTH_SHORT).show();

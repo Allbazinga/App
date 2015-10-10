@@ -1,18 +1,13 @@
 package com.app.ui;
 
-import java.text.RuleBasedCollator;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.app.adapter.ReplyDetailAdapter;
 import com.app.bean.HomeBean;
 import com.app.bean.ReplyDetailBean;
-import com.app.listener.MyListener;
 import com.app.utils.Constants;
 import com.app.utils.ImageCache;
-import com.app.view.baseview.PullToRefreshLayout;
-import com.app.view.baseview.PullableListView;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,12 +18,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class HomeLtvDetailsActivity extends Activity {
 
-	private PullableListView mListView;
-	private PullToRefreshLayout ptrl;
+	private ListView mListView;
 	private List<ReplyDetailBean> mDataList;
 	private ReplyDetailAdapter mHomeDetailAdapter;
 	private HomeBean noteData = null;
@@ -48,12 +43,10 @@ public class HomeLtvDetailsActivity extends Activity {
 	}
 
 	public void initView() {
-		ptrl = ((PullToRefreshLayout) findViewById(R.id.refresh_home_detail));
-		ptrl.setOnRefreshListener(new MyListener());
 	}
 
 	public void initListView() {
-		mListView = (PullableListView) findViewById(R.id.ltv_home_detail);
+		mListView = (ListView) findViewById(R.id.ltv_home_detail);
 		mDataList = new ArrayList<ReplyDetailBean>();
 
 		addHeader();
@@ -74,21 +67,21 @@ public class HomeLtvDetailsActivity extends Activity {
 		LayoutInflater lif = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View headerView = lif.inflate(R.layout.headerview_home_detail, null);
 		ImageView avater = (ImageView) headerView
-				.findViewById(R.id.img_home_detail_head);
+				.findViewById(R.id.img_home_hot_head);
 		TextView name = (TextView) headerView
-				.findViewById(R.id.tv_home_detail_name);
+				.findViewById(R.id.tv_home_hot_name);
 		ImageView sex = (ImageView) headerView
-				.findViewById(R.id.img_home_detail_sex);
+				.findViewById(R.id.img_home_hot_sex);
 		TextView time = (TextView) headerView
-				.findViewById(R.id.tv_home_detail_time);
+				.findViewById(R.id.tv_home_hot_time);
 		TextView cnt = (TextView) headerView
-				.findViewById(R.id.tv_home_detail_content);
+				.findViewById(R.id.tv_home_hot_content);
 		TextView tag = (TextView) headerView
-				.findViewById(R.id.tv_home_detail_tag);
+				.findViewById(R.id.tv_home_hot_tag);
 		TextView good = (TextView) headerView
-				.findViewById(R.id.tv_home_detail_good_num);
+				.findViewById(R.id.tv_home_hot_good);
 		ImageView cntImg = (ImageView) headerView
-				.findViewById(R.id.img_home_detail_content);
+				.findViewById(R.id.img_home_hot_content);
 		name.setText(noteData.getName());
 		if (noteData.getSex().equals("男")) {
 			sex.setImageResource(R.drawable.pic_male);

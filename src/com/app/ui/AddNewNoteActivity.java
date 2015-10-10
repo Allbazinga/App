@@ -115,7 +115,7 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 	}
 
 	public void initView() {
-		iv_new_note_back = (ImageView) findViewById(R.id.iv_new_note_back);
+		iv_new_note_back = (ImageView) findViewById(R.id.iv_back);
 		iv_new_note_finish = (ImageView) findViewById(R.id.iv_new_note_finish);
 		iv_new_note_img = (ImageView) findViewById(R.id.iv_new_note_img);
 		iv_new_note_tag = (ImageView) findViewById(R.id.iv_new_note_tag);
@@ -175,7 +175,7 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.iv_new_note_back:
+		case R.id.iv_back:
 			finish();
 			break;
 		case R.id.iv_new_note_finish:

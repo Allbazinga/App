@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="128dp"
+    android:background="@drawable/pic_bg_gain" >
+    
+    <ImageView android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="@string/cnt_img"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:id="@+id/iv_gain"
+        android:src="@drawable/pic_no_img"/>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/iv_gain" >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:textSize="16.0dp"
+            android:textColor="#333333"
+            android:singleLine="true"
+            android:id="@+id/tv_gain_title"
+            android:text="@string/nul"/>
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="38dp"
+            android:background="#949494"/>
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:textSize="13.0dp"
+            android:maxLines="3"
+            android:textColor="#333333"
+            android:id="@+id/tv_gain_cnt"
+            android:text="@string/nul"/>
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:textSize="13.0dp"
+            android:textColor="#5e5e5e"
+            android:id="@+id/tv_gain_num_left"
+            android:text="已有"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_toRightOf="@+id/tv_gain_num_left"
+            android:textSize="13.0dp"
+            android:textColor="#ff0000"
+            android:text="15"
+            android:id="@+id/tv_gain_num"/>
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12.0dp"
+            android:textSize="13.0dp"
+            android:textColor="#5e5e5e"
+            android:layout_toRightOf="@+id/tv_gain_num"
+            android:text="个小伙伴已完成"/>
+        <TextView android:layout_width="50dp"
+            android:layout_height="21dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="12dp"
+            android:textSize="13.0dp"
+            android:textStyle="bold"
+            android:id="@+id/tv_gain_finish"
+            android:background="@drawable/bg_tv_gain_finish_no"
+            android:gravity="center"
+            android:clickable="false"/>
+    </RelativeLayout>
+  </RelativeLayout>
+</LinearLayout>

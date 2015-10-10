@@ -618,7 +618,7 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 			} else {
 				tb_add.startAnimation(am);
 				tb_add.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.pic_home_add));
+						R.drawable.pic_add_black));
 				rlt_home_add.setVisibility(View.GONE);
 				
 			}

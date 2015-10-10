@@ -32,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,23 +43,21 @@ public class MsgFragment extends Fragment implements OnClickListener {
 	private ListView ltv_msg;
 	private MsgAdapter mMsgAdapter;
 	private List<MsgBean> msgList;
-    private RelativeLayout layout_msg_good, layout_msg_reply;
-    
+	private RelativeLayout layout_msg_good, layout_msg_reply;
 
-    
-    private boolean isHidden = false;
-    
-    @Override
+	private boolean isHidden = false;
+
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		if(savedInstanceState != null){
-			if(savedInstanceState.getBoolean("isMsgHidden")){
+		if (savedInstanceState != null) {
+			if (savedInstanceState.getBoolean("isMsgHidden")) {
 				getFragmentManager().beginTransaction().hide(this).commit();
 			}
 		}
 	}
-    
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -68,15 +67,19 @@ public class MsgFragment extends Fragment implements OnClickListener {
 		return v;
 	}
 
-	public void initView(){
+	public void initView() {
 		ltv_msg = (ListView) v.findViewById(R.id.ltv_msg);
+		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT);
+		ltv_msg.setLayoutParams(lp);
 		addHeader();
-	    msgList = new ArrayList<MsgBean>();
-		for(int i = 0; i < 4; i++){
-			MsgBean item = new MsgBean(getResources().getDrawable(R.drawable.pic_msg_head1)
-					, "迷失的安娜"
-					, getResources().getDrawable(R.drawable.pic_female)
-					, "昨天20:34", "在茫茫人海中寻找你的身影");
+		
+		msgList = new ArrayList<MsgBean>();
+		for (int i = 0; i < 4; i++) {
+			MsgBean item = new MsgBean(getResources().getDrawable(
+					R.drawable.pic_msg_head1), "迷失的安娜", getResources()
+					.getDrawable(R.drawable.pic_female), "昨天20:34",
+					"在茫茫人海中寻找你的身影");
 			msgList.add(item);
 		}
 		mMsgAdapter = new MsgAdapter(getActivity(), msgList);
@@ -95,16 +98,19 @@ public class MsgFragment extends Fragment implements OnClickListener {
 
 	public void addHeader() {
 
-	   LayoutInflater
-		 lif = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(
+				Context.LAYOUT_INFLATER_SERVICE);
 
-	   View
-		 headerView = lif.inflate(R.layout.headerview_msg, null);
-       ltv_msg.addHeaderView(headerView, null, true);
-       layout_msg_good = (RelativeLayout) headerView.findViewById(R.id.layout_msg_good);
-       layout_msg_reply = (RelativeLayout) headerView.findViewById(R.id.layout_msg_reply);
-       layout_msg_good.setOnClickListener(this);
-       layout_msg_reply.setOnClickListener(this);
+		View headerView = lif.inflate(R.layout.headerview_msg, null);
+		View footerView = lif.inflate(R.layout.footer_find, null);
+		ltv_msg.addHeaderView(headerView, null, true);
+		ltv_msg.addFooterView(footerView, null, false);
+		layout_msg_good = (RelativeLayout) headerView
+				.findViewById(R.id.layout_msg_good);
+		layout_msg_reply = (RelativeLayout) headerView
+				.findViewById(R.id.layout_msg_reply);
+		layout_msg_good.setOnClickListener(this);
+		layout_msg_reply.setOnClickListener(this);
 	}
 
 	@Override
@@ -124,13 +130,13 @@ public class MsgFragment extends Fragment implements OnClickListener {
 			break;
 		}
 	}
-	
+
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
 		outState.putBoolean("isMsgHidden", isHidden);
 	}
-	
+
 	@Override
 	public void onAttach(Activity activity) {
 		// TODO Auto-generated method stub
@@ -158,6 +164,5 @@ public class MsgFragment extends Fragment implements OnClickListener {
 		super.onPause();
 		isHidden = true;
 	}
-
 
 }

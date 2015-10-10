@@ -2,26 +2,25 @@ package com.app.bean;
 
 import android.graphics.drawable.Drawable;
 
-public class MineCardBean {
+public class GainBean {
 
 	private Drawable img;
 	private String title;
 	private String cnt;
-	private String good;
-	private String cmt;
+	private String num;
+	private String finish;
 
-	public MineCardBean() {
+	public GainBean() {
 
 	}
 
-	public MineCardBean(Drawable img, String title, String cnt, String cmt,
-			String good) {
+	public GainBean(Drawable img, String title, String cnt, String num, String finish) {
 
 		this.img = img;
 		this.title = title;
 		this.cnt = cnt;
-		this.cmt = cmt;
-		this.good = good;
+		this.num = num;
+		this.finish = finish;
 	}
 
 	public void setImg(Drawable img) {
@@ -36,12 +35,12 @@ public class MineCardBean {
 		this.cnt = cnt;
 	}
 
-	public void setCmt(String cmt) {
-		this.cmt = cmt;
+	public void setNum(String num) {
+		this.num = num;
 	}
 
-	public void setGood(String good) {
-		this.good = good;
+	public void setFinish(String finish) {
+		this.finish = finish;
 	}
 
 	public Drawable getImg() {
@@ -56,10 +55,10 @@ public class MineCardBean {
 		return this.cnt;
 	}
 
-	public String getCmt(){
-		return this.cmt;
+	public String getNum(){
+		return this.num;
 	}
-	public String getGood(){
-		return this.good;
+	public String getFinish(){
+		return this.finish;
 	}
 }

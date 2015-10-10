@@ -39,14 +39,6 @@ public class ListItemOnClickListener implements OnClickListener{
 			v.setVisibility(View.INVISIBLE);
 			makeToast("关注成功！");
 			break;
-		case R.id.img_home_near_head:
-			intent.setClass(context, OthersInfoActivity.class);
-			context.startActivity(intent);
-			break;
-		case R.id.btn_home_near_mark:
-			v.setVisibility(View.INVISIBLE);
-			makeToast("关注成功！");
-			break;
 		default:
 			break;
 		}

@@ -3,10 +3,13 @@ package com.app.adapter;
 
 import java.util.List;
 
-import com.app.bean.MineCardBean;
+import com.app.bean.GainBean;
 import com.app.ui.R;
+import com.app.ui.R.color;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class MineCardAdapter extends BaseAdapter {
+public class GainAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
-	private List<MineCardBean> mItems;
+	private List<GainBean> mItems;
 	
-	public MineCardAdapter(Context context, List<MineCardBean> item){
+	public GainAdapter(Context context, List<GainBean> item){
 		this.mInflater = LayoutInflater.from(context);
 		this.mItems = item;
 	}
@@ -31,7 +34,7 @@ public class MineCardAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public MineCardBean getItem(int position) {
+	public GainBean getItem(int position) {
 		// TODO Auto-generated method stub
 		return mItems.get(position);
 	}
@@ -49,24 +52,32 @@ public class MineCardAdapter extends BaseAdapter {
 		ViewHolder viewHolder = null;
 		if(convertView == null){
 			viewHolder = new ViewHolder();
-			convertView = mInflater.inflate(R.layout.item_mine_card, null);
-			viewHolder.img = (ImageView) convertView.findViewById(R.id.iv_mine_card);
-			viewHolder.title = (TextView) convertView.findViewById(R.id.tv_mine_card_title);
-			viewHolder.cnt = (TextView) convertView.findViewById(R.id.tv_mine_card_cnt);
-			viewHolder.cmt = (TextView) convertView.findViewById(R.id.tv_mine_card_comment);
-			viewHolder.good = (TextView) convertView.findViewById(R.id.tv_mine_card_good);
+			convertView = mInflater.inflate(R.layout.item_gain, null);
+			viewHolder.img = (ImageView) convertView.findViewById(R.id.iv_gain);
+			viewHolder.title = (TextView) convertView.findViewById(R.id.tv_gain_title);
+			viewHolder.cnt = (TextView) convertView.findViewById(R.id.tv_gain_cnt);
+			viewHolder.num = (TextView) convertView.findViewById(R.id.tv_gain_num);
+			viewHolder.finish = (TextView) convertView.findViewById(R.id.tv_gain_finish);
 			convertView.setTag(viewHolder);
 			
 		}else{
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		MineCardBean item = getItem(position);
+		GainBean item = getItem(position);
 		if(null != item){
 			viewHolder.img.setImageDrawable(item.getImg());
 			viewHolder.title.setText(item.getTitle());
 			viewHolder.cnt.setText(item.getCnt());
-			viewHolder.cmt.setText(item.getCmt());
-			viewHolder.good.setText(item.getGood());
+			viewHolder.num.setText(item.getNum());
+			if(item.getFinish().equals("1")){
+				viewHolder.finish.setBackgroundResource(R.drawable.bg_tv_gain_finish_yes);
+				viewHolder.finish.setTextColor(Color.BLACK);
+				viewHolder.finish.setText("get √");
+			}else{
+				viewHolder.finish.setBackgroundResource(R.drawable.bg_tv_gain_finish_no);
+				viewHolder.finish.setText("未完成");
+				viewHolder.finish.setTextColor(Color.WHITE);
+			}
 		}
 		return convertView;
 	}
@@ -75,8 +86,8 @@ public class MineCardAdapter extends BaseAdapter {
 		ImageView img;
 		TextView title;
 		TextView cnt;
-		TextView cmt;
-		TextView good;
+		TextView num;
+		TextView finish;
 	}
 }
 

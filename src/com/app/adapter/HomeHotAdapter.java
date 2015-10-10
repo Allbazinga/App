@@ -63,7 +63,7 @@ public class HomeHotAdapter extends BaseAdapter {
 		ViewHolder viewHolder = null;
 		if(convertView == null){
 			viewHolder = new ViewHolder();
-			convertView = mInflater.inflate(R.layout.item_home_hot, null);
+			convertView = mInflater.inflate(R.layout.item_home, null);
 			viewHolder.head = (ImageView) convertView.findViewById(R.id.img_home_hot_head);
 			viewHolder.name = (TextView) convertView.findViewById(R.id.tv_home_hot_name);
 			viewHolder.sex = (ImageView) convertView.findViewById(R.id.img_home_hot_sex);

@@ -46,6 +46,7 @@
     <color name="find_card_title">#333333</color>
     <color name="find_card_tile_content_line">#D7D7D7</color>
     <color name="find_card_content">#949494</color>
+    <color name="divider_find">#e4e4e4</color>
        
         <!--    下拉刷新和上拉加载color -->
     <color name="gray">#aaaaaa</color>

@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#F2F2F2"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -10,35 +11,30 @@
         android:background="@color/ui_color" >
 
         <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
+            android:id="@+id/iv_back"
+            android:layout_width="20dp"
+            android:layout_height="16dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/pic_back_white" />
+            android:layout_marginLeft="15.0dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/pic_back2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/home_detail"
-            android:textColor="@color/white"
+            android:textColor="@color/top_menu_txt"
             android:textSize="20.0dp"
             android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/pic_collect" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="#F2F2F2" >
 
+        <!--
         <com.app.view.baseview.PullToRefreshLayout
             android:id="@+id/refresh_home_detail"
             android:layout_width="match_parent"
@@ -47,7 +43,7 @@
             android:background="@color/ui_color_gray" >
 
             <include layout="@layout/refresh_head" />
-            <!-- 支持所有实现Pullable接口的View -->
+            支持所有实现Pullable接口的View
 
             <com.app.view.baseview.PullableListView
                 android:id="@+id/ltv_home_detail"
@@ -58,6 +54,16 @@
 
             <include layout="@layout/load_more" />
         </com.app.view.baseview.PullToRefreshLayout>
+        -->
+
+        <ListView
+            android:id="@+id/ltv_home_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F2F2F2"
+            android:layout_above="@+id/layout_home_detail_bottom"
+            android:divider="@null" >
+        </ListView>
 
         <LinearLayout
             android:id="@+id/layout_home_detail_bottom"

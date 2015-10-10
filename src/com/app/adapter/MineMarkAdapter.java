@@ -52,6 +52,10 @@ public class MineMarkAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.item_mine_mark, null);
 			viewHolder.head = (ImageView) convertView.findViewById(R.id.iv_mine_mark_avatar);
 			viewHolder.name = (TextView) convertView.findViewById(R.id.tv_mine_mark_name);
+			viewHolder.scl = (TextView) convertView.findViewById(R.id.tv_mine_mark_scl);
+			viewHolder.marked = (ImageView) convertView.findViewById(R.id.iv_mine_marked);
+			viewHolder.sex = (ImageView) convertView.findViewById(R.id.iv_mine_mark_sex);
+			
 			convertView.setTag(viewHolder);
 		}else{
 			viewHolder = (ViewHolder) convertView.getTag();
@@ -59,8 +63,14 @@ public class MineMarkAdapter extends BaseAdapter {
 		MineMarkBean item = getItem(position);
 		if(null != item){
 			viewHolder.head.setImageDrawable(item.getAvatar());
-			
 			viewHolder.name.setText(item.getName());
+			if(item.getSex().equals("女")){
+				viewHolder.sex.setImageResource(R.drawable.pic_female);
+			}else{
+				viewHolder.sex.setImageResource(R.drawable.pic_male);
+			}
+			viewHolder.scl.setText(item.getScl());
+			
 		}
 		return convertView;
 	}
@@ -68,6 +78,9 @@ public class MineMarkAdapter extends BaseAdapter {
 	private static class ViewHolder {
 		ImageView head;
 		TextView name;
+		TextView scl;
+		ImageView sex;
+		ImageView marked;
 	}
 
 }

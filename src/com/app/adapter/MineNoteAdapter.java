@@ -68,7 +68,7 @@ public class MineNoteAdapter extends BaseAdapter {
 			}
 			viewHolder.cnt.setText(item.getCnt());
 			viewHolder.time.setText(item.getTime());
-			viewHolder.label.setText(item.getLabel());
+			viewHolder.label.setText("来自：" + item.getLabel());
 		}
 		return convertView;
 	}

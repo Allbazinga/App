@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#F7F7F7"
+        android:background="@color/ui_color_gray"
         android:id="@+id/layout_main_content"></LinearLayout>
    <!--  <View 
         android:layout_above="@+id/layout_main_bottom"

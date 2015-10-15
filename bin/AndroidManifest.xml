@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.ui"
-    android:versionCode="1"
-    android:versionName="1.1.0" >
+    package="com.cwl.app"
+    android:versionCode="2"
+    android:versionName="1.1.1" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -17,6 +17,20 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".MyApplication"
@@ -25,7 +39,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,56 +47,100 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".HomeLtvDetailsActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+        <activity android:name=".ui.LoginActivity" >
         </activity>
-        <activity android:name=".MsgGoodActivity" >
-        </activity>
-        <activity android:name=".MsgReplyActivity" >
-        </activity>
-        <activity android:name=".MsgContactActivity" >
+        <activity android:name=".ui.RegisterActivity"></activity>
+        <activity android:name=".ui.MainActivity" >
         </activity>
         <activity
-            android:name=".FindCardDetailsActivity"
+            android:name="com.cwl.app.ui.HomeLtvDetailsActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
-        <activity android:name=".AppSettingsActivity" >
+        <activity android:name="com.cwl.app.ui.MsgGoodActivity" >
         </activity>
-        <activity android:name=".OthersInfoActivity" >
+        <activity android:name="com.cwl.app.ui.MsgReplyActivity" >
+        </activity>
+        <activity android:name="com.cwl.app.ui.MsgContactActivity" >
         </activity>
         <activity
-            android:name=".GameDetailActivity"
+            android:name="com.cwl.app.ui.FindCardDetailsActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
-        <activity android:name=".AddActivity" >
+        <activity android:name="com.cwl.app.ui.AppSettingsActivity" >
         </activity>
-        <activity android:name=".AddNewNoteActivity" >
+        <activity android:name="com.cwl.app.ui.OthersInfoActivity" >
         </activity>
-        <activity android:name=".NameSetActivity" >
+        <activity
+            android:name="com.cwl.app.ui.GameDetailActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
-        <activity android:name=".SignSetActivity" >
+        <activity android:name="com.cwl.app.ui.AddActivity" >
         </activity>
-        <activity android:name=".VisitorActivity" >
+        <activity android:name="com.cwl.app.ui.AddNewNoteActivity" >
         </activity>
-        <activity android:name=".SetMyInfoActivity" >
+        <activity android:name="com.cwl.app.ui.NameSetActivity" >
         </activity>
-        <activity android:name=".AutherActivity" >
+        <activity android:name="com.cwl.app.ui.SignSetActivity" >
         </activity>
-        <activity android:name=".MyNoteActivity" >
+        <activity android:name="com.cwl.app.ui.VisitorActivity" >
         </activity>
-        <activity android:name=".MyMarkActivity" >
+        <activity android:name="com.cwl.app.ui.SetMyInfoActivity" >
         </activity>
-        <activity android:name=".MyGainActivity" >
+        <activity android:name="com.cwl.app.ui.AutherActivity" >
         </activity>
-        <activity android:name=".MyCollectActivity" >
+        <activity android:name="com.cwl.app.ui.MyNoteActivity" >
         </activity>
-        <activity android:name=".FeedbackActivity" >
+        <activity android:name="com.cwl.app.ui.MyMarkActivity" >
         </activity>
-        <activity android:name=".OthersGainActivity" >
+        <activity android:name="com.cwl.app.ui.MyGainActivity" >
         </activity>
-        <activity android:name=".OthersInfoDetailActivity" >
+        <activity android:name="com.cwl.app.ui.MyCollectActivity" >
         </activity>
+        <activity android:name="com.cwl.app.ui.FeedbackActivity" >
+        </activity>
+        <activity android:name="com.cwl.app.ui.OthersGainActivity" >
+        </activity>
+        <activity android:name="com.cwl.app.ui.OthersInfoDetailActivity" >
+        </activity>
+        <activity
+            android:name=".ui.ChatActivity"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity android:name=".ui.AddContactActivity" >
+        </activity>
+        <activity android:name=".ui.AlertDialog" >
+        </activity>
+        <activity android:name=".ui.ContextMenu" >
+        </activity>
+        <activity android:name=".ui.ImageGridActivity" >
+        </activity>
+        <activity android:name=".ui.RecorderVideoActivity" >
+        </activity>
+        <activity android:name=".ui.ShowBigImage" >
+        </activity>
+        <activity android:name=".ui.ShowNormalFileActivity" >
+        </activity>
+        <activity android:name=".ui.ShowVideoActivity" >
+        </activity>
+        <activity android:name=".ui.CitySelectActivity"></activity>
+
+        <!-- 开机自启动服务 -->
+        <receiver android:name="com.easemob.chat.StartServiceReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 设置环信应用的appkey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="allbazinga#app" />
+        <!-- 声明sdk所需的service -->
+        <service android:name="com.easemob.chat.EMChatService" />
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@
         android:text="热门"
         android:textSize="14.0dp"
         android:textColor="#333333"
-        android:background="@color/ui_color_gray" />
+        android:background="#F2F2F2" />
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="68dp"
         android:background="@drawable/bg_mine_rlt_click"
@@ -50,7 +50,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="#e4e4e4"/>
+        android:background="#F2F2F2"/>
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="68dp"
         android:background="@drawable/bg_mine_rlt_click"
@@ -91,5 +91,5 @@
         android:text="频道"
         android:textSize="14.0dp"
         android:textColor="#333333"
-        android:background="@color/ui_color_gray" />
+        android:background="#F2F2F2" />
 </LinearLayout>

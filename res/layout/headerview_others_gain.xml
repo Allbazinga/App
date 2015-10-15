@@ -1,7 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F2F2F2"
+    android:orientation="vertical" >
+
+    <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="44dp"
-    android:background="@color/ui_color_gray" >
+    android:background="#F2F2F2" >
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -9,6 +15,7 @@
         android:id="@+id/vs"
         android:textSize="20.0dp"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:text="VS"/>
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,3 +56,4 @@
         android:singleLine="true"
         android:text="========="/>
 </RelativeLayout>
+</LinearLayout>

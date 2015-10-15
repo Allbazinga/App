@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ui_color_gray"
+    android:background="#F2F2F2"
     android:orientation="vertical" >
      <RelativeLayout 
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="20.0dp"
+            android:textSize="19.0dp"
             android:textColor="@color/top_menu_txt"
             android:textStyle="bold"
             android:id="@+id/tv_actionbar"

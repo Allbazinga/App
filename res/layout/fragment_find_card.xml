@@ -67,7 +67,7 @@
             android:id="@+id/rlt_card_name"
             android:background="@color/find_card_name_bg" >
 
-            <com.app.view.baseview.RoundImageView
+            <com.cwl.app.widget.RoundImageView
                 android:id="@+id/iv_card_avatar"
                 android:layout_width="34dp"
                 android:layout_height="34dp"

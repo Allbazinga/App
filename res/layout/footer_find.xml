@@ -5,5 +5,5 @@
     android:orientation="vertical" >
     <View android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/ui_color_gray"/>
+        android:background="#F7F7F7"/>
 </LinearLayout>

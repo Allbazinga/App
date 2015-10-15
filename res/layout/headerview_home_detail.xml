@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_home_shade"  
             android:background="@color/white">
-            <com.app.view.baseview.RoundImageView 
+            <com.cwl.app.widget.RoundImageView 
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_alignParentLeft="true"

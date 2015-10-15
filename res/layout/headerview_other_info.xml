@@ -14,7 +14,7 @@
             android:layout_marginTop="31dp"
             android:id="@+id/rlt_other_avatar"
             android:background="@drawable/bg_mine_avatar">
-            <com.app.view.baseview.RoundImageView 
+            <com.cwl.app.widget.RoundImageView 
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerInParent="true"
@@ -24,25 +24,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="41dp"
             android:layout_toRightOf="@+id/rlt_other_avatar"
             android:layout_marginLeft="10dp"
             android:textSize="20.0dp"
             android:textColor="#D7D7D7"
             android:id="@+id/tv_other_name"
             android:text="暗龙袭击"/>
-        <ImageView android:layout_width="11dp"
-            android:layout_height="11dp"
+        <ImageView android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_toRightOf="@+id/tv_other_name"
             android:layout_marginLeft="7dp"
-            android:layout_marginTop="47dp"
+            android:layout_marginTop="48dp"
             android:id="@+id/iv_other_sex"
             android:src="@drawable/pic_male"/>
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/tv_other_name"
             android:layout_below="@+id/tv_other_name"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="6dp"
             android:textSize="12.0dp"
             android:textColor="#BCBCBC"
             android:id="@+id/tv_other_scl"
@@ -58,8 +58,9 @@
             android:layout_below="@+id/rlt_other_avatar"
             android:layout_marginTop="7dp"
             android:textColor="#D7D7D7"
+            android:textSize="12.0dp"
             android:lineSpacingExtra="2dp"
-            android:text="    我所听过的最美的故事，是公主死去了，屠龙的少年还在燃烧"/>
+            android:text="        “我所听过的最美的故事，是公主死去了，屠龙的少年还在燃烧”"/>
         <Button android:layout_width="110dp"
             android:layout_height="26dp"
             android:background="@drawable/bg_btn_otherinfo"

@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/white">
-        <com.app.view.baseview.RoundImageView
+        <com.cwl.app.widget.RoundImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"

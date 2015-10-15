@@ -25,7 +25,7 @@
             android:layout_centerInParent="true"
             android:text="@string/home_detail"
             android:textColor="@color/top_menu_txt"
-            android:textSize="20.0dp"
+            android:textSize="19.0dp"
             android:textStyle="bold" />
     </RelativeLayout>
 

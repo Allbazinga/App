@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="ui_color">#F2DB5A</color>
     <color name="white">#FFFFFF</color>
     <color name="transparent_bottom_menu">#cc000000</color>
@@ -22,24 +23,24 @@
     <color name="home_item_comment">#333333</color>
     <color name="home_item_good">#333333</color>
     <color name="home_item_tag">#6B6B6B</color>
-    
+
     <!-- 帖子详情 -->
     <color name="home_detail_reply">#333333</color>
     <color name="home_detail_last">#A1A1A1</color>
     <color name="home_detail_gray">#666666</color>
     <color name="home_detail_red">#666666</color>
     <color name="home_detail_bg_edit">#F9F9F9</color>
-    
+
     <!-- 点赞和回复 -->
     <color name="msg_gar_blue">#3399FF</color>
     <color name="msg_gar_name">#333333</color>
     <color name="msg_gar_gray">#666666</color>
-    
+
     <!-- 聊天 -->
-    
+
     <color name="chat_date">#BCBCBC</color>
     <color name="chat_bg">#F2F2F2</color>
-    
+
     <!-- 发现 -->
     <color name="find_menu_bg">#F2F2F2</color>
     <color name="find_card_name_bg">#F9F9F9</color>
@@ -47,15 +48,14 @@
     <color name="find_card_tile_content_line">#D7D7D7</color>
     <color name="find_card_content">#949494</color>
     <color name="divider_find">#e4e4e4</color>
-       
-        <!--    下拉刷新和上拉加载color -->
+
+    <!-- 下拉刷新和上拉加载color -->
     <color name="gray">#aaaaaa</color>
     <color name="light_blue">#6593cb</color>
     <color name="header1">#00a9f5</color>
-    
-    
-    <!--我的界面  -->
-     <color name="color_gray_eaeaea">#eaeaea</color>
+
+    <!-- 我的界面 -->
+    <color name="color_gray_eaeaea">#eaeaea</color>
     <color name="color_black_333333">#333333</color>
     <color name="color_grey_999999">#999999</color>
     <color name="color_black_d9d9d9">#d9d9d9</color>
@@ -64,17 +64,59 @@
     <color name="GreyWhite_has_alpha">#66FAFAFA</color>
     <color name="transparent">#00000000</color>
     <color name="action_bar_tittle_color_555555">#555555</color>
-    
+
     <!-- add -->
     <color name="transparent_add">#70000000</color>
     <color name="new_card">#6AFE78</color>
     <color name="new_note">#66CCFF</color>
     <color name="new_tucao">#FFCC00</color>
-    
-    
+
     <!-- swiperefresh color -->
     <color name="umeng_comm_lv_header_color1">#33b5e5</color>
     <color name="umeng_comm_lv_header_color2">#ff4444</color>
     <color name="umeng_comm_lv_header_color3">#99cc00</color>
     <color name="umeng_comm_lv_header_color4">#ffbb33</color>
+
+    <!-- IM -->
+    <color name="common_top_bar_blue">#ffde43</color>
+    <!-- <color name="btn_login_normal">#007086</color> -->
+    <color name="btn_login_normal">#2f4f4f</color>
+    <color name="btn_login_pressed">#2d2f31</color>
+    <color name="btn_logout_normal">#d33f3f</color>
+    <color name="btn_logout_pressed">#DA5A4D</color>
+    <color name="btn_register_normal">#2dafa3</color>
+    <color name="btn_register_pressed">#4ebcd3</color>
+    <color name="sina_normal">#d33f3f</color>
+    <color name="sina_pressed">#DA5A4D</color>
+    <color name="qq_normal">#00bfff</color>
+    <color name="qq_pressed">#1e90ff</color>
+    <!-- <color name="common_bottom_bar_normal_bg">#2d2f31</color> -->
+    <color name="common_bottom_bar_normal_bg">#404040</color>
+    <!-- <color name="common_bottom_bar_selected_bg">#161718</color> -->
+    <color name="common_bottom_bar_selected_bg">#2d2f31</color>
+    <color name="common_botton_bar_blue">#2ea7e0</color>
+    <!-- <color name="common_bg">#fcfcfc</color> -->
+    <color name="common_bg">#fffcf8</color>
+    <color name="btn_pressed_green_solid">#B6DA53</color>
+    <color name="divider_list">#cccccc</color>
+    <color name="top_bar_normal_bg">#404040</color>
+    <color name="error_item_color">#F6EBE6</color>
+    <color name="bottom_bar_normal_bg">#2D2F31</color>
+    <color name="bottom_text_color_normal">#ffffff</color>
+    <color name="btn_white_normal">#f7f8f8</color>
+    <color name="btn_white_pressed">#b5b5b6</color>
+    <color name="btn_green_noraml">#68C270</color>
+    <color name="btn_green_pressed">#6FCD78</color>
+    <color name="btn_gray_normal">#c0c0c0</color>
+    <color name="btn_gray_pressed_status">#b5b5b6</color>
+    <color name="btn_gray_pressed">#666667</color>
+    <color name="btn_blue_normal">#1e90ff</color>
+    <color name="btn_blue_pressed">#0066FF</color>
+    <color name="orange">#FFA500</color>
+    <color name="gray_pressed">#b5b5b6</color>
+    <color name="gray_normal">#666667</color>
+    <color name="grid_state_pressed">#1Affffff</color>
+    <color name="grid_state_focused">#80000000</color>
+    <color name="gril_text_back">#f391a9</color>
+
 </resources>

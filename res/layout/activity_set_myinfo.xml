@@ -14,12 +14,13 @@
             android:layout_marginLeft="15.0dp"
             android:contentDescription="@string/back"
             android:id="@+id/iv_setInfo_back"
+            android:onClick="onClick"
             android:src="@drawable/pic_back2"/>
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="20.0dp"
+            android:textSize="19.0dp"
             android:textColor="@color/top_menu_txt"
             android:textStyle="bold"
             android:text="@string/myinfo"/>
@@ -39,7 +40,7 @@
                 android:layout_marginBottom="20dp"
                 android:id="@+id/rlt_mine_selfinfo"
                 android:background="@drawable/bg_mine_rlt_click" >
-                <com.app.view.baseview.RoundImageView 
+                <com.cwl.app.widget.RoundImageView 
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
@@ -50,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/iv_mine_avatar"
-                    android:textSize="18.0dp"
+                    android:textSize="17.0dp"
                     android:textColor="#333333"
                     android:id="@+id/tv_mine_name"
                     android:layout_marginLeft="14.0dp"
@@ -59,9 +60,9 @@
                 <TextView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_info_id"
+                    android:id="@+id/tv_mine_id"
                     android:layout_alignLeft="@+id/tv_mine_name"
-                    android:textSize="15.0dp"
+                    android:textSize="14.0dp"
                     android:textColor="#A2A2A2"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="13dp"
@@ -76,13 +77,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
-                     >
+                    android:id="@+id/rlt_nick"
+                    android:onClick="onClick" >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/set_name"/>
                     <TextView 
@@ -92,7 +94,7 @@
                         android:layout_toLeftOf="@+id/iv_set_name"
                         android:layout_marginRight="2dp"
                         android:singleLine="true"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:id="@+id/tv_name"
                         android:textColor="#AEAEAE"
                         android:text="Allbazinga"/>
@@ -109,18 +111,19 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                  <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
-                     >
+                    android:id="@+id/rlt_sign"
+                    android:onClick="onClick" >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/set_sign"/>
                      <TextView 
@@ -129,7 +132,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@+id/iv_set_sign"
                         android:layout_marginRight="2dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:id="@+id/tv_sign"
                         android:textColor="#AEAEAE"
                         android:maxLength="8"
@@ -147,18 +150,19 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                  <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
-                     >
+                    android:id="@+id/rlt_sex"
+                    android:onClick="onClick">
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/set_sex"/>
                      <TextView 
@@ -168,7 +172,7 @@
                         android:layout_toLeftOf="@+id/iv_set_sex"
                         android:layout_marginRight="2dp"
                         android:singleLine="true"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:id="@+id/tv_sex"
                         android:textColor="#AEAEAE"
                         android:text="男"/>
@@ -185,18 +189,19 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                  <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
-                     >
+                    android:id="@+id/rlt_home"
+                    android:onClick="onClick" >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/set_home"/>
                      <TextView 
@@ -206,7 +211,7 @@
                         android:layout_toLeftOf="@+id/iv_set_home"
                         android:layout_marginRight="2dp"
                         android:singleLine="true"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:id="@+id/tv_home"
                         android:textColor="#AEAEAE"
                         android:text="辽宁-大连"/>
@@ -223,18 +228,19 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                  <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
-                     >
+                    android:id="@+id/rlt_year"
+                    android:onClick="onClick" >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/set_start_school"/>
                      <TextView 
@@ -244,7 +250,7 @@
                         android:layout_toLeftOf="@+id/iv_set_start_scl"
                         android:layout_marginRight="2dp"
                         android:singleLine="true"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:id="@+id/tv_start_scl"
                         android:textColor="#AEAEAE"
                         android:text="2013年"/>
@@ -261,18 +267,19 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                  <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
-                     >
+                    android:id="@+id/rlt_major"
+                    android:onClick="onClick" >
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/set_major"/>
                      <TextView 
@@ -282,7 +289,7 @@
                         android:layout_toLeftOf="@+id/iv_set_major"
                         android:layout_marginRight="2dp"
                         android:singleLine="true"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:id="@+id/tv_major"
                         android:maxLength="8"
                         android:textColor="#AEAEAE"

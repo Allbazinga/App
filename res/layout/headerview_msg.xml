@@ -21,33 +21,31 @@
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/img_msg_good"
-            android:layout_alignTop="@+id/img_msg_good"
             android:layout_marginLeft="10dp"
             android:text="@string/msg_good"
-            android:textSize="16.0dp"
-            android:layout_marginTop="0dp"
-            android:textStyle="bold"
+            android:textSize="17.0dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/tv_msg_good"/>
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#515151"
+            android:textColor="#797979"
             android:id="@+id/tv_msg_good_hint"
             android:layout_alignLeft="@+id/tv_msg_good"
             android:layout_alignBottom="@+id/img_msg_good"
             android:text="又有四个人为你的消息点赞了哦！"
             android:textSize="13.0dp"/>
         <ImageView 
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="26dp"
             android:layout_centerVertical="true"
             android:src="@drawable/pic_forward"/>
     </RelativeLayout>
     <View android:layout_height="1dp"
         android:layout_width="match_parent"
-        android:background="@color/line_msg_ltv"
+        android:background="#F7F7F7"
         />
      <RelativeLayout 
         android:layout_width="match_parent"
@@ -66,17 +64,15 @@
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/img_msg_reply"
-            android:layout_alignTop="@+id/img_msg_reply"
             android:layout_marginLeft="10dp"
             android:text="@string/msg_reply"
-            android:textSize="16.0dp"
-            android:layout_marginTop="0dp"
-            android:textStyle="bold"
+            android:textSize="17.0dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/tv_msg_reply"/>
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#515151"
+            android:textColor="#797979"
             android:id="@+id/tv_msg_reply_hint"
             android:layout_alignLeft="@+id/tv_msg_reply"
             android:layout_alignParentBottom="true"
@@ -84,10 +80,10 @@
             android:text="迷路的安娜 评论了你的帖子"
             android:textSize="13.0dp"/>
         <ImageView 
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="26dp"
             android:layout_centerVertical="true"
             android:src="@drawable/pic_forward"/>
     </RelativeLayout>

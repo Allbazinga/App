@@ -23,7 +23,7 @@
             android:layout_centerInParent="true"
             android:text="@string/game_detail"
             android:textColor="@color/white"
-            android:textSize="20.0dp"
+            android:textSize="19.0dp"
             android:textStyle="bold" />
         
     </RelativeLayout>
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.app.view.baseview.PullToRefreshLayout
+        <!-- <com.app.view.baseview.PullToRefreshLayout
             android:id="@+id/refresh_game_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -40,7 +40,7 @@
             android:background="@color/ui_color_gray" >
 
             <include layout="@layout/refresh_head" />
-            <!-- 支持所有实现Pullable接口的View -->
+            支持所有实现Pullable接口的View
 
             <com.app.view.baseview.PullableListView
                 android:id="@+id/ltv_game_detail"
@@ -51,7 +51,29 @@
 
             <include layout="@layout/load_more" />
         </com.app.view.baseview.PullToRefreshLayout>
+ -->
+         <LinearLayout
+            android:id="@+id/llt_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#F2F2F2"
+            android:layout_above="@+id/llt_game_detail_bottom" >
 
+            <com.cwl.app.refresher.RefreshLayout
+                android:id="@+id/swipe_layout"
+                android:layout_width="match_parent"
+                android:background="#F2F2F2"
+                android:layout_height="match_parent" >
+
+                <ListView
+                    android:id="@+id/ltv_game_detail"
+                    android:layout_width="match_parent"
+                    android:background="#F2F2F2"
+                    android:layout_height="match_parent" >
+                </ListView>
+            </com.cwl.app.refresher.RefreshLayout>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/llt_game_detail_bottom"
             android:layout_width="match_parent"

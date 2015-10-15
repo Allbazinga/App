@@ -8,14 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/header"
         android:background="@color/ui_color" >
-        <TextView 
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textColor="@color/top_menu_txt"
-            android:textSize="20.0dp"
             android:text="@string/self_info"
+            android:textColor="@color/top_menu_txt"
+            android:textSize="19.0dp"
             android:textStyle="bold"/>
+
     </RelativeLayout>
 
     <ScrollView
@@ -38,29 +40,29 @@
                 android:id="@+id/rlt_mine_selfinfo"
                 android:background="@drawable/bg_mine_rlt_click"
                 >
-                <com.app.view.baseview.RoundImageView 
+                <com.cwl.app.widget.RoundImageView 
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
                     android:id="@+id/iv_mine_avatar"
-                    android:src="@drawable/pic_head3"/>
+                    android:src="@drawable/pic_msg_head1"/>
                 <TextView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/iv_mine_avatar"
-                    android:textSize="18.0dp"
+                    android:textSize="17.0dp"
                     android:textColor="#333333"
                     android:id="@+id/tv_mine_name"
                     android:layout_marginLeft="14.0dp"
                     android:layout_marginTop="16.0dp"
-                    android:text="Allbazinga"/>
+                    android:text="哈哈啊"/>
                 <TextView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_mine_scl"
                     android:layout_alignLeft="@+id/tv_mine_name"
-                    android:textSize="15.0dp"
+                    android:textSize="14.0dp"
                     android:textColor="#A2A2A2"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="13dp"
@@ -90,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/auther"/>
                     <ImageView 
@@ -105,7 +107,7 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -116,7 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/note"/>
                     <ImageView 
@@ -131,7 +133,7 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -142,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/gain"/>
                     <ImageView 
@@ -157,7 +159,7 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -168,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/collect"/>
                     <ImageView 
@@ -183,7 +185,7 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -194,7 +196,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/mark"/>
                     <ImageView 
@@ -220,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/settings"/>
                     <ImageView 
@@ -235,7 +237,7 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -246,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/feedback"/>
                     <ImageView 
@@ -261,7 +263,7 @@
                 <View android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
-                    android:background="#efefef"/>
+                    android:background="#F7F7F7"/>
                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -271,7 +273,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="17.0dp"
+                        android:textSize="16.0dp"
                         android:textColor="#333333"
                         android:text="@string/recmd2other"/>
                     <ImageView 

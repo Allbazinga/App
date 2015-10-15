@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.app.view.baseview.PullToRefreshLayout
+        <com.cwl.app.widget.PullToRefreshLayout
             android:id="@+id/refresh_card_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -49,7 +49,7 @@
             <include layout="@layout/refresh_head" />
             <!-- 支持所有实现Pullable接口的View -->
 
-            <com.app.view.baseview.PullableListView
+            <com.cwl.app.widget.PullableListView
                 android:id="@+id/ltv_card_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -57,7 +57,7 @@
                 android:scrollbars="none" />
 
             <include layout="@layout/load_more" />
-        </com.app.view.baseview.PullToRefreshLayout>
+        </com.cwl.app.widget.PullToRefreshLayout>
 
         <LinearLayout
             android:id="@+id/layout_home_detail_bottom"

@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/white">
-       <com.app.view.baseview.RoundImageView 
+       <com.cwl.app.widget.RoundImageView 
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"
@@ -22,7 +22,7 @@
             android:layout_marginLeft="14dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/home_item_name"
-            android:textSize="18.0dp"
+            android:textSize="17.0dp"
             android:text="路人丁"
             android:id="@+id/tv_mine_mark_name"/>
         <ImageView 
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_mine_mark_scl"
             android:layout_alignLeft="@+id/tv_mine_mark_name"
-            android:textSize="15.0dp"
+            android:textSize="14.0dp"
             android:textColor="#A2A2A2"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="8dp"

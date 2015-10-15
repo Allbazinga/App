@@ -2,12 +2,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/rlt_loading"
-    android:background="@color/ui_color_gray" >
+    android:background="#F7F7F7" >
 
     
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:id="@+id/tv_loading"
         android:textColor="@color/home_item_name"
         android:textSize="15.0dp"

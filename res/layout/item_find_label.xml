@@ -54,7 +54,7 @@
     </RelativeLayout>
     <View android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divider_find"
+        android:background="#F2F2F2"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 </LinearLayout>

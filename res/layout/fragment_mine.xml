@@ -37,7 +37,7 @@
                 android:layout_height="75dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:id="@+id/rlt_mine_selfinfo"
+                android:id="@+id/rlt_mine_myinfo"
                 android:background="@drawable/bg_mine_rlt_click"
                 >
                 <com.cwl.app.widget.RoundImageView 
@@ -56,7 +56,7 @@
                     android:id="@+id/tv_mine_name"
                     android:layout_marginLeft="14.0dp"
                     android:layout_marginTop="16.0dp"
-                    android:text="哈哈啊"/>
+                    android:text=""/>
                 <TextView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                     android:textColor="#A2A2A2"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="13dp"
-                    android:text="大连理工大学    2013级"/>
+                    android:text=""/>
                 <ImageView 
                     android:layout_width="18dp"
                     android:layout_height="18dp"
@@ -81,6 +81,29 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical">
+                <RelativeLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_mine_rlt_click"
+                    android:id="@+id/rlt_mine_setinfo"
+                     >
+                    <TextView 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16.0dp"
+                        android:textColor="#333333"
+                        android:text="编辑资料"/>
+                    <ImageView 
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:contentDescription="@string/forward"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="26dp"
+                        android:src="@drawable/pic_forward"/>
+                </RelativeLayout>
                 <RelativeLayout 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

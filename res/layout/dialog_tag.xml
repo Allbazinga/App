@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:layout_marginLeft="45dp"
+    android:layout_marginRight="45dp"
+    android:orientation="vertical"
+    android:background="@color/white" >
+        <TextView android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="19.0dp"
+            android:textColor="@color/top_menu_txt"
+            android:text="频道选择"/>
+        <ListView android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="@null"
+            android:id="@+id/ltv"></ListView>
+</LinearLayout>

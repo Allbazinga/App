@@ -33,7 +33,7 @@
             android:id="@+id/tv_msg_good_hint"
             android:layout_alignLeft="@+id/tv_msg_good"
             android:layout_alignBottom="@+id/img_msg_good"
-            android:text="又有四个人为你的消息点赞了哦！"
+            android:text="暂时没有人为你点赞哦"
             android:textSize="13.0dp"/>
         <ImageView 
             android:layout_width="18dp"
@@ -74,10 +74,10 @@
             android:layout_height="wrap_content"
             android:textColor="#797979"
             android:id="@+id/tv_msg_reply_hint"
+            android:text="没有新的回复"
             android:layout_alignLeft="@+id/tv_msg_reply"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
-            android:text="迷路的安娜 评论了你的帖子"
             android:textSize="13.0dp"/>
         <ImageView 
             android:layout_width="18dp"

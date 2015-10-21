@@ -18,7 +18,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/pic_msg_head1" />
+            android:src="@drawable/default_avatar" />
 
         <RelativeLayout
             android:id="@+id/layout_msg_name_sex"
@@ -34,17 +34,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="迷失的安娜"
+                android:text=""
                 android:textSize="15.0dp" />
 
-            <ImageView
+            <!-- <ImageView
                 android:id="@+id/img_msg_sex"
                 android:layout_width="11dp"
                 android:layout_height="11dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@+id/tv_msg_name"
-                android:src="@drawable/pic_female" />
+                android:src="@drawable/pic_female" /> -->
 
             <TextView
                 android:id="@+id/tv_msg_time"
@@ -53,7 +53,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
-                android:text="昨天20:34"
+                android:text=""
                 android:textColor="@color/tv_msg_time"
                 android:textSize="12.0dp" />
         </RelativeLayout>
@@ -75,7 +75,9 @@
             android:layout_alignLeft="@+id/layout_msg_name_sex"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
-            android:text="在吗？"
+            android:maxLength="15"
+            android:text=""
+            android:singleLine="true"
             android:textColor="#797979"
             android:textSize="13.0dp" />
 

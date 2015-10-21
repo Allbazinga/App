@@ -1,22 +1,21 @@
 package com.cwl.app.bean;
 
-import android.graphics.drawable.Drawable;
 
 public class MineNoteBean {
 
-	private Drawable img;
+	private String img;
 	private String cnt;
 	private String time;
 	private String label;
 	public MineNoteBean(){}
-	public MineNoteBean(Drawable img, String cnt, String time, String label){
+	public MineNoteBean(String img, String cnt, String time, String label){
 		this.img = img;
 		this.cnt = cnt;
 		this.time = time;
 		this.label = label;
 	}
 	
-	public void setImg(Drawable img){
+	public void setImg(String img){
 		this.img = img;
 	}
 	
@@ -32,7 +31,7 @@ public class MineNoteBean {
 		this.label = label;
 	}
 	
-	public Drawable getImg(){
+	public String getImg(){
 		return this.img;
 	}
 	

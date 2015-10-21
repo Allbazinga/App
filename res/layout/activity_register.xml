@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView android:layout_width="match_parent"
+        android:layout_height="@dimen/header"
+        android:background="@color/ui_color"
+        android:gravity="center"
+        android:textSize="19.0dp"
+        android:textColor="@color/top_menu_txt"
+        android:text="注册"/>
+    <EditText android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:hint="nickName"
+        android:singleLine="true"
+        android:maxLength="10"
+        android:id="@+id/edt_name"/>
+    <EditText android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_name"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/edt_pwd"
+        android:singleLine="true"
+        android:maxLength="16"
+        android:inputType="textPassword"
+        android:hint="pwd"/>
+    <Button android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/edt_pwd"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="注册"
+        android:id="@+id/btn_register"/>
+</RelativeLayout>

@@ -16,6 +16,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15.0dp"
             android:contentDescription="@string/back"
+            android:onClick="back"
             android:src="@drawable/pic_back2" />
 
         <TextView
@@ -47,32 +48,32 @@
                 android:background="@drawable/bg_mine_rlt_click" >
 
                 <com.cwl.app.widget.RoundImageView
-                    android:id="@+id/iv_mine_avatar"
+                    android:id="@+id/iv_avatar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/pic_head3" />
+                    android:src="@drawable/default_avatar" />
 
                 <TextView
-                    android:id="@+id/tv_mine_name"
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14.0dp"
                     android:layout_marginTop="16.0dp"
-                    android:layout_toRightOf="@+id/iv_mine_avatar"
-                    android:text="Allbazinga"
+                    android:layout_toRightOf="@+id/iv_avatar"
+                    android:text=""
                     android:textColor="#333333"
                     android:textSize="17.0dp" />
 
                 <TextView
-                    android:id="@+id/tv_info_id"
+                    android:id="@+id/tv_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/tv_mine_name"
+                    android:layout_alignLeft="@+id/tv_name"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="13dp"
-                    android:text="ID: 201362"
+                    android:text=""
                     android:textColor="#A2A2A2"
                     android:textSize="14.0dp" />
             </RelativeLayout>
@@ -105,7 +106,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_alignParentRight="true"
                         android:singleLine="true"
-                        android:text="男"
+                        android:text=""
                         android:textColor="#AEAEAE"
                         android:textSize="16.0dp" />
 
@@ -139,7 +140,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_alignParentRight="true"
                         android:singleLine="true"
-                        android:text="辽宁-大连"
+                        android:text=""
                         android:textColor="#AEAEAE"
                         android:textSize="17.0dp" />
                 </RelativeLayout>
@@ -172,7 +173,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_alignParentRight="true"
                         android:singleLine="true"
-                        android:text="2013年"
+                        android:text=""
                         android:textColor="#AEAEAE"
                         android:textSize="17.0dp" />
 
@@ -207,7 +208,7 @@
                         android:layout_alignParentRight="true"
                         android:maxLength="8"
                         android:singleLine="true"
-                        android:text="机械设计制造及其自动化"
+                        android:text=""
                         android:textColor="#AEAEAE"
                         android:textSize="17.0dp" />
                 </RelativeLayout>

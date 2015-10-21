@@ -2,14 +2,10 @@ package com.cwl.app.bean;
 
 import java.io.Serializable;
 
+public class HomeBean implements Serializable {
 
-public class HomeBean implements Serializable{
+	private static final long serialVersionUID = -1342518045017210258L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -987347821305856874L;
-	
 	private String head;
 	private String userId;
 	private String noteId;
@@ -21,13 +17,15 @@ public class HomeBean implements Serializable{
 	private String tag;
 	private String comment;
 	private String good;
-
+	private String hasPraised;
+	private String noteNum;//帖子个数
+	
 	public HomeBean() {
 	}
 
-	public HomeBean(String head, String userId, String noteId, String name, String sex, String time,
-			String contentStr, String contentImg, String tag, String comment,
-			String good) {
+	public HomeBean(String head, String userId, String noteId, String name,
+			String sex, String time, String contentStr, String contentImg,
+			String tag, String comment, String good, String hasPraised) {
 		this.head = head;
 		this.userId = userId;
 		this.noteId = noteId;
@@ -39,20 +37,21 @@ public class HomeBean implements Serializable{
 		this.tag = tag;
 		this.comment = comment;
 		this.good = good;
+		this.hasPraised = hasPraised;
 	}
 
 	public void setHead(String head) {
 		this.head = head;
 	}
 
-	public void setUserId(String userId){
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
-	public void setNoteId(String noteId){
+
+	public void setNoteId(String noteId) {
 		this.noteId = noteId;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -89,14 +88,14 @@ public class HomeBean implements Serializable{
 		return this.head;
 	}
 
-	public String getUserId(){
+	public String getUserId() {
 		return this.userId;
 	}
-	
-	public String getNoteId(){
+
+	public String getNoteId() {
 		return this.noteId;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
@@ -127,5 +126,21 @@ public class HomeBean implements Serializable{
 
 	public String getGood() {
 		return this.good;
+	}
+
+	public void setHasPraised(String hasPraised) {
+		this.hasPraised = hasPraised;
+	}
+
+	public String getHasPraised() {
+		return this.hasPraised;
+	}
+	
+	public void setNoteNum(String noteNum){
+		this.noteNum = noteNum;
+	}
+	
+	public String getNoteNum(){
+		return this.noteNum;
 	}
 }

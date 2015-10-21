@@ -28,7 +28,7 @@
                     android:id="@+id/tv_home_hot_name"
                     android:textColor="@color/home_item_name"
                     android:textSize="16.0dp"
-                    android:text="一瓶可乐"/>
+                    android:text=""/>
                 <ImageView 
                     android:layout_width="11dp"
                     android:layout_height="11dp"
@@ -36,7 +36,7 @@
                     android:layout_marginLeft="3dp"
                     android:layout_centerVertical="true"
                     android:id="@+id/img_home_hot_sex"
-                    android:src="@drawable/pic_male"/>
+                    />
             </RelativeLayout>
             <TextView 
                 android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                 android:id="@+id/tv_home_hot_time"
                 android:textSize="11.5dp"
                 android:textColor="@color/home_item_time"
-                android:text="今天12:34"/>
+                android:text=""/>
            <Button 
                android:layout_width="32dp"
                android:layout_height="18dp"
@@ -68,7 +68,7 @@
                android:layout_alignParentLeft="true"
                android:layout_centerVertical="true"
                android:layout_marginLeft="17dp"
-               android:src="@drawable/pic_msg_head1" />
+               android:src="@drawable/default_avatar" />
 
         </RelativeLayout>
         <LinearLayout 
@@ -88,7 +88,7 @@
                 android:maxLines="4"
                 android:lineSpacingExtra="2dp"
                 android:id="@+id/tv_home_hot_content"
-                android:text="我发誓，我真的活过。"/>
+                android:text=""/>
              <ImageView 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,6 +109,7 @@
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
                 android:background="@drawable/pic_tag2"
+                android:id="@+id/rlt_tag"
                 android:layout_centerVertical="true">
                 <TextView 
                     android:layout_width="wrap_content"
@@ -119,7 +120,7 @@
                     android:textSize="11.0dp"
                     android:textColor="@color/home_item_tag"
                     android:id="@+id/tv_home_hot_tag"
-                    android:text="一些思考"/>
+                    android:text=""/>
                 
             </RelativeLayout>
                 <TextView 
@@ -129,7 +130,6 @@
                     android:layout_marginRight="15dp"
                     android:textColor="@color/home_item_good"
                     android:textSize="14.0dp"
-                    android:text="15"
                     android:id="@+id/tv_home_hot_good"
                     android:layout_centerVertical="true"/>
                 <ImageView 
@@ -148,7 +148,6 @@
                     android:textSize="14.0dp"
                     android:layout_centerVertical="true"
                     android:textColor="@color/home_item_comment"
-                    android:text="10"
                     android:id="@+id/tv_home_hot_comment"/>
                 <ImageView 
                     android:layout_width="20dp"

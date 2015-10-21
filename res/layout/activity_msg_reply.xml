@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ui_color_gray"
+    android:background="#F2F2F2"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -10,44 +10,35 @@
         android:layout_height="@dimen/header"
         android:background="@color/ui_color" >
 
-        <ImageView
-            android:id="@+id/img_msg_good_back"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+        <ImageView 
+            android:layout_width="20dp"
+            android:layout_height="16dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/pic_back_white" />
+            android:layout_marginLeft="15.0dp"
+            android:contentDescription="@string/back"
+            android:onClick="back"
+            android:id="@+id/iv_back"
+            android:src="@drawable/pic_back2"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/comment"
-            android:textColor="@color/white"
+            android:textColor="@color/top_menu_txt"
             android:textSize="19.0dp"
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <com.cwl.app.widget.PullToRefreshLayout
-        android:id="@+id/refresh_msg_reply"
+    <com.cwl.app.refresher.RefreshLayout 
         android:layout_width="match_parent"
-        android:layout_marginTop="8dp"
         android:layout_height="match_parent"
-        android:background="@color/ui_color_gray" >
-
-        <include layout="@layout/refresh_head" />
-        <!-- 支持所有实现Pullable接口的View -->
-
-        <com.cwl.app.widget.PullableListView
-            android:id="@+id/ltv_msg_reply"
+        android:id="@+id/swipe_layout">
+        <ListView 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/ui_color_gray"
-            android:dividerHeight="1dp"
-            android:background="@color/ui_color_gray"
-            android:scrollbars="none" />
-
-        <include layout="@layout/load_more" />
-    </com.cwl.app.widget.PullToRefreshLayout>
+            android:divider="@null"
+            android:id="@+id/ltv"></ListView>
+    </com.cwl.app.refresher.RefreshLayout>
 
 </LinearLayout>

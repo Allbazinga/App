@@ -16,6 +16,7 @@
             android:layout_marginLeft="15.0dp"
             android:contentDescription="@string/back"
             android:id="@+id/iv_back"
+            android:onClick="back"
             android:src="@drawable/pic_back2"/>
 
         <TextView
@@ -33,6 +34,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="14dp"
             android:id="@+id/iv_new_note_finish"
+            android:onClick="setSign"
             android:background="@drawable/pic_duihao_black"/>
     </RelativeLayout>
     <EditText 
@@ -48,7 +50,7 @@
         android:paddingBottom="13dp"
         android:paddingTop="13dp"
         android:textSize="15.0dp"
-        android:maxLength="10"
+        android:maxLength="40"
         android:maxLines="1"
         android:id="@+id/edt_sign_set"
         android:hint="@string/set_sign_hint"/>

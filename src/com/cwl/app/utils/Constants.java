@@ -8,7 +8,7 @@ public class Constants {
 	public static final int IMG_TAKE = 2;
 	public static final String SAVED_IMAGE_DIR_PATH  = "author_new_note/";
 	public static final String ERROR_CAPTURE = "error_capture";
-	public static final String IMAGEHOME = "http://202.118.76.72";
+	public static final String IP = "http://202.118.76.72";
 	public static final String POST_NOTE_URL = "http://202.118.76.72/App/action/PostWriteAction.php";
 	
 	public static final String ERROR_PIC_NOT_FOUND = "未找到图片";

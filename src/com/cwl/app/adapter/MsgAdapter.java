@@ -54,7 +54,7 @@ public class MsgAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.item_msg, null);
 			viewHolder.msgHead = (ImageView) convertView.findViewById(R.id.img_msg_head);
 			viewHolder.msgName = (TextView) convertView.findViewById(R.id.tv_msg_name);
-			viewHolder.msgSex = (ImageView) convertView.findViewById(R.id.img_msg_sex);
+			//viewHolder.msgSex = (ImageView) convertView.findViewById(R.id.img_msg_sex);
 			viewHolder.msgTime = (TextView) convertView.findViewById(R.id.tv_msg_time);
 			viewHolder.msgContent = (TextView) convertView.findViewById(R.id.tv_msg_short);
 			convertView.setTag(viewHolder);
@@ -64,7 +64,7 @@ public class MsgAdapter extends BaseAdapter {
 		if(null != item){
 			viewHolder.msgHead.setImageDrawable(item.getHead());
 			viewHolder.msgName.setText(item.getName());
-			viewHolder.msgSex.setImageDrawable(item.getSex());
+			//viewHolder.msgSex.setImageDrawable(item.getSex());
 			viewHolder.msgTime.setText(item.getTime());
 			viewHolder.msgContent.setText(item.getContent());
 		}

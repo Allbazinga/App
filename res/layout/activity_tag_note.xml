@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header"
+        android:background="@color/ui_color" >
+
+         <ImageView 
+            android:layout_width="20dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15.0dp"
+            android:contentDescription="@string/back"
+            android:id="@+id/iv_back"
+            android:onClick="back"
+            android:src="@drawable/pic_back2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:id="@+id/tv_title"
+            android:textColor="@color/top_menu_txt"
+            android:textSize="19.0dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <com.cwl.app.refresher.RefreshLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_layout"
+        android:background="#F2F2F2">
+        <ListView android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:id="@+id/ltv"></ListView>
+    </com.cwl.app.refresher.RefreshLayout>
+</LinearLayout>

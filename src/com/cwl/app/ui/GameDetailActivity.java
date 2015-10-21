@@ -46,7 +46,7 @@ public class GameDetailActivity extends Activity {
 			 headerView = lif.inflate(R.layout.headerview_game_detail, null);
 	        ltv_game_detail.addHeaderView(headerView);
 	        
-			ReplyDetailBean mBeam1 = new ReplyDetailBean("",
+			/*ReplyDetailBean mBeam1 = new ReplyDetailBean("",
 					"暗龙袭击", 
 					"", 
 					"4小时前",
@@ -61,8 +61,8 @@ public class GameDetailActivity extends Activity {
 			datalist.add(mBeam2);
 			datalist.add(mBeam1);
 			datalist.add(mBeam2);
-			datalist.add(mBeam1);
-			adapter = new ReplyDetailAdapter(this, datalist);
+			datalist.add(mBeam1);*/
+			adapter = new ReplyDetailAdapter(this);
 			ltv_game_detail.setAdapter(adapter);
 		
 	}

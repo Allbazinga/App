@@ -4,32 +4,44 @@
     android:layout_height="match_parent"
     android:background="#F2F2F2"
     android:orientation="vertical" >
-     <RelativeLayout 
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/header"
-        android:background="@color/ui_color">
-        <ImageView 
+        android:background="@color/ui_color" >
+
+        <ImageView
             android:layout_width="20dp"
             android:layout_height="16dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15.0dp"
             android:contentDescription="@string/back"
-            android:src="@drawable/pic_back2"/>
-        <TextView 
+            android:onClick="back"
+            android:src="@drawable/pic_back2" />
+
+        <TextView
+            android:id="@+id/tv_actionbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="19.0dp"
+            android:text="@string/note"
             android:textColor="@color/top_menu_txt"
-            android:textStyle="bold"
-            android:id="@+id/tv_actionbar"
-            android:text="@string/note"/>
+            android:textSize="19.0dp"
+            android:textStyle="bold" />
     </RelativeLayout>
-    <ListView 
+
+    <com.cwl.app.refresher.RefreshLayout
+        android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:scrollbars="@null"
-        android:id="@+id/ltv_my"></ListView>
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/ltv_my"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:scrollbars="@null" >
+        </ListView>
+    </com.cwl.app.refresher.RefreshLayout>
 
 </LinearLayout>

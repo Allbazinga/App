@@ -1,6 +1,6 @@
 package com.cwl.app.listener;
 
-import com.cwl.app.ui.OthersInfoActivity;
+import com.cwl.app.ui.UserInfoActivity;
 import com.cwl.app.R;
 import android.content.Context;
 import android.content.Intent;
@@ -20,10 +20,6 @@ public class ListItemOnClickListener implements OnClickListener{
 		this.context = context;
 	}
 	
-	public void makeToast(String msg){
-		Toast toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
-		toast.show();
-	}
 	
 	@Override
 	public void onClick(View v) {
@@ -31,12 +27,12 @@ public class ListItemOnClickListener implements OnClickListener{
 		Intent intent = new Intent();
 		switch (v.getId()) {
 		case R.id.img_home_hot_head:
-			intent.setClass(context, OthersInfoActivity.class);
+			intent.setClass(context, UserInfoActivity.class);
 			context.startActivity(intent);
 			break;
 		case R.id.btn_home_hot_mark:
-			v.setVisibility(View.INVISIBLE);
-			makeToast("关注成功！");
+			//v.setVisibility(View.INVISIBLE);
+			
 			break;
 		default:
 			break;

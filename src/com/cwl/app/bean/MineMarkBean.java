@@ -1,27 +1,30 @@
 package com.cwl.app.bean;
 
-import android.graphics.drawable.Drawable;
-
 public class MineMarkBean {
 
-	private Drawable avatar;
+	private String id;
+	private String avatar;
 	private String name;
 	private String scl;
+	private String grade;
 	private String sex;
 	private String marked;
 
 	public MineMarkBean() {
 	}
 
-	public MineMarkBean(Drawable avatar, String name, String scl, String sex, String marked) {
+	public MineMarkBean(String avatar, String id, String name, String scl, String grade,
+			String sex, String marked) {
+		this.id = id;
 		this.avatar = avatar;
 		this.name = name;
 		this.scl = scl;
 		this.sex = sex;
+		this.grade = grade;
 		this.marked = marked;
 	}
 
-	public void setAvatar(Drawable avatar) {
+	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
 
@@ -29,29 +32,50 @@ public class MineMarkBean {
 		this.name = name;
 	}
 
-	public void setSex(String sex){
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public void setScl(String scl){
+
+	public void setScl(String scl) {
 		this.scl = scl;
 	}
-	public void setMarked(String marked){
+
+	public void setMarked(String marked) {
 		this.marked = marked;
 	}
-	public Drawable getAvatar() {
+
+	public String getAvatar() {
 		return this.avatar;
 	}
 
 	public String getName() {
 		return this.name;
 	}
-	public String getSex(){
+
+	public String getSex() {
 		return this.sex;
 	}
-	public String getScl(){
+
+	public String getScl() {
 		return this.scl;
 	}
-	public String getMarked(){
+
+	public String getMarked() {
 		return this.marked;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getGrade() {
+		return this.grade;
+	}
+	public void setId(String id){
+		this.id = id;
+	}
+	
+	public String getId(){
+		return this.id;
 	}
 }

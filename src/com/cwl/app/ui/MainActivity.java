@@ -1,29 +1,26 @@
 package com.cwl.app.ui;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import org.apache.http.Header;
 
-import com.cwl.app.MyApplication;
+
+
+
+
+
 import com.cwl.app.R;
 import com.cwl.app.bean.User;
+import com.cwl.app.client.HttpClientApi;
 import com.cwl.app.db.UserDao;
 import com.cwl.app.fragment.FindFragment;
 import com.cwl.app.fragment.HomeFragment;
 import com.cwl.app.fragment.MineFragment;
 import com.cwl.app.fragment.MsgFragment;
-import com.easemob.chat.ConnectionListener;
+import com.cwl.app.utils.PreferenceUtils;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMContactManager;
 import com.easemob.chat.EMConversation;
-import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
-import com.easemob.util.NetUtils;
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -34,7 +31,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,12 +42,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	private RelativeLayout layout_home, layout_find, layout_msg, layout_mine;
-	private LinearLayout layout_main_content;
 	private ImageView img_home, img_find, img_msg, img_mine;
 	private TextView tv_home, tv_find, tv_msg, tv_mine;
 	private FindFragment mFindFragment;
@@ -65,9 +61,34 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			R.drawable.pic_msg_nor, R.drawable.pic_mine_nor, };
 	private int[] picSels = { R.drawable.pic_home_sel, R.drawable.pic_find_sel,
 			R.drawable.pic_msg_sel, R.drawable.pic_mine_sel, };
-
+	private boolean ifRefreshHomeFragment = false;
 	private NewMessageBroadcastReceiver msgReceiver;
+	private static final int REQUEST_CODE = 10;
+	private static final int GET_USER_INFO_SUCCESS = 11;
+	private static final int GET_USER_INFO_FAILED = 12;
+	
+	@SuppressLint("HandlerLeak")
+	private Handler mainHandler = new Handler(){
 
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			if(msg.what == GET_USER_INFO_SUCCESS){
+				User contactUser = (User) msg.obj;
+				UserDao userDao = new UserDao(MainActivity.this);
+				userDao.saveContact(contactUser);
+				if (currIndex == 2) {
+					// 当前页面如果为聊天历史页面，刷新此页面
+					if (mMsgFragment != null) {
+						mMsgFragment.refreshMsg();
+					}
+				}
+			}else if(msg.what == GET_USER_INFO_FAILED){
+				
+			}
+		}
+	};
+	
 	@SuppressLint("InlinedApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -187,19 +208,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// 消息id
-			String msgId = intent.getStringExtra("msgid");
+			//String msgId = intent.getStringExtra("msgid");
 			final String toChatUsername = intent.getStringExtra("from");
-			final UserDao userdao = new UserDao(context);
-			final User local_user = userdao.getUser(toChatUsername);
-			// 判断本地是否存在
 
 			get_add_info(toChatUsername);
-			if (currIndex == 2) {
-				// 当前页面如果为聊天历史页面，刷新此页面
-				if (mMsgFragment != null) {
-					mMsgFragment.refresh();
-				}
-			}
 			// 注销广播，否则在ChatActivity中会收到这个广播
 			
 			abortBroadcast();
@@ -247,21 +259,48 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 				}
 			}
 			if (groups != null) {
-				for (String group : groups) {
+				/*for (String group : groups) {
 					// Log.d("收到group离线消息：" + group);
-				}
+				}*/
 			} 
 			abortBroadcast();
 		}
 	};
 
-	public void get_add_info(String username) {
+	public void get_add_info(final String username) {
 		UserDao userDao = new UserDao(this);
-		Log.i("MainActivity", "no such a contactor");
+		//Log.i("MainActivity", "no such a contactor");
 		User user = new User();
-		user.setUsername(username);
-		userDao.saveContact(user);
+		user.setId(username);
+		if(userDao.getUser(username).getUsername() == null){
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Message msg = new Message();
+					msg.obj = HttpClientApi.GetUserInfoApi(username, PreferenceUtils
+							.getInstance(MainActivity.this).getSettingUserId());
+					if(msg.obj != null){
+						msg.what = GET_USER_INFO_SUCCESS;
+						mainHandler.sendMessage(msg);
+					}else{
+						mainHandler.sendEmptyMessage(GET_USER_INFO_FAILED);
+					}
+				}
+			}).start();
+		}
+		//userDao.saveContact(user);
 		//userDao.saveContactList(users);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
+			ifRefreshHomeFragment = data.getBooleanExtra("ifRefresh", false);
+		}
 	}
 
 	@Override
@@ -297,13 +336,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		if (keyCode == KeyEvent.KEYCODE_BACK
 				&& event.getAction() == KeyEvent.ACTION_DOWN) {
 			if (System.currentTimeMillis() - exitTimeCount >= 2000) {
-				Toast.makeText(MainActivity.this, "再按一次退出程序",
-						Toast.LENGTH_SHORT).show();
+				/*Toast.makeText(MainActivity.this, "再按一次退出程序",
+						Toast.LENGTH_SHORT).show();*/
 				exitTimeCount = System.currentTimeMillis();
 				return true;
 			} else {
+				//android.os.Process.killProcess(android.os.Process.myPid()); 
 				MainActivity.this.finish();
-				System.exit(0);
+				//System.exit(0);
 			}
 		}
 		return super.onKeyDown(keyCode, event);
@@ -311,8 +351,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
 		// 注销广播接收者
+		super.onDestroy();
 		try {
 			unregisterReceiver(msgReceiver);
 		} catch (Exception e) {
@@ -325,5 +365,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			unregisterReceiver(offlineMessageReceiver);
 		} catch (Exception e) {
 		}
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		if (mHomeFragment != null && ifRefreshHomeFragment) {
+			mHomeFragment.initData();
+		}
+		ifRefreshHomeFragment = false;
+		super.onResume();
 	}
 }

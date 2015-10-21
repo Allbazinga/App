@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="@dimen/header"
+        android:background="@color/ui_color"
+        android:textSize="19.0dp"
+        android:textColor="@color/top_menu_txt"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="图片详情"
+        android:id="@+id/tv_header"/>
+    <uk.co.senab.photoview.PhotoView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_header"
+        android:scaleType="fitCenter" />
+
+    <ProgressBar
+        android:id="@+id/pb_load_local"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+</RelativeLayout>

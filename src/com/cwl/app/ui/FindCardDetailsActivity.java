@@ -52,7 +52,7 @@ public class FindCardDetailsActivity extends Activity {
 		headerView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         mListView.addHeaderView(headerView);
         
-		ReplyDetailBean mBeam1 = new ReplyDetailBean("",
+		/*ReplyDetailBean mBeam1 = new ReplyDetailBean("",
 				"暗龙袭击", 
 				"", 
 				"4小时前",
@@ -67,8 +67,8 @@ public class FindCardDetailsActivity extends Activity {
 		mDataList.add(mBeam2);
 		mDataList.add(mBeam1);
 		mDataList.add(mBeam2);
-		mDataList.add(mBeam1);
-		mReplyDetailAdapter = new ReplyDetailAdapter(this, mDataList);
+		mDataList.add(mBeam1);*/
+		mReplyDetailAdapter = new ReplyDetailAdapter(this);
 		mListView.setAdapter(mReplyDetailAdapter);
 	}
 	

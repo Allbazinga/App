@@ -23,7 +23,7 @@
             android:textSize="19.0dp"
             android:textColor="@color/top_menu_txt"
             android:textStyle="bold"
-            android:text="@string/myinfo"/>
+            android:text="编辑资料"/>
     </RelativeLayout>
     <ScrollView 
         android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/bg_mine_rlt_click"
                     android:id="@+id/rlt_sex"
-                    android:onClick="onClick">
+                    android:onClick="setSex">
                     <TextView 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

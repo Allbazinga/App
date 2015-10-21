@@ -1,39 +1,47 @@
 package com.cwl.app.bean;
 
-import android.graphics.drawable.Drawable;
+import java.io.Serializable;
 
-public class MsgReplyBean {
 
-	private Drawable rpyHead;
+public class MsgReplyBean implements Serializable{
+
+	private static final long serialVersionUID = -1342518045017210258L;
+	private String rpyHead;
 	private String rpyName;
-	private Drawable rpySex;
+	private String rpySex;
 	private String rpyTime;
 	private String rpyCnt;
-	private String rpyWhat;
+	private String rpyId;
+	private String rpyUserId;
+	private HomeBean note;
 	
 	public MsgReplyBean(){}
-	public MsgReplyBean(Drawable rpyHead, String rpyName,
-			  Drawable rpySex, String rpyTime, String rpyCnt, String rpyWhat){
+	public MsgReplyBean(String rpyHead, String rpyName,
+			String rpySex, String rpyTime, String rpyCnt, String rpyWhat){
 		this.rpyHead = rpyHead;
 		this.rpyName = rpyName;
 		this.rpySex = rpySex;
 		this.rpyTime = rpyTime;
 		this.rpyCnt = rpyCnt;
-        this.rpyWhat = rpyWhat;		
 	}
 	
-	public void setHead(Drawable rpyHead){this.rpyHead = rpyHead;}
+	public void setHead(String rpyHead){this.rpyHead = rpyHead;}
 	public void setName(String rpyName){this.rpyName = rpyName;}
-	public void setSex(Drawable rpySex){this.rpySex = rpySex;}
+	public void setSex(String rpySex){this.rpySex = rpySex;}
 	public void setTime(String rpyTime){this.rpyTime = rpyTime;}
 	public void setCnt(String rpyCnt){this.rpyCnt = rpyCnt;}
-	public void setWhat(String rpyWhat){this.rpyWhat = rpyWhat;}
+	public void setUserId(String rpyUserId){this.rpyUserId = rpyUserId;}
+	public void setId(String rpyId){this.rpyId = rpyId;}
+	public void setNote(HomeBean note){this.note = note;}
 	
-	public Drawable getHead(){return this.rpyHead;}
+	
+	public String getHead(){return this.rpyHead;}
 	public String getName(){return this.rpyName;}
-	public Drawable getSex(){return this.rpySex;}
+	public String getSex(){return this.rpySex;}
 	public String getTime(){return this.rpyTime;}
 	public String getCnt(){return this.rpyCnt;}
-	public String getWhat(){return this.rpyWhat;}
+	public String getUserId(){return this.rpyUserId;}
+	public String getId(){return this.rpyId;}
+	public HomeBean getNote(){return this.note;}
 	
 }

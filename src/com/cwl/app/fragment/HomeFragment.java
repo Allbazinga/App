@@ -3,22 +3,23 @@ package com.cwl.app.fragment;
 import java.util.ArrayList;
 
 import com.cwl.app.R;
-import com.cwl.app.adapter.HomeHotAdapter;
+import com.cwl.app.adapter.HomeAdapter;
 import com.cwl.app.bean.ADInfo;
 import com.cwl.app.bean.HomeBean;
-import com.cwl.app.client.ClientApi;
+import com.cwl.app.client.HttpClientApi;
 import com.cwl.app.refresher.RefreshLayout;
 import com.cwl.app.refresher.RefreshLayout.OnLoadListener;
 import com.cwl.app.ui.AddNewNoteActivity;
-import com.cwl.app.ui.GameDetailActivity;
-import com.cwl.app.ui.HomeLtvDetailsActivity;
+import com.cwl.app.ui.CmtsReplyDetailActivity;
 import com.cwl.app.utils.Constants;
+import com.cwl.app.utils.PreferenceUtils;
 import com.cwl.app.widget.ImageCycleView;
 import com.cwl.app.widget.ImageCycleView.ImageCycleViewListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -32,7 +33,6 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -56,17 +56,19 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ToggleButton;
 
-public class HomeFragment extends Fragment implements OnClickListener, OnCheckedChangeListener {
+public class HomeFragment extends Fragment implements OnClickListener,
+		OnCheckedChangeListener {
 
 	private View v;
 	private ListView mListView;
 	private ArrayList<HomeBean> dataList;
-	private HomeHotAdapter mHomeHotAdapter;
+	private HomeAdapter mHomeHotAdapter;
 	private boolean isHidden = false;
+	private boolean hidden = false;
 	private RelativeLayout rlt_loading;
 	private LinearLayout llt_data;
 	private TextView tv_loading = null;
-  
+
 	private RelativeLayout rlt_home_add;
 	private ToggleButton tb_add;
 
@@ -89,34 +91,34 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 	private RadioGroup rg_poi, rg_rigion;
 	private RadioButton rb_poi_here, rb_poi_select, rb_send2Marker, rb_private;
 	private LinearLayout llt_dialog_card2;
-
+	private ProgressDialog pd = null;
 	private String pathImage = null;
 
 	private ImageCycleView mAdView = null;
 	private ArrayList<ADInfo> infos = new ArrayList<ADInfo>();
 	private String[] imageUrls = {
-			"http://img.taodiantong.cn/v55183/infoimg/2013-07/130720115322ky.jpg",
-			"http://pic30.nipic.com/20130626/8174275_085522448172_2.jpg",
-			"http://pic18.nipic.com/20111215/577405_080531548148_2.jpg",
-			"http://pic15.nipic.com/20110722/2912365_092519919000_2.jpg",
-			"http://pic.58pic.com/58pic/12/64/27/55U58PICrdX.jpg" };
+			"http://upload.dlut.edu.cn/2015/0930/1443605019671.jpg",
+			"http://upload.dlut.edu.cn/2015/1017/1445074037838.jpg",
+			"http://upload.dlut.edu.cn/2015/1017/1445074040416.jpg",
+			"http://upload.dlut.edu.cn/2015/1018/1445138271280.jpg",
+	};
 	private static final int INIT = 0;
 	private static final int REFRESH = 1;
 	private static final int LOAD = 2;
-	private int offset = 5;
-	private static final String REFRESH_URL = "http://202.118.76.72/App/action/PostListAction.php";
+	private int offset = 0;
 	private String lastTime = null;
 	private RefreshLayout mSwipeRefresh = null;
 	private Handler getDataHandler = new Handler() {
-		
-		
+
 		@SuppressWarnings("unchecked")
 		@Override
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			if (msg.obj == null) {
-				Toast.makeText(getActivity(), "网络异常，请检查设置！", Toast.LENGTH_SHORT)
-						.show();
+				/*if (pd != null)
+					pd.dismiss();*/
+				mSwipeRefresh.setRefreshing(false);
+				Toast.makeText(getActivity(), "网络异常，请检查设置！", 0).show();
 				if (msg.what == INIT) {
 					tv_loading.setText("重新加载!");
 					tv_loading.setClickable(true);
@@ -129,23 +131,29 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 				}
 			} else {
 				if (msg.what == INIT) {
+					//pd.dismiss();
+					
 					rlt_loading.setVisibility(View.GONE);
 					llt_data.setVisibility(View.VISIBLE);
 					dataList.clear();
 					dataList = (ArrayList<HomeBean>) msg.obj;
-					if (dataList != null) {
-						lastTime = dataList.get(4).getTime();
+					offset = dataList.size();
+					if (dataList.size() != 0) {
+						lastTime = dataList.get(dataList.size() - 1).getTime();
 					}
 					mHomeHotAdapter.bindData(dataList);
 					mListView.setAdapter(mHomeHotAdapter);
 					mHomeHotAdapter.notifyDataSetChanged();
+					mSwipeRefresh.setRefreshing(false);
 				}
 				if (msg.what == REFRESH) {
-					Toast.makeText(getActivity(), "刷新成功！", Toast.LENGTH_SHORT).show();;
+					// pd.dismiss();
+					Toast.makeText(getActivity(), "刷新成功！", 0).show();
 					dataList.clear();
 					dataList = (ArrayList<HomeBean>) msg.obj;
-					if (dataList != null) {
-						lastTime = dataList.get(4).getTime();
+					offset = dataList.size();
+					if (dataList.size() != 0) {
+						lastTime = dataList.get(dataList.size() - 1).getTime();
 					}
 					mHomeHotAdapter.bindData(dataList);
 					mListView.setAdapter(mHomeHotAdapter);
@@ -153,13 +161,14 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 					mHomeHotAdapter.notifyDataSetChanged();
 				}
 				if (msg.what == LOAD) {
-					Toast.makeText(getActivity(), "加载成功！", Toast.LENGTH_SHORT).show();;
 					dataList.addAll((ArrayList<HomeBean>) msg.obj);
+					if (dataList.size() != 0) {
+						lastTime = dataList.get(dataList.size() - 1).getTime();
+					}
 					mHomeHotAdapter.bindData(dataList);
 					mListView.setAdapter(mHomeHotAdapter);
 					mListView.setSelection(offset);
 					offset = dataList.size();
-					lastTime = dataList.get(offset - 1).getTime();
 					mSwipeRefresh.setLoading(false);
 					mHomeHotAdapter.notifyDataSetChanged();
 				}
@@ -192,10 +201,8 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 					int position, long id) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(getActivity(),
-						HomeLtvDetailsActivity.class);
-				intent.putExtra("note", dataList.get(position - 1));
-				intent.putExtra("postUser", dataList.get(position - 1)
-						.getUserId());
+						CmtsReplyDetailActivity.class);
+				intent.putExtra("postId", dataList.get(position - 1).getNoteId());
 				startActivity(intent);
 			}
 		});
@@ -207,16 +214,15 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 		dataList = new ArrayList<HomeBean>();
 		mListView = (ListView) v.findViewById(R.id.ltv_home);
 		addHeader();
-		mHomeHotAdapter = new HomeHotAdapter(getActivity());
-		mSwipeRefresh = (RefreshLayout)  
-                v.findViewById(R.id.swipe_layout);  
-		  // 设置下拉刷新时的颜色值,颜色值需要定义在xml中  
-        mSwipeRefresh  
-                .setColorScheme(R.color.umeng_comm_lv_header_color1,  
-                        R.color.umeng_comm_lv_header_color2, R.color.umeng_comm_lv_header_color3,  
-                        R.color.umeng_comm_lv_header_color4);  
-        mSwipeRefresh.setOnRefreshListener(mSwipeRefreshListener);
-        mSwipeRefresh.setOnLoadListener(mSwipeLoadListener);
+		mHomeHotAdapter = new HomeAdapter(getActivity());
+		mSwipeRefresh = (RefreshLayout) v.findViewById(R.id.swipe_layout);
+		// 设置下拉刷新时的颜色值,颜色值需要定义在xml中
+		mSwipeRefresh.setColorScheme(R.color.umeng_comm_lv_header_color1,
+				R.color.umeng_comm_lv_header_color2,
+				R.color.umeng_comm_lv_header_color3,
+				R.color.umeng_comm_lv_header_color4);
+		mSwipeRefresh.setOnRefreshListener(mSwipeRefreshListener);
+		mSwipeRefresh.setOnLoadListener(mSwipeLoadListener);
 		rlt_loading = (RelativeLayout) v.findViewById(R.id.rlt_loading);
 		llt_data = (LinearLayout) v.findViewById(R.id.llt_data);
 		tv_loading = (TextView) v.findViewById(R.id.tv_loading);
@@ -228,7 +234,6 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 				// TODO Auto-generated method stub
 				tv_loading.setText(R.string.loading4);
 				initData();
-
 			}
 		});
 		tv_loading.setClickable(false);
@@ -247,13 +252,18 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 	}
 
 	public void initData() {
+		/*pd = new ProgressDialog(getActivity());
+		pd.setMessage("正在加载中...");
+		pd.show();*/
+		mSwipeRefresh.setRefreshing(true);
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				Message msg = Message.obtain();
-				msg.obj = ClientApi.getHomeData(REFRESH_URL, null);
+				msg.obj = HttpClientApi.GetHomeListApi(PreferenceUtils
+						.getInstance(getActivity()).getSettingUserId(), "");
 				msg.what = INIT;
 				getDataHandler.sendMessage(msg);
 			}
@@ -265,7 +275,7 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 				Context.LAYOUT_INFLATER_SERVICE);
 
 		View headerView = lif.inflate(R.layout.headerview_home_hot, null);
-
+		View footerView = lif.inflate(R.layout.footer_find, null);
 		for (int i = 0; i < imageUrls.length; i++) {
 			ADInfo info = new ADInfo();
 			info.setUrl(imageUrls[i]);
@@ -276,17 +286,19 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 		mAdView.setImageResources(infos, mAdCycleViewListener);
 
 		mListView.addHeaderView(headerView, null, true);
+		mListView.addFooterView(footerView, null, false);
 	}
 
 	private ImageCycleViewListener mAdCycleViewListener = new ImageCycleViewListener() {
 
 		@Override
 		public void onImageClick(ADInfo info, int position, View imageView) {
-			Toast.makeText(getActivity(), "content->" + info.getContent(),
+			/*Toast.makeText(getActivity(), "" + info.getContent(),
 					Toast.LENGTH_SHORT).show();
 			Intent it = new Intent();
 			it.setClass(getActivity(), GameDetailActivity.class);
-			startActivity(it);
+			startActivity(it);*/
+			Toast.makeText(getActivity(), "暂未开放", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
@@ -296,7 +308,7 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 	};
 
 	private OnRefreshListener mSwipeRefreshListener = new OnRefreshListener() {
-		
+
 		@Override
 		public void onRefresh() {
 			// TODO Auto-generated method stub
@@ -305,38 +317,42 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 				public void run() {
 					// TODO Auto-generated method stub
 					Message msg = Message.obtain();
-					msg.obj = ClientApi.getHomeData(REFRESH_URL, null);
+					msg.obj = HttpClientApi.GetHomeListApi(PreferenceUtils
+							.getInstance(getActivity()).getSettingUserId(), "");
 					msg.what = REFRESH;
 					getDataHandler.sendMessage(msg);
 				}
 			}).start();
 		}
 	};
-	
+
 	private OnLoadListener mSwipeLoadListener = new OnLoadListener() {
-		
+
 		@Override
 		public void onLoad() {
 			// TODO Auto-generated method stub
-			
+
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
 					Message msg = Message.obtain();
-					String t = "";
-					if(lastTime != null){
-						String[] times = lastTime.split("\\ ");
-						t = times[0] + "%20" + times[1];
-					}
-					Log.i("HomeHotFragment", t);
-				    msg.obj = ClientApi.loadHomeData(REFRESH_URL+"?postTime="+t);
+					/*
+					 * String t = ""; if (lastTime != null) { String[] times =
+					 * lastTime.split("\\ "); t = times[0] + "%20" + times[1]; }
+					 * 
+					 * Log.i("HomeHotFragment", t);
+					 */
+					msg.obj = HttpClientApi.GetHomeListApi(PreferenceUtils
+							.getInstance(getActivity()).getSettingUserId(),
+							lastTime);
 					msg.what = LOAD;
 					getDataHandler.sendMessage(msg);
 				}
 			}).start();
-			}
+		}
 	};
+
 	public void showNewCardDialog() {
 
 		dialog_newCard1 = new AlertDialog.Builder(getActivity()).create();
@@ -419,6 +435,15 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 	}
 
 	@Override
+	public void onHiddenChanged(boolean hidden) {
+		// TODO Auto-generated method stub
+		super.onHiddenChanged(hidden);
+		this.hidden = hidden;
+		/*if (!hidden)
+			initData();*/
+	}
+
+	@Override
 	public void onResume() {
 		super.onResume();
 		if (mAdView != null) {
@@ -462,7 +487,6 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 			mAdView.pushImageCycle();
 		}
 	}
-
 
 	private class RadioGroupChangeListener implements
 			android.widget.RadioGroup.OnCheckedChangeListener {
@@ -516,15 +540,18 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 			tb_add.setChecked(false);
 			break;
 		case R.id.btn_new_card:
-			showNewCardDialog();
+			//showNewCardDialog();
+			Toast.makeText(getActivity(), "暂未开放", Toast.LENGTH_SHORT).show();
 			tb_add.setChecked(false);
 			break;
 		case R.id.btn_new_note:
 			tb_add.setChecked(false);
 			intent.setClass(getActivity(), AddNewNoteActivity.class);
-			startActivity(intent);
+			startActivityForResult(intent, 10);
 			break;
 		case R.id.btn_new_tucao:
+			Toast.makeText(getActivity(), "暂未开放", Toast.LENGTH_SHORT).show();
+			tb_add.setChecked(false);
 			break;
 
 		case R.id.iv_new_card_picture:
@@ -564,41 +591,38 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 	}
 
 	// 获取图片路径 响应startActivityForResult
-		public void onActivityResult(int requestCode, int resultCode, Intent data) {
-			super.onActivityResult(requestCode, resultCode, data);
-			// 打开图片
-			if (resultCode == getActivity().RESULT_OK
-					&& requestCode == Constants.IMG_OPEN) {
-				Uri uri = data.getData();
-				if (!TextUtils.isEmpty(uri.getAuthority())) {
-					// 查询选择图片
-					Cursor cursor = getActivity().getContentResolver().query(uri,
-							new String[] { MediaStore.Images.Media.DATA }, null,
-							null, null);
-					// 返回 没找到选择图片
-					if (null == cursor) {
-						return;
-					}
-					// 光标移动至开头 获取图片路径
-					cursor.moveToFirst();
-					pathImage = cursor.getString(cursor
-							.getColumnIndex(MediaStore.Images.Media.DATA));
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		// 打开图片
+		if (resultCode == getActivity().RESULT_OK
+				&& requestCode == Constants.IMG_OPEN) {
+			Uri uri = data.getData();
+			if (!TextUtils.isEmpty(uri.getAuthority())) {
+				// 查询选择图片
+				Cursor cursor = getActivity().getContentResolver().query(uri,
+						new String[] { MediaStore.Images.Media.DATA }, null,
+						null, null);
+				// 返回 没找到选择图片
+				if (null == cursor) {
+					return;
 				}
-			} // end if 打开图片
-		}
+				// 光标移动至开头 获取图片路径
+				cursor.moveToFirst();
+				pathImage = cursor.getString(cursor
+						.getColumnIndex(MediaStore.Images.Media.DATA));
+			}
+		} // end if 打开图片
+	}
 
-		public void showAddAnimation() {
-			btn_new_card.startAnimation(AnimationUtils.loadAnimation(getActivity(),
-					R.anim.activity_translate_in));
-			btn_new_note.startAnimation(AnimationUtils.loadAnimation(getActivity(),
-					R.anim.activity_translate_in));
-			btn_new_tucao.startAnimation(AnimationUtils.loadAnimation(
-					getActivity(), R.anim.activity_translate_in));
-		}
+	public void showAddAnimation() {
+		btn_new_card.startAnimation(AnimationUtils.loadAnimation(getActivity(),
+				R.anim.activity_translate_in));
+		btn_new_note.startAnimation(AnimationUtils.loadAnimation(getActivity(),
+				R.anim.activity_translate_in));
+		btn_new_tucao.startAnimation(AnimationUtils.loadAnimation(
+				getActivity(), R.anim.activity_translate_in));
+	}
 
-	
-	
-	
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		// TODO Auto-generated method stub
@@ -613,13 +637,11 @@ public class HomeFragment extends Fragment implements OnClickListener, OnChecked
 						R.drawable.pic_add_cancel));
 				showAddAnimation();
 				rlt_home_add.setVisibility(View.VISIBLE);
-
 			} else {
 				tb_add.startAnimation(am);
 				tb_add.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.pic_add_black));
 				rlt_home_add.setVisibility(View.GONE);
-				
 			}
 			break;
 

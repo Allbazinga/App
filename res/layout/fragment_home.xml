@@ -58,7 +58,8 @@
                     android:id="@+id/ltv_home"
                     android:layout_width="match_parent"
                     android:background="#F2F2F2"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent"
+                    >
                 </ListView>
             </com.cwl.app.refresher.RefreshLayout>
         </LinearLayout>

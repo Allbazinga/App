@@ -18,7 +18,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/pic_msg_head1"/>
+                android:id="@+id/iv_avatar"
+                android:src="@drawable/default_avatar"/>
         </RelativeLayout>
         <TextView 
             android:layout_width="wrap_content"
@@ -30,14 +31,14 @@
             android:textSize="20.0dp"
             android:textColor="#D7D7D7"
             android:id="@+id/tv_other_name"
-            android:text="暗龙袭击"/>
+            android:text=""/>
         <ImageView android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_toRightOf="@+id/tv_other_name"
             android:layout_marginLeft="7dp"
             android:layout_marginTop="48dp"
             android:id="@+id/iv_other_sex"
-            android:src="@drawable/pic_male"/>
+            />
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/tv_other_name"
@@ -46,7 +47,7 @@
             android:textSize="12.0dp"
             android:textColor="#BCBCBC"
             android:id="@+id/tv_other_scl"
-            android:text="大连理工大学  /2013级"/>
+            android:text=""/>
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +61,7 @@
             android:textColor="#D7D7D7"
             android:textSize="12.0dp"
             android:lineSpacingExtra="2dp"
-            android:text="        “我所听过的最美的故事，是公主死去了，屠龙的少年还在燃烧”"/>
+            android:text=""/>
         <Button android:layout_width="110dp"
             android:layout_height="26dp"
             android:background="@drawable/bg_btn_otherinfo"
@@ -68,6 +69,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="37dp"
             android:textColor="#F2DB5A"
+            android:id="@+id/btn_yo"
             android:text="发消息"
             android:textSize="16dp"/>
         <Button android:layout_width="110dp"
@@ -79,6 +81,7 @@
             android:layout_marginBottom="37dp"
             android:textColor="#F2DB5A"
             android:text="+关注"
+            android:id="@+id/btn_concern"
             android:textSize="16dp"/>
     </RelativeLayout>
     <LinearLayout 
@@ -126,7 +129,7 @@
             android:id="@+id/tv_num_note"
             android:textSize="14dp"
             android:textColor="#999999"
-            android:text="3篇帖子"/>
+            android:text=""/>
         <View android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_toLeftOf="@+id/tv_num_note"

@@ -7,10 +7,6 @@ package com.cwl.app.ui;
  */
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,23 +14,20 @@ import com.cwl.app.R;
 import com.cwl.app.client.ClientApi;
 import com.cwl.app.utils.BitmapTools;
 import com.cwl.app.utils.Constants;
+import com.cwl.app.utils.PreferenceUtils;
 
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ContentUris;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -44,14 +37,19 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -59,24 +57,33 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		OnCheckedChangeListener {
 
 	private static final String TAG = "AddNewNoteActivity";
+	private static final String POST_NOTE_ERROR = "帖子发送失败";
+	private static final String POST_NOTE_SUCCEEED = "发送成功！";
+	private static final int MSG_POST_NOTE_ERROR = 1;
+	private static final int MSG_POST_NOTE_SUCCEED = 2;
+	private boolean isShot = false;
 	private ImageView iv_new_note_back, iv_new_note_finish, iv_new_note_img,
 			iv_new_note_tag;
 	private EditText edt_new_note_cnt;
+	private TextView tv_tag;
 	private ToggleButton tb_new_note_niming;
 	private ImageView iv_cntImg;
 	private ImageView iv_isShot; // 说明是否为实拍
-	private boolean isShot = false;
 	private View parentView;
+	private AlertDialog tagDialog = null;
+	private ProgressDialog pd = null;
 	private PopupWindow pop = null;
 	private LinearLayout ll_popup;
 	private Button pick_camera, pick_album, pick_cancel;
 	private LinearLayout llt_picture;
 	private ImageView iv_new_note_picture_all;
 	private String imagePath = "";
-	private static final String POST_NOTE_ERROR = "帖子发送失败";
-	private static final String POST_NOTE_SUCCEEED = "发送成功！";
-	private static final int MSG_POST_NOTE_ERROR = 1;
-	private static final int MSG_POST_NOTE_SUCCEED = 2;
+	private String[] labels = { "河神办事处", "文青栖息地", "歌单&影单", "大工树洞", "淘趣卖场",
+			"小羞羞的事", "表白墙", "意见与反馈",
+	};
+	private String tag = "";
+	
+	@SuppressLint("HandlerLeak")
 	private Handler postNoteHandler = new Handler() {
 
 		@Override
@@ -86,12 +93,12 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 			case MSG_POST_NOTE_ERROR:
 				Toast.makeText(AddNewNoteActivity.this, POST_NOTE_ERROR,
 						Toast.LENGTH_SHORT).show();
-				;
+				pd.dismiss();;
 				break;
 			case MSG_POST_NOTE_SUCCEED:
 				Toast.makeText(AddNewNoteActivity.this, POST_NOTE_SUCCEEED,
 						Toast.LENGTH_SHORT).show();
-				;
+				pd.dismiss();;
 				AddNewNoteActivity.this.finish();
 				break;
 
@@ -102,6 +109,7 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 
 	};
 
+	@SuppressLint("InflateParams")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -115,6 +123,8 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 
 	}
 
+	@SuppressWarnings("deprecation")
+	@SuppressLint("InflateParams")
 	public void initView() {
 		iv_new_note_back = (ImageView) findViewById(R.id.iv_back);
 		iv_new_note_finish = (ImageView) findViewById(R.id.iv_new_note_finish);
@@ -125,6 +135,7 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		iv_new_note_img.setOnClickListener(this);
 		iv_new_note_tag.setOnClickListener(this);
 		edt_new_note_cnt = (EditText) findViewById(R.id.edt_new_note_cnt);
+		tv_tag = (TextView) findViewById(R.id.tv_tag);
 		iv_cntImg = (ImageView) findViewById(R.id.iv_cntImg);
 		/* iv_cntImg.setOnClickListener(this); */
 		iv_isShot = (ImageView) findViewById(R.id.iv_isShot);
@@ -172,6 +183,27 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		});
 	}
 
+	
+	public void showTagDialog(){
+		tagDialog = new AlertDialog.Builder(AddNewNoteActivity.this).create();
+		tagDialog.show();
+		tagDialog.getWindow().setContentView(R.layout.dialog_tag);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddNewNoteActivity.this, R.layout.dialog_tag_row, labels);
+		ListView ltv = (ListView) tagDialog.getWindow().findViewById(R.id.ltv);
+		ltv.setAdapter(adapter);
+		ltv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				tag = labels[position];
+				tv_tag.setText(tag);
+				tagDialog.dismiss();
+			}
+		});
+	}
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -188,6 +220,7 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 			pop.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
 			break;
 		case R.id.iv_new_note_tag:
+			showTagDialog();
 			break;
 		case R.id.iv_cntImg:
 			llt_picture.setVisibility(View.VISIBLE);
@@ -234,8 +267,8 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		case Constants.IMG_OPEN:
 
 			if (resultCode == RESULT_OK) {
-				Bitmap bitmap = BitmapTools
-						.getSmallBitmap(getAbsoluteImagePath(data.getData()));
+				Bitmap bitmap = BitmapTools.getSmallBitmap(
+						getAbsoluteImagePath(data.getData()));
 				iv_cntImg.setImageBitmap(bitmap);
 				imagePath = BitmapTools.compressImgeToDisk(bitmap);
 				if (bitmap != null) {
@@ -276,33 +309,30 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 	}
 
 	public void postNewNote() {
+		
 		String noteCnt = edt_new_note_cnt.getText().toString().trim();
-		String noteTag = "我是你爸爸";
-		String userId = "";
-		String userName = "勤奋的千寻";
-		if (tb_new_note_niming.isChecked()) {
-			userName = "猜不到我";
-		}
+		String userId = PreferenceUtils.getInstance(AddNewNoteActivity.this).getSettingUserId();
 		Log.i(TAG, imagePath);
 		if (noteCnt.equals("")) {
 			Toast.makeText(this, Constants.ERROR_EDT_NULL, Toast.LENGTH_SHORT)
 					.show();
 		} else {
+			pd = new ProgressDialog(AddNewNoteActivity.this);
+			pd.setMessage("通讯中...");
+			pd.show();
 			final Map<String, String> noteStrMap = new HashMap<String, String>();
 			noteStrMap.put("postContent", noteCnt);
-			noteStrMap.put("postTag", noteTag);
-			noteStrMap.put("userName", userId);
+			noteStrMap.put("postTag", tag);
+			noteStrMap.put("postUser", userId);
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
 					File file = null;
-					InputStream in = null;
 					String result = null;
 					try {
 						if (!imagePath.equals("")) {
 							file = new File(imagePath);
-							in = new FileInputStream(file);
 						}
 						result = ClientApi.uploadSubmit(
 								Constants.POST_NOTE_URL, noteStrMap,
@@ -346,13 +376,13 @@ public class AddNewNoteActivity extends Activity implements OnClickListener,
 		switch (buttonView.getId()) {
 		case R.id.tb_new_note_niming:
 			if (isChecked) {
-				tb_new_note_niming.setBackgroundDrawable(getResources()
-						.getDrawable(R.drawable.pic_niming_true));
-				Toast.makeText(this, "匿名成功", Toast.LENGTH_SHORT).show();
+				/*tb_new_note_niming.setBackgroundDrawable(getResources()
+						.getDrawable(R.drawable.pic_niming_true));*/
+				Toast.makeText(this, "暂未开放", Toast.LENGTH_SHORT).show();
 			} else {
-				tb_new_note_niming.setBackgroundDrawable(getResources()
-						.getDrawable(R.drawable.pic_niming_false));
-				Toast.makeText(this, "取消匿名", Toast.LENGTH_SHORT).show();
+				/*tb_new_note_niming.setBackgroundDrawable(getResources()
+						.getDrawable(R.drawable.pic_niming_false));*/
+				Toast.makeText(this, "暂未开放", Toast.LENGTH_SHORT).show();
 			}
 			break;
 

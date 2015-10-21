@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/ui_color_gray" >
+    android:background="#F2F2F2" >
     <RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -30,7 +30,7 @@
                 android:id="@+id/tv_msg_good_name"
                 android:textColor="@color/msg_gar_name"
                 android:textSize="15.0dp"
-                android:text="迷路的安娜"/>
+                android:text=""/>
             <ImageView 
                 android:layout_width="11dp"
                 android:layout_height="11dp"
@@ -38,7 +38,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="4dp"
                 android:id="@+id/img_msg_good_sex"
-                android:background="@drawable/pic_female"/>
+                />
         </RelativeLayout>
         <TextView 
             android:layout_width="wrap_content"
@@ -62,8 +62,10 @@
                 android:layout_height="53dp"
                 android:id="@+id/img_msg_good_picture"
                 android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/pic_test1"/>
+                />
         </RelativeLayout>
         <ImageView 
             android:layout_width="16dp"
@@ -116,4 +118,8 @@
             android:layout_height="8dp"
             android:background="@color/white"/>
     </LinearLayout>
+    <View android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F2F2F2"
+        />
 </LinearLayout>

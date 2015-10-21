@@ -14,7 +14,7 @@
             android:id="@+id/tv_num_note"
             android:textSize="14dp"
             android:textColor="#999999"
-            android:text="3篇帖子"/>
+            android:text=""/>
         <View android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_toLeftOf="@+id/tv_num_note"

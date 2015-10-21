@@ -16,6 +16,7 @@
             android:layout_marginLeft="15.0dp"
             android:contentDescription="@string/back"
             android:id="@+id/iv_back"
+            android:onClick="back"
             android:src="@drawable/pic_back2"/>
 
         <TextView
@@ -33,6 +34,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="14dp"
             android:id="@+id/iv_set_name_finish"
+            android:onClick="setName"
             android:background="@drawable/pic_duihao_black"/>
     </RelativeLayout>
     <EditText 
